@@ -18,9 +18,18 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('auth/test');
+    return view('test');
+})->name('test');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::middleware(['auth'])->group(function() {
+    //Route::get('/categories','CategoryController@index')->name('categories');
+    //Route::put('/categories','CategoryController@update');
+    //Route::post('/categories','CategoryController@store');
+    //Route::delete('/categories','CategoryController@destroy');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');

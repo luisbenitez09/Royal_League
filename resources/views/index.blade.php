@@ -55,37 +55,41 @@
 <body style="background-color: #0a1346;">
 
     <!-- Navbar -->
-    <nav class=" container mx-auto px-6 py-2 flex justify-between items-center sticky">
-        <img class="w-24" src="img/logo.png" alt="Logo">
-        <div class="block md:hidden">
-            <button
-                class="flex items-center px-3 py-2 border rounded text-cool-gray-300 border-cool-gray-300 hover:text-white hover:border-white appearance-none focus:outline-none">
-                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <title>Menu</title>
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                </svg>
-            </button>
+    <header class="mx-auto px-6 py-2 md:flex md:justify-between md:items-center sticky bg-red-700 md:bg-transparent">
+        <div class="flex items-center justify-between mb-4 md:mb-0">
+            <img class="w-16 md:w-24" src="img/logo.png" alt="Logo">
+
+            <a class="text-white hover:text-yellow-400 md:hidden" onclick="toggle()" href="#">
+                <i class="fa fa-2x fa-bars"></i>
+            </a>
         </div>
-        <div class="hidden md:block">
-            <ul class="grid grid-cols-1 md:inline-flex">
-                <li><a class="px-4 font-bold text-white" href="/">Inicio</a></li>
-                <li><a class="px-4 text-white hover:font-semibold" href="#">Torneos</a></li>
+        
+        <nav class="hidden md:inline-flex" id="nav-bar">
+            <ul class="list-reset md:flex md:items-center">
+                <li class="md:ml-4">
+                    <a class="px-4 block border-b-2 border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 font-bold text-white hover:text-yellow-400 transition duration-500 ease-in-out" href="/">Inicio</a>
+                </li>
+                <li class="md:ml-4">
+                    <a class="px-4 block border-b-2 border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 text-white hover:text-yellow-400 transition duration-500 ease-in-out" href="#">Torneos</a>
+                </li>
                 @auth
-                    <li><a class="px-4 my-auto text-white hover:font-semibold" href="#">Dashboard</a></li>
+                    <li class="md:ml-4">
+                        <a class="px-4 block border-b-2 border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 my-auto text-white hover:text-yellow-400 transition duration-500 ease-in-out" href="{{ route('dashboard') }}">Dashboard</a>
+                    </li>
                 @else
-                    <li><a class="px-4 my-auto text-white hover:font-semibold" href="#">Login</a></li>
-                    <button
-                        class="px-4 py-1 flex items-center justify-center rounded-full bg-red-700 hover:bg-red-800 text-white"
-                        type="submit">
-                        Register
-                    </button>
+                <li class="md:ml-4">
+                    <a class="px-4 block border-b-2 border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 my-auto text-white hover:text-yellow-400 transition duration-500 ease-in-out" href="{{ route('login') }}">Login</a>
+                </li>
+                <li class="md:ml-4">
+                    <a class="px-4 block border-b-2 border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 my-auto text-white hover:text-yellow-400 transition duration-500 ease-in-out" href="{{ route('register') }}">Register</a>
+                </li>
                 @endauth
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <div class="carousel">
-        <div class="carousel-inner  overflow-hidden w-full hero -mt-32">
+        <div class="carousel-inner  overflow-hidden w-full hero md:-mt-32">
             <!--Slide 1-->
             <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
                 checked="checked">
@@ -98,9 +102,9 @@
                 </div>
             </div>
             <label for="carousel-2"
-                class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-red-700 leading-tight text-center z-10 inset-y-0 left-0 mt-36 md:mt-60 lg:my-auto">‹</label>
+                class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-red-700 leading-tight text-center z-10 inset-y-0 left-0 mt-60 lg:my-auto">‹</label>
             <label for="carousel-2"
-                class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-red-700 leading-tight text-center z-10 inset-y-0 right-0 mt-36 md:mt-60 lg:my-auto">›</label>
+                class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-red-700 leading-tight text-center z-10 inset-y-0 right-0 mt-60 lg:my-auto">›</label>
 
             <!--Slide 2-->
             <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
@@ -119,7 +123,7 @@
                 text-black hover:text-white rounded-full bg-white hover:bg-red-700 leading-tight text-center z-10
                 inset-y-0 right-0 mt-36 md:mt-60 lg:my-auto">›</label>
 
-            <!-- Add additional indicators for each slide-->
+            <!-- Add additional indicators for each slide--
             <ol class="carousel-indicators">
                 <li class="inline-block mr-3">
                     <label for="carousel-1"
@@ -129,7 +133,7 @@
                     <label for="carousel-2"
                         class="carousel-bullet cursor-pointer block text-4xl text-white hover:text-red-700">•</label>
                 </li>
-            </ol>
+            </ol>-->
 
         </div>
     </div>
@@ -221,7 +225,7 @@
                 <h2 class="mx-auto text-white font-medium text-center text-3xl sm:text-3xl md:text-4xl">Los mejores
                     torneos son de</br>Royal League</h2>
                 <a href=""
-                    class="bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium p-4 w-36 text-center mx-auto mt-4 md:mt-8 ">Ver
+                    class="bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium p-4 w-36 text-center mx-auto mt-4 md:mt-8 transition duration-500 ease-in-out">Ver
                     Torneos</a>
             </div>
         </div>
@@ -235,13 +239,13 @@
                     <h5 class="uppercase mb-6 font-bold text-cool-gray-50">Royal League</h5>
                     <ul class="mb-4">
                         <li class="mt-2">
-                            <a href="#" class="text-cool-gray-300 hover:text-cool-gray-50">Inicio</a>
+                            <a href="#" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Inicio</a>
                         </li>
                         <li class="mt-2">
-                            <a href="#" class="text-cool-gray-300 hover:text-cool-gray-50">Torneos</a>
+                            <a href="#" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Torneos</a>
                         </li>
                         <li class="mt-2">
-                            <a href="#" class="text-cool-gray-300 hover:text-cool-gray-50">Dashboard</a>
+                            <a href="#" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Dashboard</a>
                         </li>
                     </ul>
                 </div>
@@ -249,10 +253,10 @@
                     <h5 class="uppercase mb-6 font-bold text-cool-gray-50">Legal</h5>
                     <ul class="mb-4">
                         <li class="mt-2">
-                            <a href="#" class="text-cool-gray-300 hover:text-cool-gray-50">Terminos y condiciones</a>
+                            <a href="#" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Terminos y condiciones</a>
                         </li>
                         <li class="mt-2">
-                            <a href="#" class="text-cool-gray-300 hover:text-cool-gray-50">Aviso de privacidad</a>
+                            <a href="#" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Aviso de privacidad</a>
                         </li>
                     </ul>
                 </div>
@@ -260,8 +264,8 @@
                     <h5 class="uppercase mb-6 font-bold text-cool-gray-50">Contacto</h5>
                     <ul class="mb-4">
                         <li class="mt-2">
-                            <a class="text-cool-gray-300"
-                                mailto="support@royalleague.com">support@royalleague.com.mx</a>
+                            <a class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out"
+                                href="mailto:support@royalleague.com">support@royalleague.com.mx</a>
                         </li>
                     </ul>
                 </div>
@@ -270,22 +274,33 @@
                     <ul class="inline-flex">
                         <li class="pr-6">
                             <a href="https://www.facebook.com/Royal-League-109787480839374" target="_blank">
-                                <i class="fab fa-facebook-f text-cool-gray-300 hover:text-cool-gray-50"></i></a>
+                                <i class="fab fa-facebook-f text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out"></i></a>
                         </li>
                         <li class="pr-6">
                             <a href="https://www.instagram.com/royalleagueorg/" target="_blank">
-                                <i class="fab fa-instagram text-cool-gray-300 hover:text-cool-gray-50"></i></a>
+                                <i class="fab fa-instagram text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out"></i></a>
                         </li>
                         <li>
                             <a href="https://www.instagram.com/royalleagueorg/" target="_blank">
-                                <i class="fab fa-youtube text-cool-gray-300 hover:text-cool-gray-50"></i></a>
+                                <i class="fab fa-youtube text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
-
+<script>
+    function toggle() {
+        var x = document.getElementById("nav-bar");
+        if (x.classList.contains("hidden")) {
+            x.classList.remove("hidden")
+            x.classList.add("block")
+        } else {
+            x.classList.remove("block")
+            x.classList.add("hidden")
+        }
+    }
+</script>
 </body>
 
 </html>
