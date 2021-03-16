@@ -19,7 +19,9 @@ module.exports = {
                 'login': "url('/img/bg-login.png')",
                 'register': "url('/img/bg-register.png')",
                 'fill-info': "url('/img/bg-fill-info.png')",
-                'dash': "url('/img/bg-dash.png')"
+                'dash': "url('/img/bg-dash.png')",
+                'teams': "url('/img/bg-teams.png')",
+                'profile': "url('/img/bg-profile.png')"
             })
         },
         backdropFilter: {

@@ -7,6 +7,7 @@ use Auth;
 
 class Navbar extends Component
 {
+    
     public function render()
     {
         $user = Auth::user();

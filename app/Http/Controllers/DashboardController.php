@@ -11,8 +11,10 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $userName;
+
     public function index ()
     {
-        return view ('dashboard');
+        return view ('users.dashboard');
     }
 }

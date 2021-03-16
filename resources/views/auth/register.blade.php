@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="w-full md:mt-0 md:w-2/3 md:h-full">
-            <div class="w-full  md:w-5/6 md:h-full md:mx-auto">
+            <div class="w-full  md:w-1/2 md:h-full md:mx-auto">
                 <form class="auth-form flex flex-col justify-evenly md:justify-between items-center h-screen md:h-full" method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group flex flex-col items-center w-full mb-4">

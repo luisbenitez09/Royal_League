@@ -15,7 +15,7 @@
 </head>
 <body style="background-color: #1a2a41"  class="bg-login bg-cover bg-center bg-fixed">
     <!-- pagina -->
-    <div class="flex flex-col md:flex-row justify-between items-center md:h-screen p-10">
+    <div class="flex flex-col md:flex-row  items-center md:h-screen p-10">
          <!-- left card -->
         <div class="flex justify-between items-center bg-gray-700 bg-opacity-50 rounded-3xl w-full md:w-1/3 md:h-full p-4" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
             <!-- contenedor -->
@@ -39,8 +39,8 @@
             </div>
         </div>
         <div class="w-full mt-10 md:mt-0 md:w-2/3 md:h-full">
-            <div class="w-full  md:w-5/6 md:h-full md:mx-auto">
-                <form class="auth-form flex flex-col justify-evenly md:justify-between items-center h-96 md:h-full" method="POST" action="{{ route('login') }}">
+            <div class="w-full  md:w-1/2 md:h-full md:mx-auto">
+                <form class="auth-form flex flex-col justify-evenly md:space-around items-center h-96 md:h-full" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group flex flex-col items-center w-full mb-8 ">
                         <button class="rounded-full w-full bg-blue-600 hover:bg-blue-500 py-2 text-white mb-4 md:mb-8

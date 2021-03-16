@@ -18,16 +18,26 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('test');
+    return view('users.profile');
 })->name('test');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::middleware(['auth'])->group(function() {
-    //Route::get('/categories','CategoryController@index')->name('categories');
+    Route::get('/teams','TeamController@index')->name('teams');
     //Route::put('/categories','CategoryController@update');
-    //Route::post('/categories','CategoryController@store');
+    Route::post('/teams','TeamController@store');
     //Route::delete('/categories','CategoryController@destroy');
+
+    Route::get('/members','MemberController@index')->name('members');
+    //Route::put('/categories','CategoryController@update');
+    Route::post('/members','MemberController@store');
+    //Route::delete('/categories','CategoryController@destroy');
+
+    Route::get('/profile','ProfileController@index')->name('profile');
+    //Route::put('/categories','CategoryController@update');
+    Route::post('/profile','ProfileController@store');
+    Route::delete('/profile','ProfileController@destroy');
 });
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
