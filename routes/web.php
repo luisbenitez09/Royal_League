@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function() {
     //Route::delete('/categories','CategoryController@destroy');
 
     Route::get('/profile','ProfileController@index')->name('profile');
+    Route::get('/change-password','ProfileController@changePass')->name('change-password');
     //Route::put('/categories','CategoryController@update');
     Route::post('/profile','ProfileController@store');
     Route::delete('/profile','ProfileController@destroy');

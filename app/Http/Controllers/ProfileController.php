@@ -20,6 +20,19 @@ class ProfileController extends Controller
         return view ('users.profile', compact('user','profiles'));
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function changePass ()
+    {
+        $user = Auth::user();
+        return view ('users.change-pass', compact('user'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
