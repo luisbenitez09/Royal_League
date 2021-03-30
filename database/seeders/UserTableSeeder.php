@@ -19,6 +19,15 @@ class UserTableSeeder extends Seeder
         $user->email = "luis@gmail.com";
         $user->password = bcrypt("12345678");
         $user->birthdate = "1997-09-29";
+        $user->role_id = 1;
+        $user->save();
+
+        $user = new User();
+        $user->name = "Maria Meza";
+        $user->email = "maria@gmail.com";
+        $user->password = bcrypt("123456789");
+        $user->birthdate = "1999-08-28";
+        $user->role_id = 2;
         $user->save();
     }
 }
