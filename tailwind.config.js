@@ -21,7 +21,8 @@ module.exports = {
                 'fill-info': "url('/img/bg-fill-info.png')",
                 'dash': "url('/img/bg-dash.png')",
                 'teams': "url('/img/bg-teams.png')",
-                'profile': "url('/img/bg-profile.png')"
+                'profile': "url('/img/bg-profile.png')",
+                'tournaments': "url('/img/bg-torneos.png')"
             })
         },
         backdropFilter: {

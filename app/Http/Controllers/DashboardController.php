@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,6 +15,11 @@ class DashboardController extends Controller
 
     public function index ()
     {
-        return view ('users.dashboard');
+        if(Auth::user()->hasRole('Admin')) {
+            return view ('admin.dashboard');    
+        } else {
+            return view ('users.dashboard');
+        }
+        
     }
 }

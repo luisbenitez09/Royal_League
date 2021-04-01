@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tournament;
+use Auth;
 use Illuminate\Http\Request;
 
 class TournamentController extends Controller
@@ -12,9 +13,10 @@ class TournamentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index ()
     {
-        //
+        $user = Auth::user();
+        return view ('tournaments', compact('user'));
     }
 
     /**

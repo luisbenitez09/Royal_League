@@ -26,12 +26,12 @@
         <div class="container z-30 px-4 mx-auto mt-8 sm:px-0">
             <!-- Name -->
             <h1 class="mt-10 text-4xl text-white font-bold">{{ $user->name }}</h1>
-            <!-- Email and pass -->
+            <!-- Email -->
             <div class="flex flex-row items-center mt-8 mb-20">
                 <p class="mr-8 text-xl font-light text-gray-400">{{ $user->email }}</p>
-                <a href="{{ route('change-password') }}"
+                <!-- <a href="{{ route('change-password') }}"
                     class="px-4 py-2 mr-2 font-light text-white transition duration-500 ease-in-out bg-gray-600 bg-opacity-50 rounded-lg hover:bg-gray-400 hover:bg-opacity-50">Cambiar
-                    password</a>
+                    password</a> -->
             </div>
             
             <!-- Add Gamertag -->

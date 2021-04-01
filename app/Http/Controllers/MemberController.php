@@ -15,9 +15,9 @@ class MemberController extends Controller
      */
     public function index ()
     {
-        //$teams = Team::all();
-        //$user = Auth::user();
-        //return view ('users.teams', compact('user', 'teams'));
+        $teams = Team::all();
+        $user = Auth::user();
+        return view ('users.teams', compact('user', 'teams'));
     }
 
     /**

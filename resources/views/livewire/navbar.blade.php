@@ -13,13 +13,16 @@
                     class="hidden origin-top-left absolute right-4 mt-2 w-56 rounded-md shadow-lg bg-gray-700 bg-opacity-50"
                     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        <a href="/"
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                            role="menuitem">Inicio</a>
+                        <a href="{{ route('dashboard') }}"
                             class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                             role="menuitem">Dashboard</a>
-                        <a href="/myTeams"
+                        <a href="{{ route('teams') }}"
                             class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                             role="menuitem">Mis equipos</a>
-                        <a href="#"
+                        <a href="{{ route('tournaments') }}"
                             class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                             role="menuitem">Torneos</a>
                         <a href="{{ route('profile') }}"
@@ -55,13 +58,16 @@
                         class="hidden origin-top-left absolute right-4 mt-2 w-56 rounded-md shadow-lg bg-gray-700 bg-opacity-50"
                         style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
                         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <a href="{{ route('dashboard') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                role="menuitem">Dashboard</a>
+                            <a href="{{ route('inicio') }}"
+                            class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                            role="menuitem">Inicio</a>
+                        <a href="{{ route('dashboard') }}"
+                            class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                            role="menuitem">Dashboard</a>
                             <a href="{{ route('teams') }}"
                                 class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Mis equipos</a>
-                            <a href="#"
+                            <a href="{{ route('tournaments') }}"
                                 class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Torneos</a>
                             <a href="{{ route('profile') }}"
