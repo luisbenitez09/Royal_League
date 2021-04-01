@@ -13,7 +13,7 @@
     <title>Torneo actual</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-tournaments bg-cover">
+<body class="bg-admin-dash bg-cover">
     
     @livewire('navbar')
     <!-- header -->

@@ -22,7 +22,8 @@ module.exports = {
                 'dash': "url('/img/bg-dash.png')",
                 'teams': "url('/img/bg-teams.png')",
                 'profile': "url('/img/bg-profile.png')",
-                'tournaments': "url('/img/bg-live-tournament.png')"
+                'tournaments': "url('/img/bg-live-tournament.png')",
+                'admin-dash': "url('/img/bg-admin-dash.png')",
             })
         },
         backdropFilter: {
