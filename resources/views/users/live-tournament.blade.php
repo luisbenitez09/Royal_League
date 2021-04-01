@@ -38,9 +38,10 @@
 
     <!-- data -->
     <div class="bg-gray-900 bg-opacity-25 hover:bg-opacity-50 rounded-3xl mx-4 md:container md:mx-auto p-10 mb-20 transition duration-500 ease-in-out">
+        <h3 class="text-white text-xl font-bold mb-8">Tiempo restante: 15:00 min</h3>
         <table class="w-full text-white">
             <thead class="text-xl border-b-2">
-                <th class="w-2/3 pb-4 border-r-2">Equipo</th>
+                <th class="w-1/2 md:w-2/3 pb-4 border-r-2">Equipo</th>
                 <th class="pb-4 border-r-2">Puntos</th>
                 <th class="pb-4">Posición</th>
             </thead>

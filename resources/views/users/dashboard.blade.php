@@ -67,9 +67,9 @@
                                 <span class="text-red-600 text-xs font-light col-1 -ml-8 -mt-1 align-top">En curso</span>
                             </div>
                             <!-- Button -->
-                            <button class="w-32 bg-yellow-400 hover:bg-yellow-300 transition duration-500 ease-in-out py-1 rounded-lg text-white font-semibold ">
+                            <a href="{{ route('test') }}" class="w-32 bg-yellow-400 hover:bg-yellow-300 transition duration-500 ease-in-out py-1 px-4 rounded-lg text-white font-semibold ">
                                 Ver torneo
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <!-- Subtitles line-->
