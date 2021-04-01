@@ -1,21 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Style -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Dashboard</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-blue-800">
+
+<body class="bg-admin-dash bg-cover">
     @livewire('admin-navbar')
-    <h1>Dash admin</h1>
+
+    <h1 class="px-10 text-3xl text-white font-bold">Dashboard</h1>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 justify-between px-10 py-5">
+
+        <div class=" h-44 bg-gray-400 bg-opacity-50 rounded-3xl">
+            <h1 class="p-5 mt-12 text-white font-bold text-2xl">298 usuarios</h1>
+            <h1 class="pl-5 text-white font-light">Ver usuarios</h1>
+        </div>
+        <div class=" h-44 bg-gray-400 bg-opacity-50 rounded-3xl">
+            <h1 class="p-5 mt-12 text-white font-bold text-2xl">298 usuarios</h1>
+            <h1 class="pl-5 text-white font-light">Ver usuarios</h1>
+        </div>
+        <div class=" h-44 bg-gray-400 bg-opacity-50 rounded-3xl">
+            <h1 class="p-5 mt-12 text-white font-bold text-2xl">298 usuarios</h1>
+            <h1 class="pl-5 text-white font-light">Ver usuarios</h1>
+        </div>
+
+        <div class="lg:col-span-2 h-96 bg-gray-500 bg-opacity-50 rounded-3xl p-6 justify-between">
+            <h1 class="text-center text-2xl text-white font-bold">Equipos registrados</h1>
+            <table class="w-full text-white mt-6">
+                <thead class="text-xl border-b-2">
+                    <th class="w-2/3 pb-4 border-r-2">Equipo</th>
+                    <th class="pb-4 border-r-2">Puntos</th>
+                    <th class="pb-4">Posición</th>
+                </thead>
+                <tbody>
+                    <tr class="border-t-2">
+                        <td class="py-2 text-center border-r-2">Fouz</td>
+                        <td class="py-2 text-center border-r-2">1289</td>
+                        <td class="py-2 text-center">1</td>
+                    </tr>
+                    <tr class="border-t-2">
+                        <td class="py-2 text-center border-r-2">Momos 4k</td>
+                        <td class="py-2 text-center border-r-2">1287</td>
+                        <td class="py-2 text-center">2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class=" h-44 bg-gray-500 bg-opacity-50 rounded-3xl"></div>
+
+    </div>
 
     @livewire('footer')
     <script>
@@ -48,7 +89,7 @@
             }
         }
 
-        window.onclick = function (event) {
+        window.onclick = function(event) {
             if (!event.target.matches('.btn-drop')) {
                 var dropdown1 = document.getElementById("drop-menu-1");
                 var dropdown2 = document.getElementById("drop-menu-2");
@@ -86,7 +127,7 @@
             x.classList.remove("fixed")
             x.classList.add("hidden")
         }
-
     </script>
 </body>
+
 </html>
