@@ -98,7 +98,7 @@
     <!-- header -->
     <div class="w-full">
         <div class="absolute w-full mt-2/12">
-            <h1 class="text-white text-3xl md:text-5xl font-bold text-center">Torneos</h1>
+            <h1 class="text-white tex-3xl md:text-5xl font-bold text-center">Torneos</h1>
         </div>
         
         <img src="{{ asset('img/bg-torneos.png') }}" alt="" class="h-full w-screen ">

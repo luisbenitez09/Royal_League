@@ -13,14 +13,15 @@
     <title>Torneo actual</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-admin-dash bg-cover">
+<body class="bg-live-tournament bg-cover">
     
     @livewire('navbar')
     <!-- header -->
     <div class="w-full py-20 z-0">
         <h1 class="text-white text-5xl font-bold text-center">Primer torneo warzone</h1>
+
         <!-- Live marker-->
-        <div class="w-32 grid grid-cols-2 mx-auto">
+        <div class="w-32 grid grid-cols-2 mx-auto my-6">
             <div class="col-1 items-center">
                 <span class="flex h-6 w-6">
                     <span class="animate-pulse relative w-full h-full rounded-full inline-flex bg-red-600"></span>
@@ -28,9 +29,35 @@
             </div>
             <span class="text-red-600 text-lg font-light col-1 -ml-8 -mt-1 align-top">En curso</span>
         </div>
+        <div class="flex flex-col md:flex-row w-full justify-around">
+            <p class="font-light text-white text-lg text-center">Jueves 23 de Diciembre</p>
+            <p class="font-light text-white text-lg text-center">KD 10 max / team</p>
+            <p class="font-light text-white text-lg text-center mb-1">14:00 - 20:00 <span class="font-bold text-xs">Hora CDMX (GMT-6)</span></p>
+        </div>
     </div>
 
     <!-- data -->
+    <div class="bg-gray-900 bg-opacity-25 hover:bg-opacity-50 rounded-3xl mx-4 md:container md:mx-auto p-10 mb-20 transition duration-500 ease-in-out">
+        <table class="w-full text-white">
+            <thead class="text-xl border-b-2">
+                <th class="w-2/3 pb-4 border-r-2">Equipo</th>
+                <th class="pb-4 border-r-2">Puntos</th>
+                <th class="pb-4">Posición</th>
+            </thead>
+            <tbody>
+                <tr class="border-t-2">
+                    <td class="py-2 text-center border-r-2">Fouz</td>
+                    <td class="py-2 text-center border-r-2">1289</td>
+                    <td class="py-2 text-center">1</td>
+                </tr>
+                <tr class="border-t-2">
+                    <td class="py-2 text-center border-r-2">Momos 4k</td>
+                    <td class="py-2 text-center border-r-2">1287</td>
+                    <td class="py-2 text-center">2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     @livewire('footer')
     <script>

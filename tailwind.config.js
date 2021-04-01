@@ -24,6 +24,7 @@ module.exports = {
                 'profile': "url('/img/bg-profile.png')",
                 'tournaments': "url('/img/bg-live-tournament.png')",
                 'admin-dash': "url('/img/bg-admin-dash.png')",
+                'live-tournament': "url('/img/bg-live-tournament.png')",
             })
         },
         backdropFilter: {
