@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('index'); });
+Route::get('/', function () { 
+    return view('index'); 
+});
 
 Route::get('/test', function () {
-    return view('tournaments');
+    return view('users.live-tournament');
 })->name('test');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', 'DashboardController@index')->name('dashboard');
