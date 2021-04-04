@@ -47,6 +47,11 @@ Route::middleware(['auth'])->group(function() {
     //Route::put('/categories','CategoryController@update');
     Route::post('/profile','ProfileController@store');
     Route::delete('/profile','ProfileController@destroy');
+
+    Route::get('/teams-users','TeamsUsersController@index')->name('teams-users');
+    //Route::put('/categories','CategoryController@update');
+    Route::post('/teams-users','TeamUsersController@store');
+    //Route::delete('/categories','CategoryController@destroy');
 });
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

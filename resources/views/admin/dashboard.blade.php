@@ -20,24 +20,33 @@
         <h1 class="text-3xl text-white font-bold mt-20">Dashboard</h1>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 justify-between py-5 mb-20">
 
-            <div class=" h-44 bg-gray-400 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
-                <h1 class="p-5 mt-12 text-white font-bold text-2xl">298 usuarios</h1>
-                <h1 class="pl-5 text-white font-light">Ver usuarios</h1>
+            <div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
+                <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
+                    <img src="{{ asset('img/icon-user.png') }}" alt="" class="w-10 mx-auto">
+                </div>
+                <h1 class="text-white font-bold text-2xl">298 usuarios</h1>
+                <a href="{{ route('teams-users') }}" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver usuarios</a>
             </div>
-            <div class=" h-44 bg-gray-400 bg-opacity-50 rounded-3xl">
-                <h1 class="p-5 mt-12 text-white font-bold text-2xl">298 usuarios</h1>
-                <h1 class="pl-5 text-white font-light">Ver usuarios</h1>
+            <div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
+                <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
+                    <img src="{{ asset('img/icon-team.png') }}" alt="" class="w-10 mx-auto">
+                </div>
+                <h1 class="text-white font-bold text-2xl">54 equipos</h1>
+                <a href="" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver equipos</a>
             </div>
-            <div class=" h-44 bg-gray-400 bg-opacity-50 rounded-3xl">
-                <h1 class="p-5 mt-12 text-white font-bold text-2xl">298 usuarios</h1>
-                <h1 class="pl-5 text-white font-light">Ver usuarios</h1>
+            <div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
+                <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
+                    <img src="{{ asset('img/icon-tournaments.png') }}" alt="" class="w-10 mx-auto">
+                </div>
+                <h1 class="text-white font-bold text-2xl">25 torneos</h1>
+                <a href="" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver torneos</a>
             </div>
 
             <div class="lg:col-span-2 h-96 bg-gray-500 bg-opacity-50 rounded-3xl p-6 justify-between">
                 <h1 class="text-center text-2xl text-white font-bold">Equipos registrados</h1>
                 <table class="w-full text-white mt-6">
                     <thead class="text-xl border-b-2">
-                        <th class="w-2/3 pb-4 border-r-2">Equipo</th>
+                        <th class="w-1/2 pb-4 border-r-2">Equipo</th>
                         <th class="pb-4 border-r-2">Puntos</th>
                         <th class="pb-4">Posición</th>
                     </thead>
@@ -55,7 +64,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class=" h-44 bg-gray-500 bg-opacity-50 rounded-3xl"></div>
+            <div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
+                <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
+                    <img src="{{ asset('img/icon-cms.png') }}" alt="" class="w-10 mx-auto">
+                </div>
+                <h1 class="text-white font-bold text-2xl">CMS</h1>
+                <a href="" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Editar web</a>
+            </div>
 
         </div>
     </div>
