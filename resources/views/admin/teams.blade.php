@@ -15,29 +15,37 @@
 <body class="bg-admin-dash bg-cove">
     @livewire('admin-navbar')
 
+    <div class="w-full h-screen">
+        <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
+            <h1 class="text-center text-2xl text-white font-bold mb-5">Equipos registrados</h1>
+            <table class="w-full text-white">
+                <thead class="text-xl border-b-2">
+                    <th class="pb-4 border-r-2">Nombre</th>
+                    <th class="pb-4 border-r-2">Creador</th>
+                    <th class="pb-4 border-r-2">Puntos</th>
+                    <th class="pb-4">Acciones</th>
+                </thead>
+                <tbody>
+                    @foreach ($teams as $team)
+                        <tr class="border-t-2">
+                            <td class="py-4 text-center border-r-2">{{ $team->name }}</td>
+                            <td class="py-4 text-center border-r-2">{{ $team->owner }}</td>
+                            <td class="py-4 text-center border-r-2">{{ $team->points }}</td>
+                            <td class="py-4 text-center">
+                                <a href="" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
+                                    Editar
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <div class="max-w-6xl mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 p-10">
-                <h1 class="text-center text-2xl text-white font-bold mb-5">Usuarios registrados</h1>
-                <table class="w-full text-white">
-                    <thead class="text-xl border-b-2">
-                        <th class="w-1/2 pb-4 border-r-2">Equipo</th>
-                        <th class="pb-4 border-r-2">Puntos</th>
-                        <th class="pb-4">Posición</th>
-                    </thead>
-                    <tbody>
-                        <tr class="border-t-2">
-                            <td class="py-2 text-center border-r-2">Fouz</td>
-                            <td class="py-2 text-center border-r-2">1289</td>
-                            <td class="py-2 text-center">1</td>
-                        </tr>
-                        <tr class="border-t-2">
-                            <td class="py-2 text-center border-r-2">Momos 4k</td>
-                            <td class="py-2 text-center border-r-2">1287</td>
-                            <td class="py-2 text-center">2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    
 
 
     @livewire('footer')

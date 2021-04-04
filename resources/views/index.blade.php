@@ -69,7 +69,7 @@
                     <a class="px-4 block border-b-2 border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 font-bold text-white hover:text-yellow-400 transition duration-500 ease-in-out" href="/">Inicio</a>
                 </li>
                 <li class="md:ml-4">
-                    <a class="px-4 block border-b-2 border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 text-white hover:text-yellow-400 transition duration-500 ease-in-out" href="#">Torneos</a>
+                    <a class="px-4 block border-b-2 border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 text-white hover:text-yellow-400 transition duration-500 ease-in-out" href="{{ route('tournaments') }}">Torneos</a>
                 </li>
                 @auth
                     <li class="md:ml-4">
@@ -218,12 +218,12 @@
     </section>
 
     <!-- cta -->
-    <section class="mx-4 md:mx-16 lg:mx-16 relative -mb-72 -mt-44">
+    <section class="mx-4 md:mx-16 lg:mx-16 relative -mb-72 -mt-44 transform hover:-translate-y-6 transition duration-500 ease-in-out">
         <div class="bg-mainCTA bg-cover rounded-3xl pt-40 pb-24">
             <div class="grid grid-cols-1 ">
                 <h2 class="mx-auto text-white font-medium text-center text-3xl sm:text-3xl md:text-4xl">Los mejores
                     torneos son de</br>Royal League</h2>
-                <a href=""
+                <a href="{{ route('tournaments') }}"
                     class="bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium p-4 w-36 text-center mx-auto mt-4 md:mt-8 transition duration-500 ease-in-out">Ver
                     Torneos</a>
             </div>
@@ -238,13 +238,13 @@
                     <h5 class="uppercase mb-6 font-bold text-cool-gray-50">Royal League</h5>
                     <ul class="mb-4">
                         <li class="mt-2">
-                            <a href="#" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Inicio</a>
+                            <a href="/" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Inicio</a>
                         </li>
                         <li class="mt-2">
-                            <a href="#" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Torneos</a>
+                            <a href="{{ route('tournaments') }}" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Torneos</a>
                         </li>
                         <li class="mt-2">
-                            <a href="#" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="text-cool-gray-400 hover:text-cool-gray-50 transition duration-500 ease-in-out">Dashboard</a>
                         </li>
                     </ul>
                 </div>

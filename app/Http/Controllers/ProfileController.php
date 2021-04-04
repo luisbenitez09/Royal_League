@@ -17,7 +17,12 @@ class ProfileController extends Controller
     {
         $profiles = Profile::All();
         $user = Auth::user();
-        return view ('users.profile', compact('user','profiles'));
+        if(Auth::user()->hasRole('Admin')) {
+            return view ('admin.users', compact('user','profiles'));
+        } else {
+            return view ('users.profile', compact('user','profiles'));
+        }
+        
     }
 
 

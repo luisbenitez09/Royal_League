@@ -24,15 +24,15 @@
                 <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
                     <img src="{{ asset('img/icon-user.png') }}" alt="" class="w-10 mx-auto">
                 </div>
-                <h1 class="text-white font-bold text-2xl">298 usuarios</h1>
-                <a href="{{ route('teams-users') }}" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver usuarios</a>
+                <h1 class="text-white font-bold text-2xl">{{ $users->count() }} usuarios</h1>
+                <a href="{{ route('admin-users') }}" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver usuarios</a>
             </div>
             <div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
                 <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
                     <img src="{{ asset('img/icon-team.png') }}" alt="" class="w-10 mx-auto">
                 </div>
-                <h1 class="text-white font-bold text-2xl">54 equipos</h1>
-                <a href="" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver equipos</a>
+                <h1 class="text-white font-bold text-2xl">{{ $teams->count() }} equipos</h1>
+                <a href="{{ route('admin-teams') }}" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver equipos</a>
             </div>
             <div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
                 <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
@@ -51,16 +51,13 @@
                         <th class="pb-4">Posición</th>
                     </thead>
                     <tbody>
-                        <tr class="border-t-2">
-                            <td class="py-2 text-center border-r-2">Fouz</td>
-                            <td class="py-2 text-center border-r-2">1289</td>
-                            <td class="py-2 text-center">1</td>
-                        </tr>
-                        <tr class="border-t-2">
-                            <td class="py-2 text-center border-r-2">Momos 4k</td>
-                            <td class="py-2 text-center border-r-2">1287</td>
-                            <td class="py-2 text-center">2</td>
-                        </tr>
+                        @foreach ($teams as $team)
+                            <tr class="border-t-2">
+                                <td class="py-2 text-center border-r-2">{{ $team->name }}</td>
+                                <td class="py-2 text-center border-r-2">{{ $team->points }}</td>
+                                <td class="py-2 text-center">1</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

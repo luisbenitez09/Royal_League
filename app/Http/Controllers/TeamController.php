@@ -23,7 +23,12 @@ class TeamController extends Controller
         $members = Member::with('profile')->get();
         $profiles = Profile::All();
         $user = Auth::user();
-        return view ('users.teams', compact('user', 'teams', 'members', 'profiles'));
+        if(Auth::user()->hasRole('Admin')) {
+            return view ('admin.teams', compact('user', 'teams', 'members', 'profiles'));
+        } else {
+            return view ('users.teams', compact('user', 'teams', 'members', 'profiles'));
+        }
+        
     }
 
     /**
