@@ -16,7 +16,7 @@ class TeamSeeder extends Seeder
     {
         $team = new Team();
         $team->name = 'Momitos';
-        $team->owner = 'Reynaldo Meza';
+        $team->owner = 2;
         $team->points = 15000;
         $team->bestResult = 'N/A';
         $team->tournaments = 3;

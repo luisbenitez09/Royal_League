@@ -16,7 +16,8 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('owner');
+            $table->unsignedBigInteger('owner');
+            $table->foreign('owner')->references('id')->on('users')->onDelete('cascade');
             $table->integer('points')->default(0);
             $table->string('bestResult')->default('0');
             $table->integer('tournaments')->default(0);
