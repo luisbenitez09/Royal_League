@@ -26,16 +26,19 @@
                     <th class="pb-4">Acciones</th>
                 </thead>
                 <tbody>
-                    <tr class="border-t-2">
-                        <td class="py-4 text-center border-r-2">Luis Angel Benitez Ortega</td>
-                        <td class="py-4 text-center border-r-2">benitez2909@gmail.com</td>
-                        <td class="py-4 text-center border-r-2">1928</td>
-                        <td class="py-4 text-center">
-                            <a href="" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
-                                Editar
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($users as $user)
+                       <tr class="border-t-2">
+                            <td class="py-4 text-center border-r-2">{{ $user->name }}</td>
+                            <td class="py-4 text-center border-r-2">{{ $user->email }}</td>
+                            <td class="py-4 text-center border-r-2">{{ $user->name }}</td>
+                            <td class="py-4 text-center">
+                                <a href="" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
+                                    Editar
+                                </a>
+                            </td>
+                        </tr> 
+                    @endforeach
+                    
                     
                 </tbody>
             </table>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Profile;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -17,8 +18,10 @@ class ProfileController extends Controller
     {
         $profiles = Profile::All();
         $user = Auth::user();
+        $users = User::All();
+        
         if(Auth::user()->hasRole('Admin')) {
-            return view ('admin.users', compact('user','profiles'));
+            return view ('admin.users', compact('user','profiles','users'));
         } else {
             return view ('users.profile', compact('user','profiles'));
         }
