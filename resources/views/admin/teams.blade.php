@@ -29,7 +29,7 @@
                     @foreach ($teams as $team)
                         <tr class="border-t-2">
                             <td class="py-4 text-center border-r-2">{{ $team->name }}</td>
-                            <td class="py-4 text-center border-r-2">{{ $team->owner->name }}</td>
+                            <td class="py-4 text-center border-r-2">{{ $team->user->name }}</td>
                             <td class="py-4 text-center border-r-2">{{ $team->points }}</td>
                             <td class="py-4 text-center">
                                 <a href="" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
