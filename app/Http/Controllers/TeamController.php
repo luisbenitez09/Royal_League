@@ -19,7 +19,7 @@ class TeamController extends Controller
      */
     public function index ()
     {
-        $teams = Team::with('member')->get();
+        $teams = Team::with('member','user')->get();
         $members = Member::with('profile')->get();
         $profiles = Profile::All();
         $user = Auth::user();

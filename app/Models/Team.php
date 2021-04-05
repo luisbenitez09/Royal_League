@@ -27,5 +27,8 @@ class Team extends Model
         return $this->hasMany(Member::class, 'access_code');
     }
 
+    public function user(){
+        return $this->hasMany(User::class);
+    }
 
 }
