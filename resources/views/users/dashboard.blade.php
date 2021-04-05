@@ -22,20 +22,26 @@
                 <div class="col-span-1 md:col-span-2 lg:h-screen mb-8 md:mb-0 overflow-y-auto">
                     <h2 class="text-lg text-white font-semibold text-opacity-50 mb-8" >Mis equipos</h2>
                     <ul>
-                        <li>
-                            <div class="w-full grid grid-cols-2 bg-gray-400 bg-opacity-50 rounded-2xl p-2 mb-4 transform hover:-translate-y-2 transition duration-500 ease-in-out" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                                <div class="col-1">
-                                    <h3 class="font-semibold text-white">Fouz Team</h3>
-                                    <p class="font-light text-white text-opacity-75 text-xs -mt-1 mb-2">3 miebros</p>
-                                    <p class="font-medium text-white">345 puntos</p>
-                                </div>
-                                <div class="col-1">
-                                    <button class="bg-teal-500 hover:bg-teal-600 w-16 h-full float-right rounded-2xl text-white font-semibold transition duration-500 ease-in-out">
-                                        Ver
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
+                        @foreach ($teams as $team)
+                            @if ($team->owner === $user->id)
+                                <li>
+                                    <div class="w-full grid grid-cols-2 bg-gray-400 bg-opacity-50 rounded-2xl p-2 mb-4 transform hover:-translate-y-2 transition duration-500 ease-in-out" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                                        <div class="col-1">
+                                            <h3 class="font-semibold text-white">{{ $team->name }}</h3>
+                                            <p class="font-light text-white text-opacity-75 text-xs -mt-1 mb-2">
+                                                {{ DB::table('members')->where('access_code', $team->access_code)->count() }} miebros</p>
+                                            <p class="font-medium text-white">{{ $team->points }} puntos</p>
+                                        </div>
+                                        <div class="col-1">
+                                            <button class="bg-teal-500 hover:bg-teal-600 w-16 h-full float-right rounded-2xl text-white font-semibold transition duration-500 ease-in-out">
+                                                Ver
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li> 
+                            @endif
+                           
+                        @endforeach
                         <li>
                             <a href="{{ route('teams') }}" class="w-full h-20 flex flex-col items-center bg-gray-400 bg-opacity-50 hover:bg-gray-500 hover:bg-opacity-50 transition duration-500 ease-in-out rounded-2xl p-2 " 
                             style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
@@ -124,7 +130,7 @@
                     <!-- Stats card one-->
                     <div class="w-full h-64 mb-8 bg-gray-700 bg-opacity-50 rounded-3xl p-4 flex flex-col items-center transform hover:-translate-y-2 transition duration-500 ease-in-out">
                         <h3 class="font-semibold text-white text-md mb-4">Puntos acumulados</h3>
-                        <h1 class="font-bold text-yellow-400 text-4xl mb-4">1997</h1>
+                        <h1 class="font-bold text-yellow-400 text-4xl mb-4">{{ $userPoints }}</h1>
                         <p class="font-light text-white text-xs mb-3">Torneos jugados: 12</p>
                         <p class="font-light text-white text-xs mb-4">Podios: 9</p>
                         <div class="px-4 py-2 bg-black bg-opacity-50 rounded-lg">
@@ -132,10 +138,9 @@
                         </div>
                     </div>
                     <!-- Stats card 2-->
-                    <div class="w-full h-24 bg-gray-700 bg-opacity-50 rounded-3xl p-4 transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                        <p class="text-white font-semibold text-sm">Número de equipos: 1</p>
-                        <p class="text-white font-semibold text-sm">Mejor puntaje obtenido: 997</p>
-                        <p class="text-white font-semibold text-sm">Número de perfiles: 4</p>
+                    <div class="w-full h-20 bg-gray-700 bg-opacity-50 rounded-3xl p-4 transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                        <p class="text-white font-semibold text-sm">Número de equipos: {{ $teamsIn }}</p>
+                        <p class="text-white font-semibold text-sm">Número de perfiles: {{ $profileNum }}</p>
                     </div>
                 </div>
             </div>

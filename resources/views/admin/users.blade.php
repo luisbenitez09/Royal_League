@@ -30,7 +30,22 @@
                        <tr class="border-t-2">
                             <td class="py-4 text-center border-r-2">{{ $user->name }}</td>
                             <td class="py-4 text-center border-r-2">{{ $user->email }}</td>
-                            <td class="py-4 text-center border-r-2">{{ $user->name }}</td>
+                            <td class="py-4 text-center border-r-2">
+                                @php
+                                    if($user->role_id === 1) {
+                                        echo "Admin";
+                                    } else {
+                                        $userPoints = 0;
+                                    foreach ($profiles as $profile) {
+                                        if($profile->user_id === $user->id) {
+                                            $userPoints+=$profile->points;
+                                        }
+                                    }
+                                    echo $userPoints;
+                                    }
+                                    
+                                @endphp
+                            </td>
                             <td class="py-4 text-center">
                                 <a href="" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
                                     Editar

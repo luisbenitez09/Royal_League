@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 use App\Models\Team;
 use App\Models\Member;
 use App\Models\User;
@@ -25,10 +26,20 @@ class DashboardController extends Controller
         $user = Auth::user();
         $users = User::All();
 
+
         if(Auth::user()->hasRole('Admin')) {
+            $teamsOwner = Team::with('user')->get();
             return view ('admin.dashboard', compact('user', 'teams', 'members', 'profiles','users'));
         } else {
-            return view ('users.dashboard');
+            $teamsIn = DB::table('teams')->where('owner',$user->id)->count();
+            $profileNum = DB::table('profiles')->where('user_id',$user->id)->count();
+            $userPoints = 0;
+            foreach ($profiles as $profile) {
+                if($profile->user_id === $user->id) {
+                    $userPoints+=$profile->points;
+                }
+            }
+            return view ('users.dashboard', compact('user', 'teams', 'members', 'profiles','users','teamsIn','profileNum', 'userPoints'));
         }
         
     }

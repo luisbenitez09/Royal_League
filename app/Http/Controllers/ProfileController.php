@@ -28,13 +28,12 @@ class ProfileController extends Controller
         
     }
 
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function changePass ()
+    public function editUser ()
     {
         $user = Auth::user();
         return view ('users.change-pass', compact('user'));
