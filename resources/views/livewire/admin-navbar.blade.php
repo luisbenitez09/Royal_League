@@ -2,7 +2,7 @@
     <header class="z-20 mx-auto px-6 md:px-0 py-2 md:grid md:grid-cols-8 sticky container">
         
         <div class="flex items-center justify-between mb-4 md:mb-0 md:col-span-2">
-            <img class="w-16 md:w-20" src="img/logo.png" alt="Logo">
+            <img class="w-16 md:w-20" src="{{ asset('img/logo.png') }}" alt="Logo">
 
             <div class="md:hidden">
                 <button type="button" onclick="drop(1)"

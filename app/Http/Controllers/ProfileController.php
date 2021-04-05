@@ -33,10 +33,10 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editUser ()
+    public function editUser ($id)
     {
-        $user = Auth::user();
-        return view ('users.change-pass', compact('user'));
+        $user = User::findOrFail($id);
+        return view ('admin.edit-users', compact('user'));
     }
 
 

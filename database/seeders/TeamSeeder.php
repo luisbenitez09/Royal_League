@@ -15,10 +15,10 @@ class TeamSeeder extends Seeder
     public function run()
     {
         $team = new Team();
-        $team->name = 'Momitos';
+        $team->name = 'Momos 4k';
         $team->owner = 2;
         $team->points = 15000;
-        $team->bestResult = 'N/A';
+        $team->bestResult = '1ro';
         $team->tournaments = 3;
         $team->access_code = 'AS32T';
         $team->save();
