@@ -39,7 +39,7 @@
                     <img src="{{ asset('img/icon-tournaments.png') }}" alt="" class="w-10 mx-auto">
                 </div>
                 <h1 class="text-white font-bold text-2xl">25 torneos</h1>
-                <a href="" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver torneos</a>
+                <a href="{{ route('adminTournaments') }}" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver torneos</a>
             </div>
 
             <div class="lg:col-span-2 h-96 bg-gray-500 bg-opacity-50 rounded-3xl p-6 justify-between">

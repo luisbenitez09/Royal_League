@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Usuarios / Equipos</title>
+    <title>Torneos</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body class="bg-admin-dash bg-cove">
@@ -17,26 +17,35 @@
 
     <div class="w-full h-screen">
         <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
-            <h1 class="text-center text-2xl text-white font-bold mb-5">Equipos registrados</h1>
+            <h1 class="text-center text-2xl text-white font-bold mb-5">Torneos</h1>
             <table class="w-full text-white">
                 <thead class="text-xl border-b-2">
-                    <th class="pb-4 border-r-2">Nombre</th>
-                    <th class="pb-4 border-r-2">Creador</th>
-                    <th class="pb-4 border-r-2">Puntos</th>
+                    <th class="pb-4 border-r-2">Torneo</th>
+                    <th class="pb-4 border-r-2">Juego</th>
+                    <th class="pb-4 border-r-2">Fecha</th>
+                    <th class="pb-4 border-r-2">Status</th>
                     <th class="pb-4">Acciones</th>
                 </thead>
                 <tbody>
-                    @foreach ($teams as $team)
-                        <tr class="border-t-2">
-                            <td class="py-4 text-center border-r-2">{{ $team->name }}</td>
-                            <td class="py-4 text-center border-r-2">{{ $team->user->name }}</td>
-                            <td class="py-4 text-center border-r-2">{{ $team->points }}</td>
+                    @foreach ($tournaments as $tournament)
+                       <tr class="border-t-2">
+                            <td class="py-4 text-center border-r-2">{{ $tournament->title }}</td>
+                            <td class="py-4 text-center border-r-2">{{ $tournament->game }}</td>
+                            <td class="py-4 text-center border-r-2">{{ $tournament->date }}</td>
+                            <td class="py-4 text-center border-r-2">
+                                @php
+                                    if ("$tournament->status === 1") {
+                                        echo "Próximo";
+                                    }
+                                @endphp
+                            </td>
+                            
                             <td class="py-4 text-center">
-                                <a href="{{ route('edit-team',$team->id) }}" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
+                                <a href="" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
                                     Editar
                                 </a>
                             </td>
-                        </tr>
+                        </tr> 
                     @endforeach
                     
                     

@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/teams','TeamController@index')->name('teams');
     //Route::put('/categories','CategoryController@update');
     Route::post('/teams','TeamController@store');
+    Route::post('/changeTeamStatus','TeamController@changeTeamStatus')->name('changeTeamStatus');
     //Route::delete('/categories','CategoryController@destroy');
 
     Route::get('/members','MemberController@index')->name('members');
@@ -45,7 +46,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/profile','ProfileController@index')->name('profile');
     Route::get('/change-password','ProfileController@changePass')->name('change-password');
     //Route::put('/categories','CategoryController@update');
-    Route::post('/profile','ProfileController@store');
+    Route::post('/changeStatus','ProfileController@changeStatus')->name('changeStatus');
     Route::delete('/profile','ProfileController@destroy');
 
     Route::get('/admin-users','ProfileController@index')->name('admin-users');
@@ -55,9 +56,15 @@ Route::middleware(['auth'])->group(function() {
     //Route::delete('/admin-users','CategoryController@destroy');
 
     Route::get('/admin-teams','TeamController@index')->name('admin-teams');
+    Route::get('/edit-team/{id}','TeamController@editTeam')->name('edit-team');
     //Route::put('/admin-teams','teamController@update');
     Route::post('/admin-teams','TeamController@store');
     //Route::delete('/admin-teams','teamController@destroy');
+
+    Route::get('/adminTournaments','TournamentController@adminTournaments')->name('adminTournaments');
+    //Route::put('/categories','CategoryController@update');
+    //Route::post('/members','MemberController@store');
+    //Route::delete('/categories','CategoryController@destroy');
 });
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

@@ -21,6 +21,7 @@ class CreateTeamsTable extends Migration
             $table->integer('points')->default(0);
             $table->string('bestResult')->default('0');
             $table->integer('tournaments')->default(0);
+            $table->integer('status')->default(1);
             $table->string('access_code')->unique();
             $table->timestamps();
         });

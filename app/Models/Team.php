@@ -18,6 +18,7 @@ class Team extends Model
     	'name',
     	'owner',
     	'points',
+        'status',
     	'bestResult',
     	'tournaments',
     	'access_code',

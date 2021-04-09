@@ -14,18 +14,17 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index ()
+    public function index()
     {
         $profiles = Profile::All();
         $user = Auth::user();
         $users = User::All();
-        
-        if(Auth::user()->hasRole('Admin')) {
-            return view ('admin.users', compact('user','profiles','users'));
+
+        if (Auth::user()->hasRole('Admin')) {
+            return view('admin.users', compact('user', 'profiles', 'users'));
         } else {
-            return view ('users.profile', compact('user','profiles'));
+            return view('users.profile', compact('user', 'profiles'));
         }
-        
     }
 
     /**
@@ -33,11 +32,30 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editUser ($id)
+    public function editUser($id)
     {
         $user = User::findOrFail($id);
-        return view ('admin.edit-users', compact('user'));
+        return view('admin.edit-users', compact('user'));
     }
+
+
+    /**
+     * Edit user status.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function changeStatus(Request $request)
+    {
+        $user = User::find($request['id']);
+
+        if ($user->update($request->all())) {
+            return redirect()->back()->with('success', 'El usuario se ha actualizado correctamente');
+        }
+
+        return redirect()->back()->with('error','No se pudo actualizar el registro correctamente');
+    }
+
 
 
     /**
@@ -59,10 +77,10 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //if(Auth::user()->hasPermissionTo('create teams')) {
-            if($profile = Profile::create($request->all())) {
-                return redirect()->back()->with('success','Member created successfully');
-            }
-            return redirect()->back()->with('error','We couldnt create the new member');
+        if ($profile = Profile::create($request->all())) {
+            return redirect()->back()->with('success', 'Member created successfully');
+        }
+        return redirect()->back()->with('error', 'We couldnt create the new member');
         //}
     }
 
@@ -75,19 +93,19 @@ class ProfileController extends Controller
     public function destroy(Request $request)
     {
         //if(Auth::user()->hasPermissionTo('delete movies')) {
-            $profile = Profile::find($request['id']);
-            if($profile){
-                if ($profile->delete()) {
-                    return response()->json([
-                        'message' => 'profile deleted successfully',
-                        'code' => '200',
-                    ]);
-                }
+        $profile = Profile::find($request['id']);
+        if ($profile) {
+            if ($profile->delete()) {
+                return response()->json([
+                    'message' => 'profile deleted successfully',
+                    'code' => '200',
+                ]);
             }
-            return response()->json([
-                'message' => 'We couldt delete the profile',
-                'code' => '400',
-            ]);
+        }
+        return response()->json([
+            'message' => 'We couldt delete the profile',
+            'code' => '400',
+        ]);
         //}
     }
 }

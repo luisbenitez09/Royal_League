@@ -81,7 +81,7 @@
                     <!-- Subtitles line-->
                     <div class="w-full grid grid-cols-2 mb-4">
                         <h2 class="font-bold text-white text-opacity-50 text-lg col-1">Próximos torneos</h2>
-                        <a href="" class="text-white text-opacity-75 font-thin col-start-3 ">Ver todos</a>
+                        <a href="{{ route('tournaments') }}" class="text-white text-opacity-75 font-thin col-start-3 ">Ver todos</a>
                     </div>
                     <!-- Cards grid-->
                     <div class="grid grid-cols-2 gap-y-4 gap-x-8 mb-52">

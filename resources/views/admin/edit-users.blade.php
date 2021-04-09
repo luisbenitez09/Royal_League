@@ -41,6 +41,8 @@
                 @endphp
             </h1>
             <div class="w-full text-center">
+            <form method="POST" action="{{ route('changeStatus') }}">
+            @csrf
                 @php
                     if ($user->status === 0) {
                         echo '<button class="px-6 py-2 rounded-xl bg-yellow-400 text-white hover:bg-green-500 transition duration-500 ease-in-out ">Activar</button>';
@@ -48,6 +50,17 @@
                         echo '<button class="px-6 py-2 rounded-xl bg-yellow-400 text-white hover:bg-red-500 transition duration-500 ease-in-out ">Suspender</button>';
                     }
                 @endphp
+                <input type="hidden" name="id" value="{{ $user->id }}">
+                <input type="hidden" name="status" 
+                value="<?php 
+                    if($user->status === 0) {
+                        echo 1;
+                    } else {
+                        echo 0;
+                    }
+                ?>">
+            </form>
+                
             </div>
             
         </div>

@@ -17,10 +17,13 @@ class CreateTournamentsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('game');
+            $table->integer('status')->default(1);
+            $table->longText('description')->nullable();
             $table->string('image')->default('image.png');
             $table->double('price1')->nullable();
             $table->double('price2')->nullable();
             $table->double('price3')->nullable();
+            $table->dateTime('date')->nullable();
             
             $table->timestamps();
         });

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Usuarios / Equipos</title>
+    <title>Editar equipo</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body class="bg-admin-dash bg-cove">
@@ -17,31 +17,43 @@
 
     <div class="w-full h-screen">
         <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
-            <h1 class="text-center text-2xl text-white font-bold mb-5">Equipos registrados</h1>
-            <table class="w-full text-white">
-                <thead class="text-xl border-b-2">
-                    <th class="pb-4 border-r-2">Nombre</th>
-                    <th class="pb-4 border-r-2">Creador</th>
-                    <th class="pb-4 border-r-2">Puntos</th>
-                    <th class="pb-4">Acciones</th>
-                </thead>
-                <tbody>
-                    @foreach ($teams as $team)
-                        <tr class="border-t-2">
-                            <td class="py-4 text-center border-r-2">{{ $team->name }}</td>
-                            <td class="py-4 text-center border-r-2">{{ $team->user->name }}</td>
-                            <td class="py-4 text-center border-r-2">{{ $team->points }}</td>
-                            <td class="py-4 text-center">
-                                <a href="{{ route('edit-team',$team->id) }}" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
-                                    Editar
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                    
-                    
-                </tbody>
-            </table>
+            <h1 class="text-center text-xl text-white font-light mb-5">Nombre: <span class="font-bold text-2xl">{{ $team->name }}</span></h1>
+            <h1 class="text-center text-xl text-white font-light mb-5">Creador: <span class="font-bold text-2xl">{{ $team->owner }}</span></h1>
+            <h1 class="text-center text-xl text-white font-light mb-5">Puntos: <span class="font-bold text-2xl">{{ $team->points }}</span></h1>
+            <h1 class="text-center text-xl text-white font-light mb-5">Mejor resultado: <span class="font-bold text-2xl">{{ $team->bestResult }}</span></h1>
+            <h1 class="text-center text-xl text-white font-light mb-5">Torneos jugados: <span class="font-bold text-2xl">{{ $team->tournaments }}</span></h1>
+            <h1 class="text-center text-xl text-white font-light mb-5">Código de acceso: <span class="font-bold text-2xl">{{ $team->access_code }}</span></h1>
+            <h1 class="text-center text-xl text-white font-light mb-5">Status: 
+                @php
+                    if ($team->status === 0) {
+                        echo '<span class="font-bold text-2xl text-red-600">Suspendido</span>';
+                    } else if ($team->status === 1) {
+                        echo '<span class="font-bold text-2xl text-green-500">Activo</span>';
+                    }
+                @endphp
+            </h1>
+            <div class="w-full text-center">
+                <form method="POST" action="{{ route('changeTeamStatus') }}">
+                    @csrf
+                @php
+                    if ($team->status === 0) {
+                        echo '<button class="px-6 py-2 rounded-xl bg-yellow-400 text-white hover:bg-green-500 transition duration-500 ease-in-out ">Activar</button>';
+                    } else if ($team->status === 1) {
+                        echo '<button class="px-6 py-2 rounded-xl bg-yellow-400 text-white hover:bg-red-500 transition duration-500 ease-in-out ">Suspender</button>';
+                    }
+                @endphp
+                <input type="hidden" name="id" value="{{ $team->id }}">
+                <input type="hidden" name="status" 
+                value="<?php 
+                    if($team->status === 0) {
+                        echo 1;
+                    } else {
+                        echo 0;
+                    }
+                ?>">
+            </form>
+            </div>
+            
         </div>
     </div>
 

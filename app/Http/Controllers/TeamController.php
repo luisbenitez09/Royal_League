@@ -33,6 +33,36 @@ class TeamController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editTeam ($id)
+    {
+        $team = Team::findOrFail($id);
+        return view ('admin.edit-teams', compact('team'));
+    }
+
+    /**
+     * Edit team status.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function changeTeamStatus(Request $request)
+    {
+        $team = Team::find($request['id']);
+
+        if ($team->update($request->all())) {
+            return redirect()->back()->with('success', 'El equipo se ha actualizado correctamente');
+        }
+
+        return redirect()->back()->with('error','No se pudo actualizar el registro correctamente');
+    }
+
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -61,3 +91,4 @@ class TeamController extends Controller
         //}
     }
 }
+
