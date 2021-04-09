@@ -14,6 +14,7 @@ module.exports = {
             },
             backgroundImage: theme => ({
                 'mainCTA': "url('/img/cta.jpg')",
+                'empty': "url('/img/empty-card.png')",
                 'footer-texture': "url('/img/bg-footer.jpg')",
                 'quotes': "url('/img/quotes.jpg')",
                 'login': "url('/img/bg-login.png')",

@@ -18,7 +18,7 @@
     @livewire('navbar')
     <!-- header -->
     <div class="w-full py-20 z-0">
-        <h1 class="text-white text-5xl font-bold text-center">Primer torneo warzone</h1>
+        <h1 class="text-white text-5xl font-bold text-center">{{ $tournament->title }}</h1>
 
         <!-- Live marker-->
         <div class="w-32 grid grid-cols-2 mx-auto my-6">
@@ -30,9 +30,9 @@
             <span class="text-red-600 text-lg font-light col-1 -ml-8 -mt-1 align-top">En curso</span>
         </div>
         <div class="flex flex-col md:flex-row w-full justify-around">
-            <p class="font-light text-white text-lg text-center">Jueves 23 de Diciembre</p>
-            <p class="font-light text-white text-lg text-center">KD 10 max / team</p>
-            <p class="font-light text-white text-lg text-center mb-1">14:00 - 20:00 <span class="font-bold text-xs">Hora CDMX (GMT-6)</span></p>
+            <p class="font-light text-white text-lg text-center">{{ $tournament->date }}</p>
+            <p class="font-light text-white text-lg text-center">{{ $tournament->kd }}</p>
+            <p class="font-light text-white text-lg text-center mb-1">{{ $tournament->time }}</p>
         </div>
     </div>
 

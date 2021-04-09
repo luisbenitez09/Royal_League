@@ -15,88 +15,10 @@
 </head>
 <body class="bg-blue-900">
     <!-- navbar -->
-    <div class="md:absolute w-full bg-white md:bg-opacity-0">
-        <header class="z-20 mx-auto px-6 md:px-8 md:py-8 py-2 md:grid md:grid-cols-8 sticky ">
-            
-            <div class="flex items-center justify-between mb-4 md:mb-0 md:col-span-2">
-                <img class="w-16 md:w-28" src="img/logo.png" alt="Logo">
-
-                <div class="md:hidden">
-                    <button type="button" onclick="drop(1)"
-                        class="block btn-drop md:border-b-2 md:border-gray-100 border-opacity-50 md:border-none pb-2 mb-2 font-light text-gray-800 md:text-white transition duration-500 ease-in-out">
-                        Menu <i class="fa fa-chevron-down"></i>
-                    </button>
-                    <div id="drop-menu-1"
-                        class="hidden origin-top-left absolute right-4 mt-2 w-56 rounded-md shadow-lg bg-gray-700 bg-opacity-50"
-                        style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <a href="/"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                role="menuitem">Dashboard</a>
-                            <a href="/myTeams"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                role="menuitem">Mis equipos</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                role="menuitem">Torneos</a>
-                            <a href="{{ route('profile') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                role="menuitem">Mi perfil</a>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit"
-                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-                                    role="menuitem">
-                                    Cerrar sesión
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            
-            <nav class="hidden md:inline-flex z-30 col-span-2 col-end-9" id="nav-bar">
-                <ul class="list-reset w-full md:flex md:items-center">
-                    <li class="w-full">
-                        <button type="button" onclick="drop(2)"
-                            class="block w-full text-right btn-drop border-b-2 border-gray-100 border-opacity-50 md:border-none  font-light text-white transition duration-500 ease-in-out">
-                            Menu <i class="fa fa-chevron-down"></i>
-                        </button>
-                        <div id="drop-menu-2"
-                            class="hidden origin-top-left absolute right-4 mt-2 w-56 rounded-md shadow-lg bg-gray-700 bg-opacity-50"
-                            style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                <a href="{{ route('dashboard') }}"
-                                    class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                    role="menuitem">Dashboard</a>
-                                <a href="{{ route('teams') }}"
-                                    class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                    role="menuitem">Mis equipos</a>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                    role="menuitem">Torneos</a>
-                                <a href="{{ route('profile') }}"
-                                    class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
-                                    role="menuitem">Mi perfil</a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit"
-                                        class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-                                        role="menuitem">
-                                        Cerrar sesión
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-    </div>
+    @livewire('navbar')
 
     <!-- header -->
-    <div class="w-full">
+    <div class="w-full -mt-28">
         <div class="absolute w-full mt-2/12">
             <h1 class="text-white tex-3xl md:text-5xl font-bold text-center">Torneos</h1>
         </div>
@@ -107,19 +29,19 @@
     <!-- tournaments -->
     <div class="w-full md:container mx-auto py-20 px-20 md:px-0">
 
-        <!-- filters -->
+        <!-- filters 
         <div class="flex flex-row text-white font-light text-sm mb-20">
             <button class="mr-8 hover:text-red-600 transition duration-500 ease-in-out">Todos</button>
             <button class="mr-8 hover:text-red-600 transition duration-500 ease-in-out">Próximos</button>
             <button class="mr-8 hover:text-red-600 transition duration-500 ease-in-out">Finalizados</button>
             <button class="mr-8 hover:text-red-600 transition duration-500 ease-in-out">COD WARZONE</button>
-        </div>
+        </div> -->
 
         <!-- grid -->
         <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($tournaments as $tournament)
             <div class="max-w-sm h-96">
-                <img src="img/{{$tournament->image}}"  alt="" class="w-full h-60 ">
+                <img src="img/torneos/{{$tournament->image}}"  alt="" class="w-full h-60 ">
                 <!-- overlay -->
                 <div class="w-full h-60 bg-gradient-to-r from-red-700 to-gray-900 opacity-0 hover:opacity-75 -mt-60 relative mb-4 text-center transition duration-500 ease-in-out">
                     <a href="" class="text-white mt-28 -ml-7 absolute">Ver más</a>

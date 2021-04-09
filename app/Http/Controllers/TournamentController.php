@@ -44,6 +44,17 @@ class TournamentController extends Controller
         return view ('admin.edit-tournaments', compact('tournament'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function liveTournament ($id)
+    {
+        $tournament = Tournament::findOrFail($id);
+        return view ('users.live-tournament', compact('tournament'));
+    }
+
 
     /**
      * Display a listing of the resource.

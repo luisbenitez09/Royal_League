@@ -18,7 +18,7 @@
 
 <body style="background-color: #1a2a41" class="bg-fixed bg-center bg-cover bg-profile">
 
-    <div class="relative z-20 w-full h-screen overflow-y-auto">
+    <div class="relative z-20 w-full mb-20">
         <!-- Navbar -->
         @livewire('navbar')
 

@@ -21,7 +21,8 @@ class DashboardController extends Controller
 
     public function index ()
     {
-        $teams = Team::with('member')->get();
+        $teams = Team::All();
+        $teams2 = DB::table('teams')->orderBy('points','DESC')->get();
         $members = Member::with('profile')->get();
         $profiles = Profile::All();
         $tournaments = Tournament::skip(0)->take(4)->get();
@@ -38,7 +39,7 @@ class DashboardController extends Controller
 
         if(Auth::user()->hasRole('Admin')) {
             $teamsOwner = Team::with('user')->get();
-            return view ('admin.dashboard', compact('user', 'teams', 'members', 'profiles','users'));
+            return view ('admin.dashboard', compact('user', 'teams2', 'members', 'profiles','users'));
         } else {
             $teamsIn = DB::table('teams')->where('owner',$user->id)->count();
             $profileNum = DB::table('profiles')->where('user_id',$user->id)->count();

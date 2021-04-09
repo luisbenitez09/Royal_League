@@ -31,7 +31,7 @@
                 <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
                     <img src="{{ asset('img/icon-team.png') }}" alt="" class="w-10 mx-auto">
                 </div>
-                <h1 class="text-white font-bold text-2xl">{{ $teams->count() }} equipos</h1>
+                <h1 class="text-white font-bold text-2xl">{{ $teams2->count() }} equipos</h1>
                 <a href="{{ route('admin-teams') }}" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Ver equipos</a>
             </div>
             <div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
@@ -51,7 +51,7 @@
                         <th class="pb-4">Posición</th>
                     </thead>
                     <tbody>
-                        @foreach ($teams as $team)
+                        @foreach ($teams2 as $team)
                             <tr class="border-t-2">
                                 <td class="py-2 text-center border-r-2">{{ $team->name }}</td>
                                 <td class="py-2 text-center border-r-2">{{ $team->points }}</td>
@@ -61,13 +61,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
+            <!--<div class="group h-44 p-5 bg-gray-500 bg-opacity-25 hover:bg-opacity-50 rounded-3xl transition duration-500 ease-in-out">
                 <div class="bg-gray-400 bg-opacity-25 w-16 h-16 rounded-2xl py-3 mb-4 group-hover:bg-yellow-400 transition duration-500 ease-in-out">
                     <img src="{{ asset('img/icon-cms.png') }}" alt="" class="w-10 mx-auto">
                 </div>
                 <h1 class="text-white font-bold text-2xl">CMS</h1>
                 <a href="" class="text-white font-light hover:text-red-700 transition duration-500 ease-in-out">Editar web</a>
-            </div>
+            </div>-->
 
         </div>
     </div>

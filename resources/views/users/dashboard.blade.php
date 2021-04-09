@@ -76,14 +76,14 @@
                                         <span class="text-red-600 text-xs font-light col-1 -ml-8 -mt-1 align-top">En curso</span>
                                     </div>
                                     <!-- Button -->
-                                    <a href="{{ route('test') }}" class="w-32 bg-yellow-400 hover:bg-yellow-300 transition duration-500 ease-in-out py-1 px-4 rounded-lg text-white font-semibold ">
+                                    <a href="{{ route('live-tournament',$tournament->id) }}" class="w-32 bg-yellow-400 hover:bg-yellow-300 transition duration-500 ease-in-out py-1 px-4 rounded-lg text-white font-semibold ">
                                         Ver torneo
                                     </a>
                                 </div>
                             </div>
                         @endforeach
                     @else
-                        <div class="w-full h-56 rounded-3xl bg-mainCTA bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                        <div class="w-full h-56 rounded-3xl bg-empty bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
                                 <div class="w-full h-56 rounded-3xl p-4 bg-black bg-opacity-50">
                                     <h1 class="text-white font-semibold text-2xl mb-1">No hay ningún torneo en juego</h1>    
                                 </div>
@@ -118,10 +118,10 @@
                     <div class="w-full h-64 mb-8 bg-gray-700 bg-opacity-50 rounded-3xl p-4 flex flex-col items-center transform hover:-translate-y-2 transition duration-500 ease-in-out">
                         <h3 class="font-semibold text-white text-md mb-4">Puntos acumulados</h3>
                         <h1 class="font-bold text-yellow-400 text-4xl mb-4">{{ $userPoints }}</h1>
-                        <p class="font-light text-white text-xs mb-3">Torneos jugados: 12</p>
-                        <p class="font-light text-white text-xs mb-4">Podios: 9</p>
+                        <p class="font-light text-white text-xs mb-3">Torneos jugados: {{ $user->played_t }}</p>
+                        <p class="font-light text-white text-xs mb-4">Podios: {{ $user->podiums }}</p>
                         <div class="px-4 py-2 bg-black bg-opacity-50 rounded-lg">
-                            <p class="text-white font-medium text-sm">Último torneo: 1ro</p>
+                            <p class="text-white font-medium text-sm">Último torneo: {{ $user->last_result }}</p>
                         </div>
                     </div>
                     <!-- Stats card 2-->
