@@ -21,6 +21,10 @@ class UserTableSeeder extends Seeder
         $user->birthdate = "1997-09-29";
         $user->status = 1;
         $user->role_id = 1;
+        $user->podiums = 25;
+        $user->last_result = "1ro";
+        $user->played_t = 25;
+        
         $user->save();
 
         $user = new User();
@@ -30,6 +34,9 @@ class UserTableSeeder extends Seeder
         $user->birthdate = "1999-08-28";
         $user->status = 1;
         $user->role_id = 2;
+        $user->podiums = 25;
+        $user->last_result = "1ro";
+        $user->played_t = 25;
         $user->save();
 
         $user = new User();
@@ -39,6 +46,9 @@ class UserTableSeeder extends Seeder
         $user->birthdate = "1999-08-28";
         $user->status = 0;
         $user->role_id = 2;
+        $user->podiums = 5;
+        $user->last_result = "3ro";
+        $user->played_t = 10;
         $user->save();
     }
 }

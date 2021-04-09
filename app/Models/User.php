@@ -33,6 +33,9 @@ class User extends Authenticatable
         'birthdate',
         'status',
         'role_id',
+        'podiums',
+        'last_result',
+        'played_t',
     ];
 
     /**

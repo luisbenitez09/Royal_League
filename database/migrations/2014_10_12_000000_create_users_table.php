@@ -23,8 +23,10 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->integer('status')->default(1);
             $table->text('profile_photo_path')->nullable();
-
             $table->integer('role_id')->default(2);
+            $table->integer('podiums')->default(0);
+            $table->string('last_result')->default(0);
+            $table->integer('played_t')->default(0);            
             
             $table->timestamps();
         });
