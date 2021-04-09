@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function() {
     //Route::delete('/admin-teams','teamController@destroy');
 
     Route::get('/admin-tournaments','TournamentController@adminTournaments')->name('admin-tournaments');
+    Route::get('/tournament-info/{id}','TournamentController@tournamentInfo')->name('tournament-info');
     Route::get('/edit-tournament/{id}','TournamentController@editTournament')->name('edit-tournament');
     Route::get('/add-tournament','TournamentController@addTournament')->name('add-tournament');
     Route::get('/live-tournament/{id}','TournamentController@liveTournament')->name('live-tournament');

@@ -61,6 +61,18 @@ class TournamentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function tournamentInfo ($id)
+    {
+        $tournament = Tournament::findOrFail($id);
+        return view ('tournament-info', compact('tournament'));
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function addTournament ()
     {
         return view ('admin.add-tournament');

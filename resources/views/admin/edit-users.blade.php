@@ -12,7 +12,7 @@
     <title>Editar usuario</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-admin-dash bg-cove">
+<body class="bg-edit-users bg-cover bg-fixed">
     @livewire('admin-navbar')
 
     <div class="w-full h-screen">

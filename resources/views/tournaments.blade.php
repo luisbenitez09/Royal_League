@@ -44,7 +44,7 @@
                 <img src="img/torneos/{{$tournament->image}}"  alt="" class="w-full h-60 ">
                 <!-- overlay -->
                 <div class="w-full h-60 bg-gradient-to-r from-red-700 to-gray-900 opacity-0 hover:opacity-75 -mt-60 relative mb-4 text-center transition duration-500 ease-in-out">
-                    <a href="" class="text-white mt-28 -ml-7 absolute">Ver más</a>
+                    <a href="{{ route('tournament-info',$tournament->id) }}" class="text-white mt-28 -ml-7 absolute">Ver más</a>
                 </div>
                 <h2 class="text-white text-2xl font-semibold mb-4">{{ $tournament->title }}</h2>
                 <h3 class="text-white text-sm font-light">{{ $tournament->game }}</h3>

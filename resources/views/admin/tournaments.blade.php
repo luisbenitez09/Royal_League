@@ -12,7 +12,7 @@
     <title>Torneos</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-admin-dash bg-cove">
+<body class="bg-admin-tournaments bg-cover bg-fixed">
     @livewire('admin-navbar')
     <div class="flex flex-row-reverse my-10 mx-8 lg:mx-20">
         <a href="{{ route('add-tournament') }}" class="text-white text-xl px-4 py-2 rounded-xl bg-green-500 hover:bg-green-600 transition duration-500 ease-in-out">Crear torneo</a>

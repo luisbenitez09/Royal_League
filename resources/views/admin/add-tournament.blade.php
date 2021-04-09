@@ -12,7 +12,7 @@
     <title>Agregar torneo</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-admin-dash bg-cove">
+<body class="bg-admin-add-t bg-cover bg-fixed">
     @livewire('admin-navbar')
     <div class="mx-8 lg:mx-20">
         <h1 class="text-white font-bold text-3xl my-10">Agregar equipo</h1>

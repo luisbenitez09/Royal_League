@@ -25,6 +25,13 @@ module.exports = {
                 'profile': "url('/img/bg-profile.png')",
                 'tournaments': "url('/img/bg-live-tournament.png')",
                 'admin-dash': "url('/img/bg-admin-dash.png')",
+                'admin-users': "url('/img/bg-users.png')",
+                'admin-teams': "url('/img/bg-admin-teams.png')",
+                'edit-teams-a': "url('/img/bg-admin-edit-team.png')",
+                'admin-tournaments': "url('/img/bg-tournaments.png')",
+                'admin-edit-t': "url('/img/bg-edit-tournaments.png')",
+                'admin-add-t': "url('/img/bg-add-t.png')",
+                'edit-users': "url('/img/bg-edit-user.png')",
                 'live-tournament': "url('/img/bg-live-tournament.png')",
             })
         },
