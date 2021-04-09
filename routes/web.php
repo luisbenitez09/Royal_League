@@ -33,15 +33,17 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/inicio',function () {return view('index');})->name('inicio');
 
     Route::get('/teams','TeamController@index')->name('teams');
+    Route::get('/team-edit/{id}','TeamController@teamEdit')->name('team-edit');
     //Route::put('/categories','CategoryController@update');
     Route::post('/teams','TeamController@store');
     Route::post('/changeTeamStatus','TeamController@changeTeamStatus')->name('changeTeamStatus');
+    Route::post('/update-team','TeamController@update')->name('update-team');
     //Route::delete('/categories','CategoryController@destroy');
 
     Route::get('/members','MemberController@index')->name('members');
     //Route::put('/categories','CategoryController@update');
     Route::post('/members','MemberController@store');
-    //Route::delete('/categories','CategoryController@destroy');
+    Route::delete('/members','MemberController@destroy');
 
     Route::get('/profile','ProfileController@index')->name('profile');
     Route::get('/change-password','ProfileController@changePass')->name('change-password');

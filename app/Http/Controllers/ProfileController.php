@@ -87,7 +87,6 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)

@@ -65,9 +65,9 @@
                                 <p class="mb-1 text-xs text-white font-regular">{{ $team->tournaments }} torneos</p>
                                 <p class="mb-1 text-xs text-white font-regular">Mejor resultado: <span
                                         class="font-bold">{{ $team->bestResult }}</span></p>
-                                <button
-                                    class="w-full py-1 text-xs font-bold text-white transition duration-500 ease-in-out bg-yellow-400 rounded-lg hover:bg-yellow-500">Editar
-                                    equipo</button>
+                                <a href="{{ route('team-edit',$team->id) }}"
+                                    class="w-full py-2 px-2 text-xs font-bold text-white transition duration-500 ease-in-out bg-yellow-400 rounded-lg hover:bg-yellow-500">Editar
+                                    equipo</a>
                             </div>
                         </div>
 

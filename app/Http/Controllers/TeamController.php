@@ -44,6 +44,18 @@ class TeamController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function teamEdit ($id)
+    {
+        $team = Team::findOrFail($id);
+        $members = Member::All();
+        return view ('users.edit-team', compact('team','members'));
+    }
+
+    /**
      * Edit team status.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -90,5 +102,23 @@ class TeamController extends Controller
             return redirect()->back()->with('error','We couldnt create the new team');
         //}
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Team  $tournament
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $team = Team::findOrFail($request['id']);
+
+        if ($team->update($request->all())) {
+            return redirect()->back()->with('success','Equipo actualizado correctamente');
+        }
+        return redirect()->back()->with('error','No se pudo actualizar el registro correctamente');
+    }
+
 }
 

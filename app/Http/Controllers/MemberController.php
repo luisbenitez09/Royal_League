@@ -45,4 +45,29 @@ class MemberController extends Controller
             return redirect()->back()->with('error','We couldnt create the new member');
         //}
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        
+        $member = Member::find($request['id']);
+        if ($member) {
+            if ($member->delete()) {
+                return response()->json([
+                    'message' => 'Member deleted successfully',
+                    'code' => '200',
+                ]);
+            }
+        }
+        return response()->json([
+            'message' => 'We couldt delete the member',
+            'code' => '400',
+        ]);
+        
+    }
 }
