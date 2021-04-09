@@ -23,7 +23,9 @@ class CreateTournamentsTable extends Migration
             $table->double('price1')->nullable();
             $table->double('price2')->nullable();
             $table->double('price3')->nullable();
-            $table->dateTime('date')->nullable();
+            $table->string('date')->nullable();
+            $table->string('time')->nullable();
+            $table->string('kd')->nullable();
             
             $table->timestamps();
         });

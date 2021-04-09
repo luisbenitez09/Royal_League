@@ -61,9 +61,10 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/admin-teams','TeamController@store');
     //Route::delete('/admin-teams','teamController@destroy');
 
-    Route::get('/adminTournaments','TournamentController@adminTournaments')->name('adminTournaments');
+    Route::get('/admin-tournaments','TournamentController@adminTournaments')->name('admin-tournaments');
+    Route::get('/edit-tournament/{id}','TournamentController@editTournament')->name('edit-tournament');
     //Route::put('/categories','CategoryController@update');
-    //Route::post('/members','MemberController@store');
+    Route::post('/update-tournament','TournamentController@update')->name('update-tournament');
     //Route::delete('/categories','CategoryController@destroy');
 });
 

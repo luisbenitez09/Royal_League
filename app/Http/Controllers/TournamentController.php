@@ -31,6 +31,20 @@ class TournamentController extends Controller
         return view ('admin.tournaments', compact('tournaments'));
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editTournament ($id)
+    {
+        $tournament = Tournament::findOrFail($id);
+        return view ('admin.edit-tournaments', compact('tournament'));
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -81,9 +95,16 @@ class TournamentController extends Controller
      * @param  \App\Models\Tournament  $tournament
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tournament $tournament)
+    public function update(Request $request)
     {
-        //
+        $tournament = Tournament::findOrFail($request['id']);
+
+        $tournaments = Tournament::All();
+
+        if ($tournament->update($request->all())) {
+            return view ('admin.tournaments', compact('tournaments'));
+        }
+        return redirect()->back()->with('error','No se pudo actualizar el registro correctamente');
     }
 
     /**

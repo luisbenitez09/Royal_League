@@ -23,6 +23,8 @@ class Tournament extends Model
     	'price2',
     	'price3',
         'description',
-        'date'
+        'date',
+        'time',
+        'kd'
     ];
 }
