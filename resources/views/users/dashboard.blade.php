@@ -57,30 +57,39 @@
                     <!-- Title-->
                     <h2 class="text-lg text-white font-semibold text-opacity-50 mb-8">Torneo en progreso</h2>
                     <!-- Main Card-->
-                    @foreach ($tournaments as $tournament)
-                    <div class="w-full h-56 rounded-3xl bg-mainCTA bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                        <div class="w-full h-56 rounded-3xl p-4 bg-black bg-opacity-50">
-                            <h1 class="text-white font-semibold text-2xl mb-1">{{ $tournament->title }}</h1>
-                            <p class="font-light text-white text-sm">{{ $tournament->date }}</p>
-                            <p class="font-light text-white text-sm">KD 10 max / team</p>
-                            <p class="font-light text-white text-sm mb-1">{{ $tournament->time }} <span class="font-bold text-xs">Hora CDMX (GMT-6)</span></p>
-                            <!-- Live marker-->
-                            <div class="w-28 grid grid-cols-2 lg:mb-10">
-                                <div class="col-1 items-center">
-                                    <span class="flex h-3 w-3">
-                                        <span class="animate-pulse relative w-full h-full rounded-full inline-flex bg-red-600"></span>
-                                        
-                                    </span>
+                    @if ($onlineTournament)
+                        @foreach ($tournaments as $tournament)
+                            <div class="w-full h-56 rounded-3xl bg-mainCTA bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                                <div class="w-full h-56 rounded-3xl p-4 bg-black bg-opacity-50">
+                                    <h1 class="text-white font-semibold text-2xl mb-1">{{ $tournament->title }}</h1>
+                                    <p class="font-light text-white text-sm">{{ $tournament->date }}</p>
+                                    <p class="font-light text-white text-sm">KD 10 max / team</p>
+                                    <p class="font-light text-white text-sm mb-1">{{ $tournament->time }} <span class="font-bold text-xs">Hora CDMX (GMT-6)</span></p>
+                                    <!-- Live marker-->
+                                    <div class="w-28 grid grid-cols-2 lg:mb-10">
+                                        <div class="col-1 items-center">
+                                            <span class="flex h-3 w-3">
+                                                <span class="animate-pulse relative w-full h-full rounded-full inline-flex bg-red-600"></span>
+                                                
+                                            </span>
+                                        </div>
+                                        <span class="text-red-600 text-xs font-light col-1 -ml-8 -mt-1 align-top">En curso</span>
+                                    </div>
+                                    <!-- Button -->
+                                    <a href="{{ route('test') }}" class="w-32 bg-yellow-400 hover:bg-yellow-300 transition duration-500 ease-in-out py-1 px-4 rounded-lg text-white font-semibold ">
+                                        Ver torneo
+                                    </a>
                                 </div>
-                                <span class="text-red-600 text-xs font-light col-1 -ml-8 -mt-1 align-top">En curso</span>
                             </div>
-                            <!-- Button -->
-                            <a href="{{ route('test') }}" class="w-32 bg-yellow-400 hover:bg-yellow-300 transition duration-500 ease-in-out py-1 px-4 rounded-lg text-white font-semibold ">
-                                Ver torneo
-                            </a>
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <div class="w-full h-56 rounded-3xl bg-mainCTA bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                                <div class="w-full h-56 rounded-3xl p-4 bg-black bg-opacity-50">
+                                    <h1 class="text-white font-semibold text-2xl mb-1">No hay ningún torneo en juego</h1>    
+                                </div>
+                            </div>
+                    @endif
+                    
                     <!-- Subtitles line-->
                     <div class="w-full grid grid-cols-2 mb-4">
                         <h2 class="font-bold text-white text-opacity-50 text-lg col-1">Próximos torneos</h2>

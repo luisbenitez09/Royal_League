@@ -27,6 +27,13 @@ class DashboardController extends Controller
         $tournaments = Tournament::skip(0)->take(4)->get();
         $user = Auth::user();
         $users = User::All();
+        $onlineTournament = false;
+        $torneos = Tournament::All();
+        foreach($torneos as $torneo) {
+            if ($torneo ->status === 2) {
+                $onlineTournament = true;
+            }
+        }
 
 
         if(Auth::user()->hasRole('Admin')) {
@@ -41,7 +48,7 @@ class DashboardController extends Controller
                     $userPoints+=$profile->points;
                 }
             }
-            return view ('users.dashboard', compact('user', 'teams', 'members', 'profiles','users','teamsIn','profileNum', 'userPoints', 'tournaments'));
+            return view ('users.dashboard', compact('user', 'teams', 'members', 'profiles','users','teamsIn','profileNum', 'userPoints', 'tournaments','torneos','onlineTournament'));
         }
         
     }

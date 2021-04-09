@@ -45,6 +45,17 @@ class TournamentController extends Controller
     }
 
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addTournament ()
+    {
+        return view ('admin.add-tournament');
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -64,7 +75,14 @@ class TournamentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //if(Auth::user()->hasPermissionTo('create teams')) {
+            if ($tournament = Tournament::create($request->all())) {
+                $tournaments = Tournament::All();
+
+                return view ('admin.tournaments', compact('tournaments'));
+            }
+            return redirect()->back()->with('error', 'We couldnt create the new member');
+        //}
     }
 
     /**

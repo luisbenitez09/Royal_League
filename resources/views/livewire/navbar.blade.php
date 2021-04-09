@@ -44,7 +44,7 @@
         
         <div class="hidden md:block md:col-span-4">
             <h3 class="text-xl font-bold text-white text-opacity-25">Hola, {{ $user->name }},</h3>
-            <h1 class="text-4xl font-bold text-white">¡Bienvenido!</h1>
+            <h1 class="text-4xl font-bold text-white">¡Bienvenid@!</h1>
         </div>
 
         <nav class="hidden md:inline-flex z-30 col-span-2 col-end-9" id="nav-bar">

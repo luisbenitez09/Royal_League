@@ -14,9 +14,12 @@
 </head>
 <body class="bg-admin-dash bg-cove">
     @livewire('admin-navbar')
-
+    <div class="flex flex-row-reverse my-10 mx-8 lg:mx-20">
+        <a href="{{ route('add-tournament') }}" class="text-white text-xl px-4 py-2 rounded-xl bg-green-500 hover:bg-green-600 transition duration-500 ease-in-out">Crear torneo</a>
+    </div>
     <div class="w-full h-screen">
-        <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
+        <div class="max-w-6xl lg:mx-20 bg-gray-500 bg-opacity-50 rounded-3xl mb-20 mx-8 p-10">
+            
             <h1 class="text-center text-2xl text-white font-bold mb-5">Torneos</h1>
             <table class="w-full text-white">
                 <thead class="text-xl border-b-2">
