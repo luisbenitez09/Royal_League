@@ -8,6 +8,7 @@ use App\Models\Team;
 use App\Models\Member;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Tournament;
 
 class DashboardController extends Controller
 {
@@ -23,6 +24,7 @@ class DashboardController extends Controller
         $teams = Team::with('member')->get();
         $members = Member::with('profile')->get();
         $profiles = Profile::All();
+        $tournaments = Tournament::skip(0)->take(4)->get();
         $user = Auth::user();
         $users = User::All();
 
@@ -39,7 +41,7 @@ class DashboardController extends Controller
                     $userPoints+=$profile->points;
                 }
             }
-            return view ('users.dashboard', compact('user', 'teams', 'members', 'profiles','users','teamsIn','profileNum', 'userPoints'));
+            return view ('users.dashboard', compact('user', 'teams', 'members', 'profiles','users','teamsIn','profileNum', 'userPoints', 'tournaments'));
         }
         
     }

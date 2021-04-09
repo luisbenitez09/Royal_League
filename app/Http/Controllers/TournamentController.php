@@ -16,7 +16,8 @@ class TournamentController extends Controller
     public function index ()
     {
         $user = Auth::user();
-        return view ('tournaments', compact('user'));
+        $tournaments = Tournament::All();
+        return view ('tournaments', compact('user','tournaments'));
     }
 
     /**

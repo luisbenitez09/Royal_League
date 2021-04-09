@@ -53,15 +53,17 @@
                 </div>
                 <!-- Torneos -->
                 <div class="col-span-1 md:col-span-4 h-screen overflow-y-auto ">
+
                     <!-- Title-->
                     <h2 class="text-lg text-white font-semibold text-opacity-50 mb-8">Torneo en progreso</h2>
                     <!-- Main Card-->
+                    @foreach ($tournaments as $tournament)
                     <div class="w-full h-56 rounded-3xl bg-mainCTA bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
                         <div class="w-full h-56 rounded-3xl p-4 bg-black bg-opacity-50">
-                            <h1 class="text-white font-semibold text-2xl mb-1">Primer torneo Warzone tríos</h1>
-                            <p class="font-light text-white text-sm">Jueves 23 de Diciembre</p>
+                            <h1 class="text-white font-semibold text-2xl mb-1">{{ $tournament->title }}</h1>
+                            <p class="font-light text-white text-sm">{{ $tournament->date }}</p>
                             <p class="font-light text-white text-sm">KD 10 max / team</p>
-                            <p class="font-light text-white text-sm mb-1">14:00 - 20:00 <span class="font-bold text-xs">Hora CDMX (GMT-6)</span></p>
+                            <p class="font-light text-white text-sm mb-1">{{ $tournament->time }} <span class="font-bold text-xs">Hora CDMX (GMT-6)</span></p>
                             <!-- Live marker-->
                             <div class="w-28 grid grid-cols-2 lg:mb-10">
                                 <div class="col-1 items-center">
@@ -78,50 +80,26 @@
                             </a>
                         </div>
                     </div>
+                    @endforeach
                     <!-- Subtitles line-->
                     <div class="w-full grid grid-cols-2 mb-4">
                         <h2 class="font-bold text-white text-opacity-50 text-lg col-1">Próximos torneos</h2>
                         <a href="{{ route('tournaments') }}" class="text-white text-opacity-75 font-thin col-start-3 ">Ver todos</a>
                     </div>
+
                     <!-- Cards grid-->
                     <div class="grid grid-cols-2 gap-y-4 gap-x-8 mb-52">
+                        @foreach ($tournaments as $tournament)
                         <div class="bg-mainCTA bg-cover w-full rounded-2xl transform hover:-translate-y-2 transition duration-500 ease-in-out">
                             <div class="w-full  bg-black bg-opacity-50 rounded-2xl p-3">
-                                <h3 class="text-white font-semibold text-sm">Torneo Destiny Champions</h3>
-                                <p class="text-xs text-white font-thin mb-6">Lunes 12 de Febrero</p>
+                                <h3 class="text-white font-semibold text-sm">{{ $tournament->title }}</h3>
+                                <p class="text-xs text-white font-thin mb-6">{{ $tournament->date }}</p>
                                 <div>
                                     <a href="" class="text-white bg-green-600 w-28 rounded-md px-7 hover:bg-green-500 transition duration-500 ease-in-out">Inscrito</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-mainCTA bg-cover w-full rounded-2xl transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                            <div class="w-full bg-black bg-opacity-50 rounded-2xl p-3">
-                                <h3 class="text-white font-semibold text-sm">Segundo torneo Warzone</h3>
-                                <p class="text-xs text-white font-thin mb-6">Lunes 12 de Febrero</p>
-                                <div>
-                                    <a href="" class="text-white bg-yellow-400 w-28 rounded-md px-2 hover:bg-yellow-300 transition duration-500 ease-in-out">Inscribirme</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-mainCTA bg-cover w-full rounded-2xl transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                            <div class="w-full bg-black bg-opacity-50 rounded-2xl p-3">
-                                <h3 class="text-white font-semibold text-sm">Torneo Destiny Champions</h3>
-                                <p class="text-xs text-white font-thin mb-6">Lunes 12 de Febrero</p>
-                                <div class="bg-green-600 w-28 rounded-md px-7 hover:bg-green-500 transition duration-500 ease-in-out">
-                                    <a href="" class="text-white">Inscrito</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-mainCTA bg-cover w-full rounded-2xl transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                            <div class="w-full bg-black bg-opacity-50 rounded-2xl p-3">
-                                <h3 class="text-white font-semibold text-sm">Segundo torneo Warzone</h3>
-                                <p class="text-xs text-white font-thin mb-6">Lunes 12 de Febrero</p>
-                                <div class="bg-yellow-400 w-28 rounded-md px-2 hover:bg-green-500 transition duration-500 ease-in-out">
-                                    <a href="" class="text-white">Inscribirme</a>
-                                </div>
-                            </div>
-                        </div>
-                        
+                        @endforeach
                     </div>
                 </div>
                 <!-- Stats -->
