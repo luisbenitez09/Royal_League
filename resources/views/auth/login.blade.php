@@ -43,14 +43,14 @@
                 <form class="auth-form flex flex-col justify-evenly md:space-around items-center h-96 md:h-full" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group flex flex-col items-center w-full mb-8 ">
-                        <button class="rounded-full w-full bg-blue-600 hover:bg-blue-500 py-2 text-white mb-4 md:mb-8
+                        <!--<button class="rounded-full w-full bg-blue-600 hover:bg-blue-500 py-2 text-white mb-4 md:mb-8
                         transition duration-500 ease-in-out transform hover:-translate-y-1"><i class="fab fa-facebook-f text-white mr-2"></i>
                             Login with Facebook
                         </button>
                         <button class="rounded-full w-full bg-red-600 hover:bg-red-500 py-2 text-white
                         transition duration-500 ease-in-out transform hover:-translate-y-1"><i class="fab fa-google text-white mr-2"></i>
                             Login with Google
-                        </button>
+                        </button>-->
                     </div>
                     <div class="form-group flex flex-col items-center w-full mb-4">
                         <input type="email" class="w-full text-white bg-cool-gray-500 bg-opacity-50 hover:bg-opacity-50 py-2 rounded-full

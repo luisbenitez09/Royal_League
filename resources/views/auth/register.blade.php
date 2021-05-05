@@ -45,15 +45,17 @@
             <div class="w-full  md:w-1/2 md:h-full md:mx-auto">
                 <form class="auth-form flex flex-col justify-evenly md:justify-between items-center h-screen md:h-full" method="POST" action="{{ route('register') }}">
                     @csrf
-                    <div class="form-group flex flex-col items-center w-full mb-4">
-                        <button class="rounded-full w-full bg-blue-600 hover:bg-blue-500 py-2 text-white mb-4 md:mb-8
+                    <div class="form-group flex flex-col items-center w-full mb-4 xl:pt-40 md:pt-20">
+                        
+                        <!--<button class="rounded-full w-full bg-blue-600 hover:bg-blue-500 py-2 text-white mb-4 md:mb-8
                         transition duration-500 ease-in-out transform hover:-translate-y-1"><i class="fab fa-facebook-f text-white mr-2"></i>
                             Register with Facebook
                         </button>
                         <button class="rounded-full w-full bg-red-600 hover:bg-red-500 py-2 text-white mb-4 md:mb-16
                         transition duration-500 ease-in-out transform hover:-translate-y-1"><i class="fab fa-google text-white mr-2"></i>
                             Register with Google
-                        </button>
+                        </button>-->
+                        
                         <h1 class="text-white text-2xl font-bold mb-4">{{ __('Registrate con un email y password') }}</h1>
                         
                         <input type="text" class="w-full text-white bg-cool-gray-500 bg-opacity-25 hover:bg-opacity-50 py-2 rounded-full

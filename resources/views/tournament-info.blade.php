@@ -14,10 +14,12 @@
 	<link rel="stylesheet" href="https://use.typekit.net/qxb8htk.css">
 
 	<link rel="stylesheet" href="{{ asset('assets/vendors/liquid-icon/liquid-icon.min.css') }}" />
-	<link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/css/theme-vendors.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/css/themes/original.css') }}" />
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 	<!-- Head Libs -->
 	<script async src="{{ asset('assets/vendors/modernizr.min.js') }}"></script>
@@ -27,7 +29,7 @@
 
 	<div id="wrap">
 
-		<div class="titlebar titlebar-sm scheme-light text-center" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url({{ asset('./assets/img/web/bg-torneo-1.png') }});">
+		<div class="titlebar titlebar-sm scheme-light text-center" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url({{ asset('./assets/img/web/'.$tournament->game.'.png') }});">
 
 			<header class="main-header main-header-overlay">
 
@@ -70,7 +72,7 @@
 										<ul
 											class="main-nav main-nav-hover-underline-1 nav align-items-lg-stretch justify-content-lg-end">
 											<li>
-												<a href="index.html">
+												<a href="/">
 													<span class="link-icon"></span>
 													<span class="link-txt">
 														<span class="link-ext"></span>
@@ -79,11 +81,20 @@
 												</a>
 											</li>
 											<li>
-												<a href="torneos.html">
+												<a href="{{ route("tournaments") }}">
 													<span class="link-icon"></span>
 													<span class="link-txt">
 														<span class="link-ext"></span>
 														<span class="txt">Torneos</span>
+													</span>
+												</a>
+											</li>
+											<li>
+												<a href="{{ route("dashboard") }}">
+													<span class="link-icon"></span>
+													<span class="link-txt">
+														<span class="link-ext"></span>
+														<span class="txt">Dashboard</span>
 													</span>
 												</a>
 											</li>
@@ -150,14 +161,14 @@
 				<div class="container titlebar-container">
 					<div class="row titlebar-container">
 						<div class="titlebar-col col-md-12">
-							<h1 id="a"data-fittext="true" data-fittext-options='{ "maxFontSize": 80, "minFontSize": 32 }'>COD WARZONE</h1>
+							<h1 id="a"data-fittext="true" data-fittext-options='{ "maxFontSize": 80, "minFontSize": 32 }'>{{ $tournament->game}}</h1>
 							<a class="titlebar-scroll-link" href="#content" data-localscroll="true"><i class="fa fa-angle-down"></i></a>
-						</div><!-- /.titlebar-col -->
-					</div><!-- /.titlebar-row -->
-				</div><!-- /.titlebar-container -->
-			</div><!-- /.titlebar-inner -->
+						</div>
+					</div>
+				</div>
+			</div>
 
-		</div><!-- /.titlebar -->
+		</div>
 
 		<main id="content" class="content">
 
@@ -187,6 +198,7 @@
 								</ul>
 								<div class="tabs-content">
 
+									<!-- Resumen -->
 									<div id="ld-tab-pane-1" role="tabpanel" class="tabs-pane pl-md-5 fade active in">
 
 										<h2 class="mt-0">{{ $tournament->title }}</h2>
@@ -196,10 +208,10 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('./assets/img/torneos/torneo-1.jpg') }});"
+													style="background-image: url({{ asset('img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
-													<img class="invisible" src="./assets/img/torneos/torneo-1.jpg" alt="Content Box">
+													<img class="invisible" src="img/torneos/{{$tournament->image}}" alt="Content Box">
 												</figure>
 											</div><!-- /.cb-img-container -->
 
@@ -209,7 +221,7 @@
 
 												<div class="fancy-box-header">
 													<!-- <span class="lb-cb-subtitle text-uppercase ltr-sp-2">Subtitle</span> -->
-													<h3 class="font-size-24 font-weight-bold">Primer Torneo en Modalidad Trios</h3>
+													<h3 class="font-size-24 font-weight-bold">{{ $tournament->title }}</h3>
 
 												</div><!-- /.fancy-box-header -->
 
@@ -223,13 +235,13 @@
 
 											</div><!-- /.fancy-box-contents -->
 
-											<a href="#" class="liquid-overlay-link"></a>
+											<!--<a href="#" class="liquid-overlay-link"></a>-->
 
 										</div><!-- /.fancy-box fancy-box-classes -->
 
 										<br>
-										<p>Sean todos bienvenidos a nuestro primero torneo Royal League Modalidad Trios.</p>
-										<p>El equipo de Royal League te desea suerte en nuestro primer torneo de COD Warzone, agradeciendo la confianza y el apoyo de este proyecto que tiene la finalidad de que tu equipo se divierta y al mismo tiempo se exijan ustedes mismos a ser más competitivos, a mejorar constantemente y que puedan participar por los mejores premios.</p>
+										<p>Sean todos bienvenidos a nuestro torneo Royal League: <strong>{{ $tournament->title }}.</strong></p>
+										<p>{{ $tournament->description }}</p>
 
 										<hr>
 
@@ -250,14 +262,13 @@
 										<br>
 										<p>3 días antes del torneo se creará un grupo de WhatsApp con el lider de cada equipo únicamente para recordatorio de la dinámica y aclaración de dudas. Los resultados del torneo serán publicados en nuestras redes sociales en un máximo de 72 horas despues de la finalización del torneo.</p>
 
-										<br>
-
-										<h3>¡Mucha suerte y a conquistar <strong>VERDANSK</strong>!</h3>
 
 
 
-									</div><!-- /.tab-pane -->
+									</div>
 
+
+									<!-- Reglas -->
 									<div id="ld-tab-pane-2" role="tabpanel" class="tabs-pane pl-md-5 fade">
 
 										<h2 class="mt-0">Reglas</h2>
@@ -267,14 +278,14 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('./assets/img/torneos/torneo-1.jpg') }});"
+													style="background-image: url({{ asset('img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
-													<img class="invisible" src="{{ asset('./assets/img/torneos/torneo-1.jpg') }}" alt="Content Box">
+													<img class="invisible" src="img/torneos/{{$tournament->image}}" alt="Content Box">
 												</figure>
-											</div><!-- /.cb-img-container -->
+											</div>
 
-											<span class="cb-overlay bg-fade-dark-06"></span><!-- /.cb-overlay -->
+											<span class="cb-overlay bg-fade-dark-06"></span>
 
 											<div class="fancy-box-contents border-radius-3">
 
@@ -282,48 +293,52 @@
 													<!-- <span class="lb-cb-subtitle text-uppercase ltr-sp-2">Subtitle</span> -->
 													<h3 class="font-size-24 font-weight-bold">Reglamento del torneo</h3>
 
-												</div><!-- /.fancy-box-header -->
+												</div>
 
-												<div class="fancy-box-footer">
-													<a href="#" class="btn btn-xsm btn-underlined text-uppercase font-size-12 lh-15 btn-white text-white">
+												 <div class="fancy-box-footer">
+													<!--<a href="#" class="btn btn-xsm btn-underlined text-uppercase font-size-12 lh-15 btn-white text-white">
 														<span>
 															<span class="btn-txt">Descargar PDF</span>
 														</span>
-													</a>
-												</div><!-- /.fancy-box-footer -->
+													</a>-->
+												</div> 
 
-											</div><!-- /.fancy-box-contents -->
+											</div>
 
-											<a href="#" class="liquid-overlay-link"></a>
+											<!--<a href="#" class="liquid-overlay-link"></a>-->
 
-										</div><!-- /.fancy-box fancy-box-classes -->
+										</div>
 
 										<br>
 
-										<p>IMPORTANTE: Debes seguir las páginas de <a
-												href="https://www.facebook.com/Royal-League-109787480839374/">Facebook</a> e <a href="https://www.instagram.com/royalleagueorg/">Instagram</a> de Royal League</p>
+										<p>IMPORTANTE: Debes seguir las páginas de 
+											<a href="https://www.facebook.com/Royal-League-109787480839374/">Facebook</a> e 
+											<a href="https://www.instagram.com/royalleagueorg/">Instagram</a> 
+											de Royal League
+										</p>
 
 										<hr>
 
-										<ul>
-											<li>El torneo deberá jugarse en trios</li>
-											<li>Se prohíbe el uso de cuentas nuevas (mínimo 75 partidas jugadas)</li>
-											<li>Se prohíbe el uso de reverse boosting</li>
-											<li>El crossplay deberá estar activo durante las partidas</li>
-											<li>Cada jugador debe identificarse con el ID de ACTIVISION</li>
-											<li>Deberán tener público su perfil en <a href="cod.tracker.gg/modern-warfare"></a>cod.tracker.gg/modern-warfare</li>
-											<li>Se monitoreará el perfil de los participantes para comparar su rendimiento con semanas pasadas</li>
-											<li>Mínimo un participante deberá hacer stream en Facebook o Twitch, los que no puedan deberán grabar sus partidas y tener el audio activo de sus compañeros para poder escuchar los call outs</li>
-											<li>Poner como título del Stream "Torneo Royal League"</li>
-											<li>Respeto para todos los participantes y administradores</li>
+										<ul><!-- Cambiar a dinamico -->
+											<li>Se prohíbe el uso de cuentas nuevas (mínimo 75 partidas jugadas).</li>
+											<li>Se prohíbe el uso de reverse boosting.</li>
+											<li>El crossplay deberá estar activo durante las partidas.</li>
+											<li>Cada jugador debe identificarse con el ID de ACTIVISION.</li>
+											<li>Deberán tener público su perfil en <a href="cod.tracker.gg/modern-warfare"></a>cod.tracker.gg/modern-warfare.</li>
+											<li>Se monitoreará el perfil de los participantes para comparar su rendimiento con semanas pasadas.</li>
+											<li>Mínimo un participante deberá hacer stream en Facebook o Twitch, los que no puedan deberán grabar sus partidas y tener el audio activo de sus compañeros para poder escuchar los call outs.</li>
+											<li>Poner como título del Stream "Torneo Royal League".</li>
+											<li>Respeto para todos los participantes y administradores.</li>
 										</ul>
 
 										<hr>
 
 										<p>Nos reservemos el derecho de descalificar a cualquier equipo que no cumpla uno o más lineamientos de los antes mencionados. </p>
 
-									</div><!-- /.tab-pane -->
+									</div>
 
+
+									<!-- Registro -->
 									<div id="ld-tab-pane-3" role="tabpanel" class="tabs-pane pl-md-5 fade">
 
 										<h2 class="mt-0">Procedimiento de registro</h2>
@@ -333,14 +348,14 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('./assets/img/torneos/torneo-1.jpg') }});"
+													style="background-image: url({{ asset('img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
-													<img class="invisible" src="{{ asset('./assets/img/torneos/torneo-1.jpg') }}" alt="Content Box">
+													<img class="invisible" src="img/torneos/{{$tournament->image}}" alt="Content Box">
 												</figure>
-											</div><!-- /.cb-img-container -->
+											</div>
 
-											<span class="cb-overlay bg-fade-dark-06"></span><!-- /.cb-overlay -->
+											<span class="cb-overlay bg-fade-dark-06"></span>
 
 											<div class="fancy-box-contents border-radius-3">
 
@@ -348,21 +363,20 @@
 													<!-- <span class="lb-cb-subtitle text-uppercase ltr-sp-2">Subtitle</span> -->
 													<h3 class="font-size-24 font-weight-bold">Registro de equipos</h3>
 
-												</div><!-- /.fancy-box-header -->
+												</div>
 
 												<div class="fancy-box-footer">
-													<a href="#" class="btn btn-xsm btn-underlined text-uppercase font-size-12 lh-15 btn-white text-white">
+													<!--<a href="#" class="btn btn-xsm btn-underlined text-uppercase font-size-12 lh-15 btn-white text-white">
 														<span>
 															<span class="btn-txt">PDF - Instrucciones de registro</span>
 														</span>
-													</a>
-												</div><!-- /.fancy-box-footer -->
+													</a>-->
+												</div>
+											</div>
 
-											</div><!-- /.fancy-box-contents -->
+											<!--<a href="#" class="liquid-overlay-link"></a>-->
 
-											<a href="#" class="liquid-overlay-link"></a>
-
-										</div><!-- /.fancy-box fancy-box-classes -->
+										</div>
 
 										<br>
 
@@ -370,15 +384,17 @@
 
 										<hr>
 
-										<ul>
+										<ul>	<!-- Cambiar a dinamico -->
 											<li>Enviar un mensaje a la págna de Facebook solicitando el registro para el torneo</li>
 											<li>Mandar el ID ACTIVISION de los tres integrantes</li>
 											<li>Mandar el nombre del equipo</li>
 
 										</ul>
 
-									</div><!-- /.tab-pane -->
+									</div>
 
+
+									<!-- Premios -->
 									<div id="ld-tab-pane-4" role="tabpanel" class="tabs-pane pl-md-5 fade">
 
 										<h2 class="mt-0">Premios</h2>
@@ -388,33 +404,30 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('./assets/img/torneos/torneo-1.jpg') }});"
+													style="background-image: url({{ asset('img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
-													<img class="invisible" src="{{ asset('./assets/img/torneos/torneo-1.jpg') }}" alt="Content Box">
+													<img class="invisible" src="img/torneos/{{$tournament->image}}" alt="Content Box">
 												</figure>
-											</div><!-- /.cb-img-container -->
+											</div>
 
-											<span class="cb-overlay bg-fade-dark-06"></span><!-- /.cb-overlay -->
+											<span class="cb-overlay bg-fade-dark-06"></span>
 
 											<div class="fancy-box-contents border-radius-3">
 
 												<div class="fancy-box-header">
 													<!-- <span class="lb-cb-subtitle text-uppercase ltr-sp-2">Subtitle</span> -->
 													<h3 class="font-size-24 font-weight-bold">Premiación del torneo</h3>
-												</div><!-- /.fancy-box-header -->
+												</div>
 
 												<div class="fancy-box-footer">
-													<a href="#" class="btn btn-xsm btn-underlined text-uppercase font-size-12 lh-15 btn-white text-white">
+													<!--<a href="#" class="btn btn-xsm btn-underlined text-uppercase font-size-12 lh-15 btn-white text-white">
 
-													</a>
-												</div><!-- /.fancy-box-footer -->
-
-											</div><!-- /.fancy-box-contents -->
-
-											<a href="#" class="liquid-overlay-link"></a>
-
-										</div><!-- /.fancy-box fancy-box-classes -->
+													</a>-->
+												</div>
+											</div>
+											<!--<a href="#" class="liquid-overlay-link"></a>-->
+										</div>
 
 										<br>
 										<h3>Parámetros y puntuación</h3>
@@ -423,11 +436,9 @@
 											obtener la puntuación final de tu equipo.</p>
 
 										<ul>
-											<li>WIN - 200pts.</li>
-											<li>2do lugar - 150 pts.</li>
-											<li>3er lugar - 100 pts</li>
-											<li>Top 4-10 - 50pts.</li>
-											<li>Kill - 10 pts.</li>
+											@foreach ($parameters as $parameter)
+												<li>{{ $parameter->parameter }}</li>
+											@endforeach
 										</ul>
 
 										<hr>
@@ -448,116 +459,20 @@
 
 
 
-									</div><!-- /.tab-pane -->
+									</div>
 
+								</div>
+							</div>
 
+						</div>
 
-								</div><!-- /.tabs-content -->
-							</div><!-- /.tabs -->
-
-						</div><!-- /.lqd-column col-md-12 -->
-
-					</div><!-- /.row -->
-				</div><!-- /.container -->
+					</div>
+				</div>
 			</section>
 
-		</main><!-- /#content.content -->
+		</main>
 
-		<footer class="main-footer bg-charade pt-70" data-sticky-footer="true">
-
-			<section>
-
-				<div class="container">
-					<div class="row">
-
-						<div class="lqd-column col-md-3 col-sm-6">
-
-							<h3 class="widget-title text-white">Royal League</h3>
-							<ul class="lqd-custom-menu reset-ul text-white">
-								<li><a href="index.html">Inicio</a></li>
-								<li><a href="torneos.html">Torneos</a></li>
-								<li><a href="#">Premios</a></li>
-								<li><a href="#">Registro</a></li>
-							</ul>
-
-						</div><!-- /.col-md-3 col-sm-6 -->
-
-						<div class="lqd-column col-md-3 col-sm-6">
-
-							<h3 class="widget-title text-white">Reglamentos</h3>
-							<ul class="lqd-custom-menu reset-ul text-white">
-								<li><a href="#">Reglas</a></li>
-								<li><a href="#">Registro</a></li>
-								<li><a href="#">Premiación</a></li>
-							</ul>
-
-						</div><!-- /.col-md-3 col-sm-6 -->
-
-						<div class="lqd-column col-md-3 col-sm-6">
-
-							<h3 class="widget-title text-white">Contacto</h3>
-							<p>
-								support@royalleague.com.mx
-								<br>
-							</p>
-
-						</div><!-- /.col-md-3 col-sm-6 -->
-
-						<div class="lqd-column col-md-3 col-sm-6">
-
-							<h3 class="widget-title text-white">¡Siguenos!</h3>
-							<ul class="social-icon social-icon-md">
-								<li><a href="https://www.facebook.com/Royal-League-109787480839374"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="https://www.instagram.com/royalleagueorg/"><i class="fa fa-instagram"></i></a></li>
-								<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-							</ul>
-
-							<!--<h3 class="widget-title text-white">Subscribe</h3>
-							<div class="ld-sf ld-sf--input-solid ld-sf--button-solid ld-sf--size-xs ld-sf--circle ld-sf--border-thin ld-sf--button-show ld-sf--button-inline">
-								<form id="ld_subscribe_form" class="ld_sf_form" action="https://liquid-themes.us20.list-manage.com/subscribe/post?u=7f582d555cef808a99ea001a7&amp;id=58ab120d89" name="mc-embedded-subscribe-form" method="post">
-									<p class="ld_sf_paragraph pr-2">
-										<input type="email" class="ld_sf_text" id="mce-EMAIL" name="EMAIL" placeholder="Your email" value="">
-									</p>
-									<button type="submit" class="ld_sf_submit px-4">
-										<span class="submit-icon">
-											<i class="fa fa-angle-right"></i>
-										</span>
-										<span class="ld-sf-spinner">
-											<span>Sending </span>
-										</span>
-									</button>
-								</form>
-								<div class="ld_sf_response"></div>
-							</div><!-- /.ld-sf -->
-
-						</div><!-- /.col-md-3 col-sm-6 -->
-
-					</div><!-- /.row -->
-				</div><!-- /.container -->
-
-			</section>
-
-			<section class="bt-fade-white-015 pt-35 pb-35 mt-50">
-				<div class="container">
-					<div class="row">
-
-						<div class="lqd-column col-md-6">
-
-							<ul class="lqd-custom-menu reset-ul inline-nav">
-								<li><a href="#">Aviso de Privacidad</a></li>
-							</ul>
-
-						</div><!-- /.col-md-6 -->
-
-						<div class="lqd-column col-md-6 text-md-right">
-							<p class="my-0"><span style="font-size: 15px;">© 2020 Royal League.</span></p>
-						</div><!-- /.col-md-6 text-md-right -->
-
-					</div><!-- /.row -->
-				</div><!-- /.container -->
-			</section>
-
-		</footer><!-- /.main-footer -->
+		@livewire('footer')
 
 	</div><!-- /#wrap -->
 

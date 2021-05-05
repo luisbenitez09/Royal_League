@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tournament;
+use App\Models\Parameter;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class TournamentController extends Controller
@@ -64,7 +66,8 @@ class TournamentController extends Controller
     public function tournamentInfo ($id)
     {
         $tournament = Tournament::findOrFail($id);
-        return view ('tournament-info', compact('tournament'));
+        $parameters = DB::table('parameters')->where('tournament_id',$id)->get();
+        return view ('tournament-info', compact('tournament','parameters'));
     }
 
 
