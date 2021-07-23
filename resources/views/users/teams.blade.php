@@ -44,8 +44,7 @@
 
                 @foreach ($teams as $team)
                 @if ($team->owner == $user->id)
-                    <div
-                        class="col-auto p-3 transition duration-500 ease-in-out transform bg-gray-400 bg-opacity-25 rounded-2xl hover:-translate-y-2">
+                    <div class="col-auto p-3 transition duration-500 ease-in-out transform bg-gray-400 bg-opacity-25 rounded-2xl hover:-translate-y-2">
                         <p class="text-lg font-semibold text-white">{{ $team->name }}</p>
                         <div class="grid grid-cols-2">
                             <div class="col-1">
@@ -63,8 +62,7 @@
                             <div class="text-right col-1">
                                 <p class="mb-1 text-xs text-white font-regular">{{ $team->points }} puntos</p>
                                 <p class="mb-1 text-xs text-white font-regular">{{ $team->tournaments }} torneos</p>
-                                <p class="mb-1 text-xs text-white font-regular">Mejor resultado: <span
-                                        class="font-bold">{{ $team->bestResult }}</span></p>
+                                <p class="mb-3 text-xs text-white font-regular">Mejor resultado: <span class="font-bold">{{ $team->bestResult }}</span></p>
                                 <a href="{{ route('team-edit',$team->id) }}"
                                     class="w-full py-2 px-2 text-xs font-bold text-white transition duration-500 ease-in-out bg-yellow-400 rounded-lg hover:bg-yellow-500">Editar
                                     equipo</a>

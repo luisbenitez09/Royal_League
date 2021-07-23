@@ -18,8 +18,8 @@
     <div class="mx-8 lg:mx-20">
         <h1 class="text-white font-bold text-3xl my-10">Editar equipo</h1>
     </div>
-    <div class="w-full ">
-        <div class=" lg:mx-20 bg-gray-500 bg-opacity-50 rounded-3xl mb-20 mx-8 p-10">
+    <div class="w-full">
+        <div class="max-w-6xl xl:mx-auto lg:mx-20 bg-gray-500 bg-opacity-50 rounded-3xl mb-20 mx-8 p-10">
             <form method="POST" action="{{ route('update-team') }}">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2">
@@ -38,16 +38,16 @@
         </div>
     </div>
 
-    <div class="w-full h-screen">
-        <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
-            <table class="w-full text-white">
-                <thead class="text-xl border-b-2">
-                    <th class="w-4/5 pb-4 border-r-2">Gamertag</th>
-                    <th class="pb-4">Acciones</th>
-                </thead>
-                <tbody>
-                    @foreach ($members as $member)
-                        @if ($member->access_code === $team->access_code)
+    @isset($members)
+       <div class="w-full">
+            <div class="max-w-6xl xl:mx-auto lg:mx-20 bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
+                <table class="w-full text-white">
+                    <thead class="text-xl border-b-2">
+                        <th class="w-4/5 pb-4 border-r-2">Gamertag</th>
+                        <th class="pb-4">Acciones</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($members as $member)
                             <tr class="border-t-2">
                                 <td class="py-4 text-center border-r-2">{{ $member->profile->gamertag }}</td>
                                 <td class="py-4 text-center">
@@ -56,13 +56,14 @@
                                         </button> 
                                 </td>
                             </tr>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
-            
-        </div>
-    </div>
+                        @endforeach
+                    </tbody>
+                </table>
+                
+            </div>
+        </div> 
+    @endisset
+    
 
     
 

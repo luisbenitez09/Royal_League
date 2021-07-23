@@ -31,7 +31,7 @@
         </div>
         <div class="flex flex-col md:flex-row w-full justify-around">
             <p class="font-light text-white text-lg text-center">{{ $tournament->date }}</p>
-            <p class="font-light text-white text-lg text-center">{{ $tournament->kd }}</p>
+            <p class="font-light text-white text-lg text-center">{{ $tournament->kd }} KD</p>
             <p class="font-light text-white text-lg text-center mb-1">{{ $tournament->time }}</p>
         </div>
     </div>

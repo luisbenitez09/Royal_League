@@ -16,7 +16,7 @@
 <body style="background-color: #1a2a41"  class="bg-login bg-cover bg-center bg-fixed">
     <!-- pagina -->
     <div class="flex flex-col md:flex-row  items-center md:h-screen p-10">
-         <!-- left card -->
+        <!-- left card -->
         <div class="flex justify-between items-center bg-gray-700 bg-opacity-50 rounded-3xl w-full md:w-1/3 md:h-full p-4" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
             <!-- contenedor -->
             <div class="flex flex-row md:flex-col justify-between w-full items-center md:items-baseline md:h-full">
@@ -43,6 +43,14 @@
                 <form class="auth-form flex flex-col justify-evenly md:space-around items-center h-96 md:h-full" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group flex flex-col items-center w-full mb-8 ">
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <div class="w-full px-5 py-3 rounded-full bg-yellow-400 text-white">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
+                        @endif
+
                         <!--<button class="rounded-full w-full bg-blue-600 hover:bg-blue-500 py-2 text-white mb-4 md:mb-8
                         transition duration-500 ease-in-out transform hover:-translate-y-1"><i class="fab fa-facebook-f text-white mr-2"></i>
                             Login with Facebook
@@ -54,15 +62,15 @@
                     </div>
                     <div class="form-group flex flex-col items-center w-full mb-4">
                         <input type="email" class="w-full text-white bg-cool-gray-500 bg-opacity-50 hover:bg-opacity-50 py-2 rounded-full
-                        transition duration-500 ease-in-out pl-4 mb-4 md:mb-8" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);" id="email" name="email" :value="old('email')" placeholder="Email" required autofocus
-                        class="">
+                        transition duration-500 ease-in-out pl-4 mb-4 md:mb-8" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);" id="email" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus
+                        >
                         <input type="password" class="w-full text-white bg-cool-gray-500  bg-opacity-50 hover:bg-opacity-50 py-2 rounded-full
                         transition duration-500 ease-in-out pl-4" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);" id="password" name="password" placeholder="Password" required autocomplete="current-password"
-                        class="">
+                        >
                     </div>
                     <div class="form-group flex flex-col items-center mb-4">
                         @if (Route::has('password.request'))
-                            <a class="text-blue-600 hover:text-blue-500 mb-2 transition duration-500 ease-in-out" href="{{ route('password.request') }}">
+                            <a class="text-white hover:text-red-500 mb-2 transition duration-500 ease-in-out" href="{{ route('password.request') }}">
                                {{ __('¿Olvidaste tu contraseña?') }}
                             </a>
                         @endif

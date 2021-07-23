@@ -1,4 +1,4 @@
-<div class="z-0 bottom-0">
+<div>
     <footer class="bg-footer-texture bg-cover relative z-10">
         <div class="container mx-auto pt-10 pb-6">
             <div class="flex flex-wrap justify-between">

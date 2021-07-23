@@ -18,7 +18,7 @@
     <div class="w-full h-screen">
         <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
             <h1 class="text-center text-xl text-white font-light mb-5">Nombre: <span class="font-bold text-2xl">{{ $team->name }}</span></h1>
-            <h1 class="text-center text-xl text-white font-light mb-5">Creador: <span class="font-bold text-2xl">{{ $team->owner }}</span></h1>
+            <h1 class="text-center text-xl text-white font-light mb-5">Creador: <span class="font-bold text-2xl">{{ $team->user->name }}</span></h1>
             <h1 class="text-center text-xl text-white font-light mb-5">Puntos: <span class="font-bold text-2xl">{{ $team->points }}</span></h1>
             <h1 class="text-center text-xl text-white font-light mb-5">Mejor resultado: <span class="font-bold text-2xl">{{ $team->bestResult }}</span></h1>
             <h1 class="text-center text-xl text-white font-light mb-5">Torneos jugados: <span class="font-bold text-2xl">{{ $team->tournaments }}</span></h1>

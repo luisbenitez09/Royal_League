@@ -14,12 +14,10 @@
 	<link rel="stylesheet" href="https://use.typekit.net/qxb8htk.css">
 
 	<link rel="stylesheet" href="{{ asset('assets/vendors/liquid-icon/liquid-icon.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/css/theme-vendors.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/css/themes/original.css') }}" />
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 	<!-- Head Libs -->
 	<script async src="{{ asset('assets/vendors/modernizr.min.js') }}"></script>
@@ -168,7 +166,7 @@
 				</div>
 			</div>
 
-		</div>
+		</div><!-- /.titlebar -->
 
 		<main id="content" class="content">
 
@@ -472,7 +470,101 @@
 
 		</main>
 
-		@livewire('footer')
+		<footer class="main-footer pt-70" style="background-image: url({{ asset('./assets/img/web/bg-14.jpg') }}); background-size: cover; " data-sticky-footer="true">
+
+			<section>
+
+				<div class="container">
+					<div class="row">
+
+						<div class="lqd-column col-md-3 col-sm-6">
+
+							<h3 class="widget-title text-white">Royal League</h3>
+							<ul class="lqd-custom-menu reset-ul text-white">
+								<li><a href="index.html">Inicio</a></li>
+								<li><a href="torneos.html">Torneos</a></li>
+								<li><a href="#">Premios</a></li>
+								<li><a href="#">Registro</a></li>
+							</ul>
+
+						</div><!-- /.col-md-3 col-sm-6 -->
+
+						<div class="lqd-column col-md-3 col-sm-6">
+
+							<h3 class="widget-title text-white">Reglamentos</h3>
+							<ul class="lqd-custom-menu reset-ul text-white">
+								<li><a href="#">Reglas</a></li>
+								<li><a href="#">Registro</a></li>
+								<li><a href="#">Premiación</a></li>
+							</ul>
+
+						</div><!-- /.col-md-3 col-sm-6 -->
+
+						<div class="lqd-column col-md-3 col-sm-6">
+
+							<h3 class="widget-title text-white">Contacto</h3>
+							<p>
+								support@royalleague.com.mx
+								<br>
+							</p>
+
+						</div><!-- /.col-md-3 col-sm-6 -->
+
+						<div class="lqd-column col-md-3 col-sm-6">
+
+							<h3 class="widget-title text-white">¡Siguenos!</h3>
+							<ul class="social-icon social-icon-md">
+								<li><a href="https://www.facebook.com/Royal-League-109787480839374"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://www.instagram.com/royalleagueorg/"><i class="fa fa-instagram"></i></a></li>
+								<li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+							</ul>
+
+							<!--<h3 class="widget-title text-white">Subscribe</h3>
+							<div class="ld-sf ld-sf--input-solid ld-sf--button-solid ld-sf--size-xs ld-sf--circle ld-sf--border-thin ld-sf--button-show ld-sf--button-inline">
+								<form id="ld_subscribe_form" class="ld_sf_form" action="https://liquid-themes.us20.list-manage.com/subscribe/post?u=7f582d555cef808a99ea001a7&amp;id=58ab120d89" name="mc-embedded-subscribe-form" method="post">
+									<p class="ld_sf_paragraph pr-2">
+										<input type="email" class="ld_sf_text" id="mce-EMAIL" name="EMAIL" placeholder="Your email" value="">
+									</p>
+									<button type="submit" class="ld_sf_submit px-4">
+										<span class="submit-icon">
+											<i class="fa fa-angle-right"></i>
+										</span>
+										<span class="ld-sf-spinner">
+											<span>Sending </span>
+										</span>
+									</button>
+								</form>
+								<div class="ld_sf_response"></div>
+							</div><!-- /.ld-sf -->
+
+						</div><!-- /.col-md-3 col-sm-6 -->
+
+					</div><!-- /.row -->
+				</div><!-- /.container -->
+
+			</section>
+
+			<section class="bt-fade-white-015 pt-35 pb-35 mt-50">
+				<div class="container">
+					<div class="row">
+
+						<div class="lqd-column col-md-6">
+
+							<ul class="lqd-custom-menu reset-ul inline-nav">
+								<li><a href="#">Aviso de Privacidad</a></li>
+							</ul>
+
+						</div><!-- /.col-md-6 -->
+
+						<div class="lqd-column col-md-6 text-md-right">
+							<p class="my-0"><span style="font-size: 15px;">© 2020 Royal League.</span></p>
+						</div><!-- /.col-md-6 text-md-right -->
+
+					</div><!-- /.row -->
+				</div><!-- /.container -->
+			</section>
+
+		</footer><!-- /.main-footer -->
 
 	</div><!-- /#wrap -->
 

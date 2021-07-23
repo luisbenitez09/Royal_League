@@ -34,7 +34,6 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/teams','TeamController@index')->name('teams');
     Route::get('/team-edit/{id}','TeamController@teamEdit')->name('team-edit');
-    //Route::put('/categories','CategoryController@update');
     Route::post('/teams','TeamController@store');
     Route::post('/changeTeamStatus','TeamController@changeTeamStatus')->name('changeTeamStatus');
     Route::post('/update-team','TeamController@update')->name('update-team');
@@ -78,3 +77,5 @@ Route::middleware(['auth'])->group(function() {
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
+
+Route::post('/login', 'LoginController@login');

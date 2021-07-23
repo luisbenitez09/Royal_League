@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 use App\Models\Team;
 use App\Models\Member;
 use App\Models\User;
@@ -51,7 +52,7 @@ class TeamController extends Controller
     public function teamEdit ($id)
     {
         $team = Team::findOrFail($id);
-        $members = Member::All();
+        $members = DB::table('members')->where('access_code',$team->access_code)->get();
         return view ('users.edit-team', compact('team','members'));
     }
 
@@ -73,17 +74,6 @@ class TeamController extends Controller
     }
 
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -92,15 +82,16 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //if(Auth::user()->hasPermissionTo('create teams')) {
-            if($team = Team::create($request->all())) {
-                if($member = Member::create($request->all())) {
-                    return redirect()->back()->with('success','Member created successfully');
+        if(Auth::user()->hasPermissionTo('create teams')) {
+            if($member = Member::create($request->all())) {
+                if($team = Team::create($request->all())) {
+                    return redirect()->back()->with('success','Team created successfully');
                 }
-                return redirect()->back()->with('error','Member owner not added');
+                return redirect()->back()->with('error','We couldnt create the new team');
+                
             }
-            return redirect()->back()->with('error','We couldnt create the new team');
-        //}
+            return redirect()->back()->with('error','Member owner not added');
+        }
     }
 
     /**
