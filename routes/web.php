@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('index'); 
 });
 
-Route::get('/test', function () {
-    return view('users.live-tournament');
-})->name('test');
+//Route::get('/test', function () {
+  //  return view('users.live-tournament');
+//})->name('test');
 
 Route::get('/tournaments','TournamentController@index')->name('tournaments');
     //Route::put('/categories','CategoryController@update');
@@ -79,3 +79,5 @@ Route::middleware(['auth'])->group(function() {
 //})->name('dashboard');
 
 Route::post('/login', 'LoginController@login');
+Route::post('/register', 'LoginController@register');
+Route::post('/password.email', 'LoginController@passEmail');

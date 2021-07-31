@@ -14,77 +14,52 @@
     <title>Login</title>
 </head>
 <body style="background-color: #1a2a41"  class="bg-login bg-cover bg-center bg-fixed">
-    <!-- pagina -->
-    <div class="flex flex-col md:flex-row  items-center md:h-screen p-10">
-        <!-- left card -->
-        <div class="flex justify-between items-center bg-gray-700 bg-opacity-50 rounded-3xl w-full md:w-1/3 md:h-full p-4" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-            <!-- contenedor -->
-            <div class="flex flex-row md:flex-col justify-between w-full items-center md:items-baseline md:h-full">
-                <!-- textos -->
-                <div class="md:w-full md:h-full md:flex flex-row items-center">
-                    <div class="md:align-middle">
-                        <h1 class="text-white font-semibold text-2xl md:text-3xl mb-3 md:mb-12">Login</h1>
-                        <p class="font-bold text-white">{{ __('¡Bienvenido de nuevo!') }}</p>
-                        <p class="font-light text-cool-gray-300 text-sm">{{ __('Inicia sesión para continuar') }}</p>
-                    </div>
-                    
+    <!-- back link -->
+    <div class="w-52 text-white pl-10 pt-10 transform hover:translate-x-3 transition duration-300 ease-in-out">
+        <a href="/"><i class="fas fa-arrow-left"></i> Volver a Inicio</a>
+    </div>
+    <!-- main container -->
+    <div class="w-full h-full items-center">
+        <!-- logo -->
+        <img src="{{ asset('img/logo.png') }}" alt="Royal League" class="w-24 mx-auto mb-10">
+        <!-- errors zone -->
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="w-96 px-5 py-3 rounded-lg mx-auto mb-4 bg-yellow-400 text-white">
+                    {{ $error }}
                 </div>
-                <!-- cta -->
-                <div class="bg-gray-600 py-6 md:p-3 w-1/2 md:w-full md:align-bottom rounded-xl">
-                    <div class="flex flex-col items-center md:items-baseline">
-                        <h2 class="font-light text-white">{{ __('¿Aún no tienes cuenta?') }}</h2>
-                        <a href="{{ route('register') }}" class="font-bold text-yellow-400 hover:text-yellow-200 transition duration-500 ease-in-out">{{ __('Registrate') }}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="w-full mt-10 md:mt-0 md:w-2/3 md:h-full">
-            <div class="w-full  md:w-1/2 md:h-full md:mx-auto">
-                <form class="auth-form flex flex-col justify-evenly md:space-around items-center h-96 md:h-full" method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="form-group flex flex-col items-center w-full mb-8 ">
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <div class="w-full px-5 py-3 rounded-full bg-yellow-400 text-white">
-                                    {{ $error }}
-                                </div>
-                            @endforeach
-                        @endif
+            @endforeach
+        @endif
+        <!-- login form -->
+        <div class=" bg-gray-600 bg-opacity-50 rounded-xl w-96 p-4 mx-auto mb-10" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+            <h2 class="text-white text-2xl mb-5">Login</h2>
+            <p class="text-white text-sm opacity-50 font-light mb-10">Ingresa tus datos para acceder a tu cuenta.</p>
 
-                        <!--<button class="rounded-full w-full bg-blue-600 hover:bg-blue-500 py-2 text-white mb-4 md:mb-8
-                        transition duration-500 ease-in-out transform hover:-translate-y-1"><i class="fab fa-facebook-f text-white mr-2"></i>
-                            Login with Facebook
-                        </button>
-                        <button class="rounded-full w-full bg-red-600 hover:bg-red-500 py-2 text-white
-                        transition duration-500 ease-in-out transform hover:-translate-y-1"><i class="fab fa-google text-white mr-2"></i>
-                            Login with Google
-                        </button>-->
-                    </div>
-                    <div class="form-group flex flex-col items-center w-full mb-4">
-                        <input type="email" class="w-full text-white bg-cool-gray-500 bg-opacity-50 hover:bg-opacity-50 py-2 rounded-full
-                        transition duration-500 ease-in-out pl-4 mb-4 md:mb-8" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);" id="email" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus
-                        >
-                        <input type="password" class="w-full text-white bg-cool-gray-500  bg-opacity-50 hover:bg-opacity-50 py-2 rounded-full
-                        transition duration-500 ease-in-out pl-4" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);" id="password" name="password" placeholder="Password" required autocomplete="current-password"
-                        >
-                    </div>
-                    <div class="form-group flex flex-col items-center mb-4">
-                        @if (Route::has('password.request'))
-                            <a class="text-white hover:text-red-500 mb-2 transition duration-500 ease-in-out" href="{{ route('password.request') }}">
-                               {{ __('¿Olvidaste tu contraseña?') }}
-                            </a>
-                        @endif
-                        <label for="remember_me" class="flex items-center">
-                            <input id="remember_me" type="checkbox" class="form-checkbox" name="remember">
-                            <span class="ml-2 text-sm text-white">{{ __('Mantener sesión abierta') }}</span>
-                        </label>
-                    </div>
-                    <div class="form-group flex flex-col items-center">
-                        <button type="submit" class="rounded-full w-60 bg-green-500 hover:bg-green-600 transition duration-500 ease-in-out py-2 text-white mb-4">Login</button>
-                    </div>
-                </form>
-            </div>
+            <form class="auth-form flex flex-col justify-evenly md:space-around " method="POST" action="{{ route('login') }}">
+                @csrf
+                <input type="email" class="text-white bg-transparent py-2 rounded-lg border border-blue-400 focus:outline-none focus:border-yellow-400
+                ransition duration-500 ease-in-out pl-4 mb-4" id="email" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus
+                >
+                <input type="password" class="text-white bg-transparent py-2 rounded-lg border border-blue-400 focus:outline-none focus:border-yellow-400
+                transition duration-500 ease-in-out pl-4 mb-4" id="password" name="password" placeholder="Password" required autocomplete="current-password"
+                >
+                <!--<label for="remember" class="mb-4">
+                    <input id="remember" type="checkbox" class="form-checkbox" name="remember">
+                    <span class="ml-2 text-xs font-light text-white opacity-50">{{ __('Mantener sesión abierta') }}</span>
+                </label>-->
+                <button type="submit" class="rounded-lg w-full bg-yellow-400 hover:bg-yellow-500 transition duration-500 ease-in-out py-2 text-white mb-4">Login</button>
+            </form>
         </div>
+        <!-- external text -->
+        <div class="w-96 mx-auto text-center">
+            <p class="text-white text-sm mb-4">¿Aún no tienes cuenta? <a href="{{ route('register') }}" class="text-blue-400 hover:text-blue-600 transition duration-300 ease-in-out">Registrate</a></p>
+            @if (Route::has('password.request'))
+                <a class="text-blue-400 text-sm hover:text-blue-600 mb-2 transition duration-500 ease-in-out" href="{{ route('password.request') }}">
+                    {{ __('¿Olvidaste tu contraseña?') }}
+                </a>
+            @endif
+        </div>
+        
     </div>
 </body>
 </html>

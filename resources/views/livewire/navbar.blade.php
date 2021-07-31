@@ -15,47 +15,47 @@
                         <i class="fa fa-chevron-down"></i>
                 </button>
                 <div id="drop-menu-1"
-                    class="hidden origin-top-left absolute right-4 mt-2 w-56 rounded-md shadow-lg bg-gray-700 bg-opacity-50"
-                    style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                    class="hidden origin-top-left absolute right-4 mt-2 w-56 rounded-md shadow-lg bg-gray-900"
+                    >
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         @auth
                             
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                            <a href="/"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Inicio</a>
                             <a href="{{ route('dashboard') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Dashboard</a>
                             <a href="{{ route('teams') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Mis equipos</a>
                             <a href="{{ route('tournaments') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Torneos</a>
                             <a href="{{ route('profile') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Mi perfil</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-red-500 hover:bg-opacity-75 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                                     role="menuitem">
                                     Cerrar sesión
                                 </button>
                             </form>
                            
                         @else
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                            <a href="/"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Inicio</a>
                             <a href="{{ route('tournaments') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Torneos</a>
                             <a href="{{ route('login') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Login</a>
                             <a href="{{ route('register') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Register</a>
                         @endauth
                     </div>
@@ -65,10 +65,10 @@
         </div>
         
         @auth
-            <div class="hidden md:block md:col-span-4">
+            <!--<div class="hidden md:block md:col-span-4">
                 <h3 class="text-xl font-bold text-white text-opacity-25">Hola, {{ $user->name }},</h3>
                 <h1 class="text-4xl font-bold text-white">¡Bienvenid@!</h1>
-            </div>
+            </div>-->
         @endauth
         
 
@@ -86,46 +86,46 @@
                         <i class="fa fa-chevron-down"></i>
                     </button>
                     <div id="drop-menu-2"
-                        class="hidden origin-top-left absolute right-4 mt-2 w-56 rounded-md shadow-lg bg-gray-700 bg-opacity-50"
+                        class="hidden origin-top-left absolute right-4 mt-2 w-56 rounded-md shadow-lg bg-gray-900"
                         style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
                         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                             @auth
                                 
                             <a href="{{ route('inicio') }}"
-                            class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                            class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                             role="menuitem">Inicio</a>
                             <a href="{{ route('dashboard') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Dashboard</a>
                             <a href="{{ route('teams') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Mis equipos</a>
                             <a href="{{ route('tournaments') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Torneos</a>
                             <a href="{{ route('profile') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Mi perfil</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-red-500 hover:bg-opacity-75 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                                     role="menuitem">
                                     Cerrar sesión
                                 </button>
                             </form>
                             @else
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Inicio</a>
                             <a href="{{ route('tournaments') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Torneos</a>
                             <a href="{{ route('login') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Login</a>
                             <a href="{{ route('register') }}"
-                                class="block px-4 py-2 text-sm text-white hover:bg-black hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
+                                class="block px-4 py-2 text-sm text-white hover:bg-gray-500 hover:bg-opacity-25 rounded-md transition duration-100 ease-in-out"
                                 role="menuitem">Register</a>
                             @endauth
                         </div>

@@ -18,11 +18,50 @@
 
 <body style="background-color: #1a2a41" class="bg-fixed bg-center bg-cover bg-profile">
 
+    <!-- back link -->
+    <div class="w-52 text-white pl-10 pt-10 transform hover:translate-x-3 transition duration-300 ease-in-out">
+        <a href="{{ route('login') }}"><i class="fas fa-arrow-left"></i> Volver a Login</a>
+    </div>
+    <!-- main container -->
+    <div class="w-full h-full items-center">
+        <!-- logo -->
+        <img src="{{ asset('img/logo.png') }}" alt="Royal League" class="w-24 mx-auto mb-10">
+        <!-- errors zone -->
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="w-96 px-5 py-3 rounded-lg mx-auto mb-4 bg-yellow-400 text-white">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
+        @if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('status') }}
+            </div>
+        @endif
+        <!-- login form -->
+        <div class=" bg-gray-600 bg-opacity-50 rounded-xl w-96 p-4 mx-auto mb-10" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+            <h2 class="text-white text-2xl mb-5">¿Olvidaste tu contraseña?</h2>
+            <p class="text-white text-sm opacity-50 font-light mb-10">No hay problema, solo danos tu dirección de correo que utilizas en nuestra plataforma y te enviaremos un link para recuperar tu contraseña.</p>
+
+            <form class="auth-form flex flex-col justify-evenly md:space-around " method="POST" action="{{ route('password.email') }}">
+                @csrf
+                <input type="email" class="text-white bg-transparent py-2 rounded-lg border border-blue-400 focus:outline-none focus:border-yellow-400
+                ransition duration-500 ease-in-out pl-4 mb-4" id="email" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus
+                >
+                <button type="submit" class="rounded-lg w-full bg-yellow-400 hover:bg-yellow-500 transition duration-500 ease-in-out py-2 text-white mb-4">Recuperar contraseña</button>
+            </form>
+        </div>
+        
+    </div>
+
+
+    <!--
     <div class="relative z-20 w-full h-screen overflow-y-auto">
-        <!-- Navbar -->
+        <!-- Navbar --
         
 
-        <!-- Contenido -->
+        <!-- Contenido --
         <div class="container z-30 px-4 mx-auto mt-8 pt-20 sm:px-0">
             
             <div class="max-w-xl mx-auto">
@@ -51,7 +90,6 @@
 
     </div>
 
-    @livewire('footer')
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -103,7 +141,7 @@
             }
         }
 
-    </script>
+    </script>-->
     
 </body>
 
