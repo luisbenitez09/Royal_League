@@ -11,7 +11,7 @@
 </head>
 <body style="background-color: #1a2a41"  class="bg-dash bg-cover bg-center bg-fixed">
     
-    <div class="w-full h-screen z-20 relative overflow-y-auto">
+    <div class="w-full min-h-screen z-20 ">
         <!-- Navbar -->
         @livewire('navbar')
 
@@ -19,29 +19,24 @@
         <div class="container mx-auto mt-8 px-4 sm:px-0 z-30">
             <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-8 gap-x-8">
                 <!-- Teams -->
-                <div class="col-span-1 md:col-span-2 lg:h-screen mb-8 md:mb-0 overflow-y-auto">
+                <div class="col-span-1 md:col-span-2 lg:h-screen overflow-y-auto mb-8 md:mb-0">
                     <h2 class="text-lg text-white font-semibold text-opacity-50 mb-8" >Mis equipos</h2>
                     <ul>
                         @foreach ($teams as $team)
                                 <li>
-                                    <div class="w-full grid grid-cols-2 bg-gray-500 bg-opacity-25 rounded-2xl p-3 mb-4 transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                                        <div class="col-1">
+                                    <div class="w-full flex flex-row bg-gray-500 bg-opacity-25 rounded-2xl p-3 mb-4 transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                                        <div class="w-2/3">
                                             <h3 class="font-semibold text-white">{{ $team->name }}</h3>
                                             <p class="font-light text-white text-opacity-75 text-xs mb-2">
-                                                {{ DB::table('members')->where('access_code', $team->access_code)->count() }} miebros</p>
+                                                {{ DB::table('members')->where('access_code', $team->access_code)->count() }} miebros</p><!-- fix this in backend -->
                                             <p class="font-medium text-white">{{ $team->points }} puntos</p>
                                         </div>
-                                        <div class="col-1">
-                                            <button class="bg-teal-500 hover:bg-teal-600 w-16 h-full float-right rounded-xl text-white font-semibold transition duration-500 ease-in-out">
-                                                Ver
-                                            </button>
-                                        </div>
+                                        
                                     </div>
                                 </li>
                         @endforeach
                         <li>
-                            <a href="{{ route('teams') }}" class="w-full h-20 flex flex-col items-center bg-gray-400 bg-opacity-50 hover:bg-gray-500 hover:bg-opacity-50 transition duration-500 ease-in-out rounded-2xl p-2 " 
-                            style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                            <a href="{{ route('teams') }}" class="w-full h-20 mb-10 flex flex-col items-center bg-gray-400 bg-opacity-50 hover:bg-gray-500 hover:bg-opacity-50 transition duration-500 ease-in-out rounded-2xl p-2 " >
                                     <h3 class="font-light mt-3 text-white animate-pulse">Ver mis equipos</h3>
                                     <i class="fa fa-search animate-pulse text-white"></i>
                             </a>
@@ -49,14 +44,15 @@
                     </ul>
                 </div>
                 <!-- Torneos -->
-                <div class="col-span-1 md:col-span-4 h-screen overflow-y-auto ">
+                <div class="col-span-1 md:col-span-4 h-screen overflow-y-auto">
 
                     <!-- Title-->
                     <h2 class="text-lg text-white font-semibold text-opacity-50 mb-8">Torneo en progreso</h2>
                     <!-- Main Card-->
                     @if ($onlineTournament)
                         @foreach ($tournaments as $tournament)
-                            <div class="w-full h-56 rounded-3xl bg-mainCTA bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                        @if ($tournament->status === 2)
+                            <div class="w-full h-56 rounded-3xl bg-online-t bg-center bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
                                 <div class="w-full h-56 rounded-3xl p-4 bg-black bg-opacity-50">
                                     <h1 class="text-white font-semibold text-2xl mb-1">{{ $tournament->title }}</h1>
                                     <p class="font-light text-white text-sm">{{ $tournament->date }}</p>
@@ -78,13 +74,14 @@
                                     </a>
                                 </div>
                             </div>
+                        @endif
                         @endforeach
                     @else
-                        <div class="w-full h-56 rounded-3xl bg-empty bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                                <div class="w-full h-56 rounded-3xl p-4 bg-black bg-opacity-50">
-                                    <h1 class="text-white font-semibold text-2xl mb-1">No hay ningún torneo en juego</h1>    
-                                </div>
+                        <div class="w-full h-56 rounded-3xl bg-no-t bg-cover mb-8 transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                            <div class="w-full h-56 rounded-3xl p-4 bg-black bg-opacity-50">
+                                <h1 class="text-white font-semibold text-2xl mb-1">No hay ningún torneo en juego</h1>    
                             </div>
+                        </div>
                     @endif
                     
                     <!-- Subtitles line-->
@@ -96,12 +93,13 @@
                     <!-- Cards grid-->
                     <div class="grid grid-cols-2 gap-y-4 gap-x-8 mb-52">
                         @foreach ($tournaments as $tournament)
-                        <div class="bg-mainCTA bg-cover w-full rounded-2xl transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                        <div class="bg-prox-t bg-center bg-cover w-full rounded-2xl transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                            <img src="" alt="">
                             <div class="w-full  bg-black bg-opacity-50 rounded-2xl p-3">
                                 <h3 class="text-white font-semibold text-sm">{{ $tournament->title }}</h3>
                                 <p class="text-xs text-white font-thin mb-6">{{ $tournament->date }}</p>
                                 <div>
-                                    <a href="" class="text-white bg-green-600 w-28 rounded-md px-7 hover:bg-green-500 transition duration-500 ease-in-out">Inscrito</a>
+                                    <a href="{{ route('tournament-info',$tournament->id) }}" class="text-white bg-green-600 w-28 rounded-md px-7 hover:bg-green-500 transition duration-500 ease-in-out">Inscrito</a>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +121,7 @@
                     </div>
                     <!-- Stats card 2-->
                     <div class="w-full h-20 bg-gray-500 bg-opacity-25 rounded-3xl p-4 transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                        <p class="text-white font-semibold text-sm">Número de equipos: {{ $teamsIn }}</p>
+                        <p class="text-white font-semibold text-sm">Equipos creados: {{ $ownedTeams }}</p>
                         <p class="text-white font-semibold text-sm">Número de perfiles: {{ $profileNum }}</p>
                     </div>
                 </div>

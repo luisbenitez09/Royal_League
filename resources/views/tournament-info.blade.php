@@ -27,7 +27,7 @@
 
 	<div id="wrap">
 
-		<div class="titlebar titlebar-sm scheme-light text-center" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url({{ asset('./assets/img/web/'.$tournament->game.'.png') }});">
+		<div class="titlebar titlebar-sm scheme-light text-center" data-parallax="true" data-parallax-options='{ "parallaxBG": true }' style="background-image: url({{ asset('./img/'.$tournament->game.'.png') }});">
 
 			<header class="main-header main-header-overlay">
 
@@ -206,10 +206,9 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('img/torneos/'.$tournament->image) }});"
+													style="background-image: url({{ asset('./img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
-													<img class="invisible" src="img/torneos/{{$tournament->image}}" alt="Content Box">
 												</figure>
 											</div><!-- /.cb-img-container -->
 

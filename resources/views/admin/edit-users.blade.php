@@ -12,10 +12,11 @@
     <title>Editar usuario</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-edit-users bg-cover bg-fixed">
+<body class="bg-dash bg-cover bg-center">
+    <!-- navbar -->
     @livewire('admin-navbar')
 
-    <div class="w-full h-screen">
+    <!--<div class="w-full h-screen">
         <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
             <h1 class="text-center text-xl text-white font-light mb-5">Nombre: <span class="font-bold text-2xl">{{ $user->name }}</span></h1>
             <h1 class="text-center text-xl text-white font-light mb-5">Email: <span class="font-bold text-2xl">{{ $user->email }}</span></h1>
@@ -64,7 +65,82 @@
             </div>
             
         </div>
+    </div>-->
+
+    <!-- Titulo -->
+    <div class="mx-8 lg:mx-20 flex flex-row justify-between my-8">
+        <h1 class="text-white font-bold text-3xl">Editar usuario</h1>
+        <button class="w-40 px-3 h-12 font-light text-white transition duration-500 ease-in-out bg-gray-500 bg-opacity-25 rounded-lg hover:bg-red-600 hover:bg-opacity-100"
+        type="button" onclick="remove('{{ $user->id }}',this)">Eliminar usuario</button>
     </div>
+
+    <!-- Top card -->
+    <div class="w-full">
+        <div class="max-w-6xl xl:mx-auto lg:mx-20 bg-gray-500 bg-opacity-25 rounded-3xl mb-20 mx-8 p-10">
+            <form method="POST" action="{{ route('update-team') }}"><!--cambiar ruta-->
+                @csrf
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <h1 class="text-center md:text-left mb-10 text-xl md:text-2xl text-white font-bold mr-5">Nombre: {{ $user->name }}</h1>
+                    <div class="flex flex-row lg:flex-row-reverse mb-4 md:mb-0">
+                        <h1 class="text-center text-xl md:text-2xl text-white font-light mr-4 lg:mr-0">Puntos: <span class="font-bold">400</span></h1>
+                        <h1 class="text-center text-xl md:text-2xl text-white font-light lg:mr-4">Torneos: <span class="font-bold">{{ $user->played_t }}</span></h1>
+                    </div>
+                    <input type="hidden" value="{{ $user->id }}" name="id">
+                </div>
+                
+                <div class="flex flex-col md:flex-row justify-between">
+                    <h1 class="mb-4 md:mb-0 text-xl md:text-2xl text-white font-bold mr-5">Podios: {{ $user->podiums }}</h1>
+                    <div class="flex flex-row-reverse justify-between">
+                        <button type="submit" class="text-white font-medium text-xl rounded-xl h-12 px-6  bg-yellow-400 hover:bg-green-500 transition duration-500 ease-in-out">Actualizar</button>
+                        <a href="{{ route('teams') }}" class="text-white font-medium text-xl pt-2 rounded-xl px-6 h-12 mr-4 bg-gray-500 bg-opacity-25 hover:bg-red-600 transition duration-500 ease-in-out">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <!-- Members card --
+    @isset($members)
+       <div class="w-full">
+            <div class="max-w-6xl xl:mx-auto lg:mx-20 bg-gray-500 bg-opacity-25 rounded-3xl my-20 mx-8 p-10">
+                <table class="w-full text-white">
+                    <thead class="text-xl border-b-2">
+                        <th class="w-1/4 pb-4">Usuario</th>
+                        <th class="w-1/4 pb-4">Plataforma</th>
+                        <th class="w-1/4 pb-4">Puntos</th>
+                        <th class="pb-4">Acciones</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($members as $member)
+                            <tr class="">
+                                <td class="py-4 text-center">{{ $member->profile->gamertag }}</td>
+                                <td class="py-4 text-center">
+                                    @if ($member->profile->platform === "xbl")
+                                        Xbox Live
+                                    @endif
+                                    @if ($member->profile->platform === "battle")
+                                        Battlenet
+                                    @endif
+                                    @if ($member->profile->platform === "psn")
+                                        PlayStation Network
+                                    @endif
+                                    
+                                </td>
+                                <td class="py-4 text-center">{{ $member->member_points }}</td>
+                                <td class="py-4 text-center">
+                                        <button onclick="removeMember('{{ $member->id }}','{{ $team->id }}',this)" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
+                                            Eliminar
+                                        </button> 
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
+            </div>
+        </div> 
+    @endisset-->
 
     
 

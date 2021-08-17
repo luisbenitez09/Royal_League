@@ -21,35 +21,43 @@ class DashboardController extends Controller
 
     public function index ()
     {
-        $teams = Team::All();
+        //ok
+        $user = Auth::user();
+
+        //admin
         $teams2 = DB::table('teams')->orderBy('points','DESC')->get();
         $members = Member::with('profile')->get();
         $profiles = Profile::All();
-        $tournaments = Tournament::skip(0)->take(4)->get();
-        $user = Auth::user();
         $users = User::All();
-        $onlineTournament = false;
-        $torneos = Tournament::All();
-        foreach($torneos as $torneo) {
-            if ($torneo ->status === 2) {
-                $onlineTournament = true;
-            }
-        }
 
 
         if(Auth::user()->hasRole('Admin')) {
+            //vista admin
+
             $teamsOwner = Team::with('user')->get();
             return view ('admin.dashboard', compact('user', 'teams2', 'members', 'profiles','users'));
-        } else {
-            $teamsIn = DB::table('teams')->where('owner',$user->id)->count();
-            $profileNum = DB::table('profiles')->where('user_id',$user->id)->count();
+        } else { 
+            //vista usuario
+            $teams = Team::select('teams.id', 'teams.name', 'teams.points', 'teams.access_code')->join('members','members.access_code','=','teams.access_code')->join('profiles','profiles.id','=','members.profile_id')->join('users','users.id','=','profiles.user_id')->where('users.id', $user->id)->distinct()->get();
+            $ownedTeams = Team::where('owner', $user->id)->count();
+            $profileNum = Profile::where('user_id', $user->id)->count();
             $userPoints = 0;
             foreach ($profiles as $profile) {
                 if($profile->user_id === $user->id) {
                     $userPoints+=$profile->points;
                 }
             }
-            return view ('users.dashboard', compact('user', 'teams', 'members', 'profiles','users','teamsIn','profileNum', 'userPoints', 'tournaments','torneos','onlineTournament'));
+            $tournaments = Tournament::skip(0)->take(4)->get();
+            $onlineTournament = false;
+            $torneos = Tournament::All();
+            foreach($torneos as $torneo) {
+                if ($torneo ->status === 2) {
+                    $onlineTournament = true;
+                }
+            }
+            
+
+            return view ('users.dashboard', compact('user', 'teams', 'ownedTeams', 'profileNum', 'userPoints', 'tournaments', 'onlineTournament'));
         }
         
     }

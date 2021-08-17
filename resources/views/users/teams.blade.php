@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,35 +15,42 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body style="background-color: #1a2a41" class="bg-fixed bg-center bg-cover bg-teams">
+<body style="background-color: #1a2a41" class="bg-fixed bg-center bg-cover bg-dash">
 
-    <div class="relative z-20 w-full h-screen overflow-y-auto">
+    <div class="relative z-20 w-full min-h-screen px-4">
         <!-- Navbar -->
         @livewire('navbar')
 
         <!-- Contenido -->
-        <div class="container z-30 px-4 mx-auto mt-8 sm:px-0">
+        <div class="container z-30 mx-auto mt-8 sm:px-0">
             <!-- Titles line-->
-            <div class="flex flex-row items-center justify-between w-full mb-8">
-                <p class="text-xl font-bold text-white md:text-2xl xl:text-4xl">Mis Equipos</p>
+            <div class="flex flex-col md:flex-row items-center justify-between w-full mb-8">
+                <p class="text-xl font-bold text-white md:text-2xl xl:text-4xl mb-4 md:mb-0">Mis Equipos</p>
                 <div>
                     <button
-                        class="w-40 px-3 py-1 mr-2 font-light text-white transition duration-500 ease-in-out bg-gray-600 bg-opacity-50 rounded-lg hover:bg-gray-400 hover:bg-opacity-50"
+                        class="w-40 px-3 py-1 mb-4 mr-2 font-light text-white transition duration-500 ease-in-out bg-gray-500 bg-opacity-50 rounded-lg hover:bg-gray-400 hover:bg-opacity-50"
                         type="button" onclick="openSidePanelJoin()">Unirme a equipo</button>
                     <button
-                        class="w-40 px-3 py-1 font-light text-white transition duration-500 ease-in-out bg-gray-600 bg-opacity-50 rounded-lg hover:bg-gray-400 hover:bg-opacity-50"
+                        class="w-40 px-3 py-1 font-light text-white transition duration-500 ease-in-out bg-gray-500 bg-opacity-50 rounded-lg hover:bg-gray-400 hover:bg-opacity-50"
                         type="button" onclick="openSidePanel()">Agregar equipo</button>
                 </div>
 
             </div>
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class=" px-5 py-3 rounded-lg mb-4 bg-yellow-400 text-white">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            @endif
 
             <!-- Grid -->
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 @if (isset($teams) && count($teams)>0)
 
                 @foreach ($teams as $team)
-                @if ($team->owner == $user->id)
-                    <div class="col-auto p-3 transition duration-500 ease-in-out transform bg-gray-400 bg-opacity-25 rounded-2xl hover:-translate-y-2">
+                    <div class="col-auto p-4 transition duration-500 ease-in-out transform bg-gray-500 bg-opacity-25 rounded-2xl hover:-translate-y-2">
                         <p class="text-lg font-semibold text-white">{{ $team->name }}</p>
                         <div class="grid grid-cols-2">
                             <div class="col-1">
@@ -63,14 +69,15 @@
                                 <p class="mb-1 text-xs text-white font-regular">{{ $team->points }} puntos</p>
                                 <p class="mb-1 text-xs text-white font-regular">{{ $team->tournaments }} torneos</p>
                                 <p class="mb-3 text-xs text-white font-regular">Mejor resultado: <span class="font-bold">{{ $team->bestResult }}</span></p>
-                                <a href="{{ route('team-edit',$team->id) }}"
-                                    class="w-full py-2 px-2 text-xs font-bold text-white transition duration-500 ease-in-out bg-yellow-400 rounded-lg hover:bg-yellow-500">Editar
-                                    equipo</a>
+                                @if ($team->owner === $user->id)
+                                    <a href="{{ route('team-edit',$team->id) }}"
+                                        class="w-full py-2 px-2 text-xs font-bold text-white transition duration-500 ease-in-out bg-yellow-400 rounded-lg hover:bg-yellow-500"
+                                        >Editar equipo
+                                    </a>
+                                @endif
                             </div>
                         </div>
-
                     </div>
-                @endif
                 @endforeach
                 @else
                 <div class="col-auto p-3 bg-gray-400 bg-opacity-25 rounded-2xl">
@@ -81,14 +88,16 @@
             </div>
         </div>
 
-
     </div>
 
     <!-- Side panel new team -->
     <div class="inset-0 z-50 hidden overflow-hidden" id="sidePanel">
         <div class="absolute inset-0 overflow-hidden">
 
+            <!-- Page left overlay -->
             <div class="absolute inset-0 transition-opacity bg-gray-900 bg-opacity-75" aria-hidden="true"></div>
+            
+            <!-- Side menu-->
             <section class="absolute inset-y-0 right-0 flex max-w-full pl-10" aria-labelledby="slide-over-heading">
 
                 <!-- Slide-over panel, show/hide based on slide-over state. -->
@@ -109,9 +118,8 @@
                         </button>
                     </div>
 
-
-                    <div class="z-50 flex flex-col h-full py-6 overflow-y-scroll bg-gray-600 bg-opacity-25 shadow-xl"
-                        style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                    <!-- Side panel content -->
+                    <div class="z-50 flex flex-col h-full py-6 overflow-y-scroll bg-gray-900 shadow-xl">
                         <div class="px-4 mb-8 sm:px-6">
                             <h2 id="slide-over-heading" class="text-lg font-medium text-white">
                                 Agregar equipo
@@ -129,8 +137,8 @@
                                         <!-- Team name -->
                                         <div class="flex-col">
                                             <input type="text"
-                                                class="w-full py-2 pl-4 mb-10 text-white transition duration-500 ease-in-out bg-opacity-50 rounded-full bg-cool-gray-500 hover:bg-opacity-50 "
-                                                id="name" name="name" :value="old('name')"
+                                                class="w-full py-2 pl-4 mb-10 text-white transition duration-500 ease-in-out bg-opacity-25 rounded-full bg-cool-gray-500 hover:bg-opacity-50 "
+                                                id="name" name="name" value="{{ old('name') }}"
                                                 placeholder="Nombre del equipo" required autofocus>
 
                                             <!-- Profile selector -->
@@ -144,7 +152,7 @@
                                                             <button x-ref="button" @click="onButtonClick()" type="button"
                                                                 aria-haspopup="listbox" :aria-expanded="open"
                                                                 aria-labelledby="assigned-to-label"
-                                                                class="cursor-default relative w-full rounded-md text-white bg-gray-600 bg-opacity-50 hover:bg-gray-400 hover:bg-opacity-50 pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-700 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                                                class="cursor-default relative w-full rounded-md text-white bg-gray-500 bg-opacity-25 hover:bg-opacity-50 pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-700 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                                 <div class="flex items-center space-x-3">
                                                                     <span
                                                                         x-text="['Perfil'
@@ -174,8 +182,7 @@
                                                             x-transition:leave="transition ease-in duration-100"
                                                             x-transition:leave-start="opacity-100"
                                                             x-transition:leave-end="opacity-0"
-                                                            class="absolute mt-1 w-52 rounded-md bg-gray-500 bg-opacity-25 shadow-lg"
-                                                            style="display: none; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                                                            class="absolute mt-1 w-52 rounded-md bg-gray-700 shadow-lg">
                                                             <ul @keydown.enter.stop.prevent="onOptionSelect()"
                                                                 @keydown.space.stop.prevent="onOptionSelect()"
                                                                 @keydown.escape="onEscape()"
@@ -280,6 +287,7 @@
     <div class="inset-0 z-50 hidden overflow-hidden" id="sidePanelJoin">
         <div class="absolute inset-0 overflow-hidden">
 
+            <!-- Left panel overlay-->
             <div class="absolute inset-0 transition-opacity bg-gray-900 bg-opacity-75" aria-hidden="true"></div>
             <section class="absolute inset-y-0 right-0 flex max-w-full pl-10" aria-labelledby="slide-over-heading">
 
@@ -302,8 +310,7 @@
                     </div>
 
 
-                    <div class="z-50 flex flex-col h-full py-6 overflow-y-scroll bg-gray-600 bg-opacity-25 shadow-xl"
-                        style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                    <div class="z-50 flex flex-col h-full py-6 overflow-y-scroll bg-gray-900 shadow-xl">
                         <div class="px-4 mb-8 sm:px-6">
                             <h2 id="slide-over-heading" class="text-lg font-medium text-white">
                                 Ingresa el código de equipo
@@ -321,8 +328,8 @@
                                         <!-- Access code -->
                                         <div class="flex-col">
                                             <input type="text"
-                                                class="w-full py-2 pl-4 mb-20 text-white transition duration-500 ease-in-out bg-opacity-50 rounded-full bg-cool-gray-500 hover:bg-opacity-50 "
-                                                id="access_code" name="access_code" :value="old('access_code')"
+                                                class="w-full py-2 pl-4 mb-20 text-white transition duration-500 ease-in-out bg-opacity-25 rounded-full bg-gray-500 hover:bg-opacity-50 "
+                                                id="access_code" name="access_code" value="{{ old('access_code') }}"
                                                 placeholder="Código del equipo" required autofocus>
 
                                             <!-- Profile selector -->
@@ -337,7 +344,7 @@
                                                             <button x-ref="button" @click="onButtonClick()" type="button"
                                                                 aria-haspopup="listbox" :aria-expanded="open"
                                                                 aria-labelledby="assigned-to-label"
-                                                                class="cursor-default relative w-full rounded-md text-white bg-gray-600 bg-opacity-50 hover:bg-gray-400 hover:bg-opacity-50 pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-700 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                                                class="cursor-default relative w-full rounded-md text-white bg-gray-500 bg-opacity-25 hover:bg-opacity-50 pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-700 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                                                 <div class="flex items-center space-x-3">
                                                                     <span
                                                                         x-text="['Perfil'
@@ -367,8 +374,7 @@
                                                             x-transition:leave="transition ease-in duration-100"
                                                             x-transition:leave-start="opacity-100"
                                                             x-transition:leave-end="opacity-0"
-                                                            class="absolute mt-1 w-52 rounded-md bg-gray-500 bg-opacity-25 shadow-lg"
-                                                            style="display: none; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                                                            class="absolute mt-1 w-52 rounded-md bg-gray-700 shadow-lg">
                                                             <ul @keydown.enter.stop.prevent="onOptionSelect()"
                                                                 @keydown.space.stop.prevent="onOptionSelect()"
                                                                 @keydown.escape="onEscape()"
@@ -477,8 +483,6 @@
                     document.getElementById("drop-menu-2").classList.add("hidden");
                 }
             }
-
-
         }
 
         function toggle() {
@@ -503,7 +507,6 @@
                 if (!dropdown2.classList.contains('hidden')) {
                     dropdown2.classList.add('hidden');
                 }
-
             }
         }
 
@@ -532,6 +535,7 @@
         }
 
     </script>
+    
     <script>
         function asignValue(valor) {
             var x = document.getElementsByClassName("profile_id");
@@ -603,8 +607,8 @@
                         })
                     },
                     onArrowDown() {
-                        this.selected = this.selected + 1 > this.optionCount ? 1 : this.selected + 1
-                        this.$refs.listbox.children[this.selected - 1].scrollIntoView({
+                        this.selected = this.selected + 1 > this.optionCount+1 ? 1 : this.selected + 1
+                        this.$refs.listbox.children[this.selected + 1].scrollIntoView({
                             block: 'nearest'
                         })
                     },

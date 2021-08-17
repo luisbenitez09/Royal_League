@@ -9,6 +9,7 @@ use App\Models\Team;
 use App\Models\Member;
 use App\Models\User;
 use App\Models\Profile;
+use Illuminate\Validation\ValidationException;
 
 
 class TeamController extends Controller
@@ -24,10 +25,12 @@ class TeamController extends Controller
         $members = Member::with('profile')->get();
         $profiles = Profile::All();
         $user = Auth::user();
-        $users = User::All();
+        
         if(Auth::user()->hasRole('Admin')) {
             return view ('admin.teams', compact('user', 'teams', 'members', 'profiles'));
         } else {
+            $teams = Team::select('teams.id', 'teams.name', 'teams.points', 'teams.access_code', 'teams.owner', 'teams.bestResult', 'teams.tournaments')->join('members','members.access_code','=','teams.access_code')->join('profiles','profiles.id','=','members.profile_id')->join('users','users.id','=','profiles.user_id')->where('users.id', $user->id)->distinct()->get();
+            
             return view ('users.teams', compact('user', 'teams', 'members', 'profiles'));
         }
         
@@ -52,8 +55,15 @@ class TeamController extends Controller
     public function teamEdit ($id)
     {
         $team = Team::findOrFail($id);
-        $members = DB::table('members')->where('access_code',$team->access_code)->get();
-        return view ('users.edit-team', compact('team','members'));
+        $user = Auth::user();
+
+        if($team->owner === $user->id){
+            $members = Member::where('access_code', $team->access_code)->get();
+            return view ('users.edit-team', compact('team','members'));
+        } else {
+            return $this->index();
+        }
+        
     }
 
     /**
@@ -82,15 +92,19 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->hasPermissionTo('create teams')) {
-            if($member = Member::create($request->all())) {
-                if($team = Team::create($request->all())) {
-                    return redirect()->back()->with('success','Team created successfully');
+        try {
+            if(Auth::user()->hasPermissionTo('create teams')) {
+                if($member = Member::create($request->all())) {
+                    if($team = Team::create($request->all())) {
+                        return redirect()->back()->with('success','Team created successfully');
+                    }
+                    return redirect()->back()->with('error','We couldnt create the new team');
                 }
-                return redirect()->back()->with('error','We couldnt create the new team');
-                
             }
-            return redirect()->back()->with('error','Member owner not added');
+        } catch (\Throwable $th) {
+            throw ValidationException::withMessages([
+                'team' => 'No se pudo crear el equipo. Intenta más tarde.'
+            ]);
         }
     }
 
@@ -109,6 +123,31 @@ class TeamController extends Controller
             return redirect()->back()->with('success','Equipo actualizado correctamente');
         }
         return redirect()->back()->with('error','No se pudo actualizar el registro correctamente');
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        //if(Auth::user()->hasPermissionTo('delete movies')) {
+        $team = Team::find($request['id']);
+        if ($team) {
+            if ($team->delete()) {
+                return response()->json([
+                    'message' => 'team deleted successfully',
+                    'code' => '200',
+                ]);
+            }
+        }
+        return response()->json([
+            'message' => 'We couldt delete the team',
+            'code' => '400',
+        ]);
+        //}
     }
 
 }

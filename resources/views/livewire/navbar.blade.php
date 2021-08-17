@@ -38,7 +38,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-red-500 hover:bg-opacity-75 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-red-600 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                                     role="menuitem">
                                     Cerrar sesión
                                 </button>
@@ -109,7 +109,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-red-500 hover:bg-opacity-75 rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                    class="block w-full text-left px-4 py-2 text-sm text-white hover:bg-red-600  rounded-md transition duration-100 ease-in-out focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                                     role="menuitem">
                                     Cerrar sesión
                                 </button>

@@ -16,16 +16,20 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body style="background-color: #1a2a41" class="bg-fixed bg-center bg-cover bg-profile">
+<body style="background-color: #1a2a41" class="bg-fixed bg-center bg-cover bg-dash">
 
-    <div class="relative z-20 w-full h-screen mb-20">
+    <div class="relative z-20 w-full min-h-screen mb-20">
         <!-- Navbar -->
         @livewire('navbar')
 
         <!-- Contenido -->
         <div class="container z-30 px-4 mx-auto mt-8 sm:px-0">
             <!-- Name -->
-            <h1 class="mt-10 text-4xl text-white font-bold">{{ $user->name }}</h1>
+            <div class="flex flex-col md:flex-row justify-between">
+                <h1 class=" text-4xl text-white font-bold">{{ $user->name }}</h1>
+                <h1 class="md:ml-12 text-2xl text-white font-light">Puntos: <span class="text-4xl text-white font-bold">{{ $userPoints }}</span></h1>
+            </div>
+            
             <!-- Email -->
             <div class="flex flex-row items-center mt-8 mb-20">
                 <p class="mr-8 text-xl font-light text-gray-400">{{ $user->email }}</p>
@@ -37,11 +41,11 @@
             <!-- Add Gamertag -->
             <form method="POST" action="{{ route('profile') }}" class="mb-12">
                 @csrf
-                <p class="text-white font-light">Agrega un perfil de juego</p>
+                <p class="text-white font-light mb-6">Agrega un perfil de juego</p>
                 <div class="flex flex-col md:flex-row justify-between align-top mt-2 mb-8 w-full">
                     <input type="text"
-                        class="h-10 pl-4 text-white transition duration-500 ease-in-out bg-opacity-50 rounded-full mb-4 w-80 bg-gray-600 hover:bg-gray-400 hover:bg-opacity-50"
-                        id="gamertag" name="gamertag" :value="old('gamertag')" placeholder="Gamertag" required
+                        class="h-10 pl-4 text-white transition duration-500 ease-in-out bg-opacity-50 rounded-full mb-4 w-80 bg-gray-700 hover:bg-gray-500 hover:bg-opacity-50"
+                        id="gamertag" name="gamertag" value="{{ old('gamertag') }}" placeholder="Gamertag" required
                         autofocus>
                     <!-- Platform selector -->
                     <div class="space-y-1" x-data="Components.customSelect({ open: false, value: 1, selected: 1 })"
@@ -50,7 +54,7 @@
                             <span class="inline-block w-52 mb-4 rounded-md shadow-sm">
                                 <button x-ref="button" @click="onButtonClick()" type="button" aria-haspopup="listbox"
                                     :aria-expanded="open" aria-labelledby="assigned-to-label"
-                                    class="cursor-default relative w-full rounded-md text-white bg-gray-600 bg-opacity-50 hover:bg-gray-400 hover:bg-opacity-50 pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-700 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                                    class="cursor-default relative w-full rounded-md text-white bg-gray-700 bg-opacity-50 hover:bg-gray-500 hover:bg-opacity-50 pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-700 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                                     <div class="flex items-center space-x-3">
                                         <span
                                             x-text="['Plataforma', 'Xbox Live', 'Battlenet', 'Play Station Network'][value - 1]"
@@ -68,8 +72,8 @@
 
                             <div x-show="open" @focusout="onEscape()" @click.away="open = false"
                                 x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100"
-                                x-transition:leave-end="opacity-0" class="absolute mt-1 w-52 rounded-md bg-gray-500 bg-opacity-25 shadow-lg"
-                                style="display: none; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                                x-transition:leave-end="opacity-0" class="absolute mt-1 w-52 rounded-md bg-gray-900 shadow-lg"
+                                >
                                 <ul @keydown.enter.stop.prevent="onOptionSelect()"
                                     @keydown.space.stop.prevent="onOptionSelect()" @keydown.escape="onEscape()"
                                     @keydown.arrow-up.prevent="onArrowUp()" @keydown.arrow-down.prevent="onArrowDown()"
@@ -164,32 +168,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (isset($profiles) && count($profiles)>0)
-                        @foreach ($profiles as $profile)
-                            @if ($profile->user_id === $user->id)
-                                <tr>
-                                    <td class="text-white text-xl py-4">{{ $profile->gamertag }}</td>
-                                    <td class="text-white text-xl py-4">
-                                        @if ($profile->platform == "xbl")
-                                            Xbox Live
-                                        @endif
-                                        @if ($profile->platform =="battle")
-                                            Battle.net
-                                        @endif
-                                        @if ($profile->platform == "psn")
-                                            PlayStation Network
-                                        @endif
-                                    </td>
-                                    <td class="py-4">
-                                        <button onclick="remove('{{ $profile->id }}',this)" class="submit bg-red-800 hover:bg-red-700 px-4 py-1 rounded-lg text-white transition duration-500 ease-in-out">Borrar</button>
-                                    </td>
-                                </tr>
-                            @endif
-                        @endforeach
-                    @else
-                        
-                    @endif
-                    
+                    @foreach ($profiles as $profile)
+                            <tr>
+                                <td class="text-white text-xl py-4">{{ $profile->gamertag }}</td>
+                                <td class="text-white text-xl py-4">
+                                    @if ($profile->platform == "xbl")
+                                        Xbox Live
+                                    @endif
+                                    @if ($profile->platform =="battle")
+                                        Battle.net
+                                    @endif
+                                    @if ($profile->platform == "psn")
+                                        PlayStation Network
+                                    @endif
+                                </td>
+                                <td class="py-4">
+                                    <button onclick="remove('{{ $profile->id }}',this)" class="submit bg-red-800 hover:bg-red-700 px-4 py-1 rounded-lg text-white transition duration-500 ease-in-out">Borrar</button>
+                                </td>
+                            </tr>
+                    @endforeach
                 </tbody>
             </table>
 

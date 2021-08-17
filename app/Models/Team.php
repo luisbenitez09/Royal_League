@@ -32,4 +32,8 @@ class Team extends Model
         return $this->belongsTo(User::class, 'owner', 'id');
     }
 
+    public function registered_team(){
+        return $this->hasMany(Registered_team::class, 'team_id');
+    }
+
 }

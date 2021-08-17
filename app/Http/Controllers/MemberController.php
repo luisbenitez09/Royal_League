@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use App\Models\Team;
+use Illuminate\Validation\ValidationException;
 
 class MemberController extends Controller
 {
@@ -39,10 +40,16 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         //if(Auth::user()->hasPermissionTo('create teams')) {
-            if($member = Member::create($request->all())) {
-                return redirect()->back()->with('success','Member created successfully');
+            try {
+                if($member = Member::create($request->all())) {
+                    return redirect()->back()->with('success','Member created successfully');
+                }
+            } catch (\Throwable $th) {
+                throw ValidationException::withMessages([
+                    'member' => 'No se pudo agregar tu perfil al equipo seleccionado. Intenta más tarde'
+                ]);
             }
-            return redirect()->back()->with('error','We couldnt create the new member');
+            
         //}
     }
 

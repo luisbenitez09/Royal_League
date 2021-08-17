@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/teams','TeamController@store');
     Route::post('/changeTeamStatus','TeamController@changeTeamStatus')->name('changeTeamStatus');
     Route::post('/update-team','TeamController@update')->name('update-team');
-    //Route::delete('/categories','CategoryController@destroy');
+    Route::delete('/teams','TeamController@destroy');
 
     Route::get('/members','MemberController@index')->name('members');
     //Route::put('/categories','CategoryController@update');

@@ -17,10 +17,11 @@ class Member extends Model
     protected $fillable = [
     	'profile_id',
     	'access_code',
+        'member_points'
     ];
 
     public function profile(){
-        return $this->hasOne(Profile::class, 'id', 'profile_id');
+        return $this->BelongsTo(Profile::class, 'profile_id', 'id');
     }
 
     public function team(){

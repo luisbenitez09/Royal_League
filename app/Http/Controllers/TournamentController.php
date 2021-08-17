@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tournament;
 use App\Models\Parameter;
+use App\Models\Registered_team;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -54,7 +55,13 @@ class TournamentController extends Controller
     public function liveTournament ($id)
     {
         $tournament = Tournament::findOrFail($id);
-        return view ('users.live-tournament', compact('tournament'));
+        if($tournament->status === 2) {
+            $teams = Registered_team::where('tournament_id', $tournament->id)->get();
+            return view ('users.live-tournament', compact('tournament', 'teams'));
+        } else {
+            return $this->index();
+        }
+        
     }
 
 

@@ -16,14 +16,24 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::All();
+        
         $user = Auth::user();
-        $users = User::All();
-
+        
         if (Auth::user()->hasRole('Admin')) {
-            return view('admin.users', compact('user', 'profiles', 'users'));
+            $profiles = Profile::All();
+            $users = User::where('role_id', 2)->get();
+            $users_count = User::where('role_id', 2)->count();
+            $admins_count = User::where('role_id', 1)->count();
+
+            return view('admin.users', compact('user', 'profiles', 'users','users_count','admins_count'));
         } else {
-            return view('users.profile', compact('user', 'profiles'));
+            $profiles = Profile::where('user_id', $user->id)->get();
+            $userPoints = 0;
+            foreach ($profiles as $profile) {
+                $userPoints+=$profile->points;
+            }
+            
+            return view('users.profile', compact('user', 'profiles', 'userPoints'));
         }
     }
 

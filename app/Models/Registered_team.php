@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Registered_team extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    	'profile_id',
+    	'access_code',
+        'member_points'
+    ];
+
+    public function team(){
+        return $this->BelongsTo(Team::class, 'team_id', 'id');
+    }
+
+    public function tournament(){
+        return $this->BelongsTo(Tournament::class, 'tournament_id', 'id');
+    }
 }

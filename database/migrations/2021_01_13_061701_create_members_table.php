@@ -18,6 +18,8 @@ class CreateMembersTable extends Migration
             $table->unsignedBigInteger('profile_id');
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
             $table->string('access_code');
+            $table->unique(['profile_id', 'access_code']);
+            $table->integer('member_points')->default(0);
             $table->timestamps();
         });
     }
