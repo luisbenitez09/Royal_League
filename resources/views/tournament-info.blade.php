@@ -179,7 +179,7 @@
 							<div class="tabs tabs-nav-side tabs-nav-shadowed">
 								<ul class="nav tabs-nav" role="tablist">
 									<li class="tabs-nav-title">
-										<h6 class="font-weight-bold">Información</h6>
+										<h6 class="font-weight-bold text-white">Información</h6>
 									</li>
 									<li role="presentation" class="h5 active">
 										<a href="#ld-tab-pane-1" aria-expanded="false" aria-controls="ld-tab-pane-1" role="tab" data-toggle="tab">Resumen</a>
@@ -206,7 +206,7 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('./img/torneos/'.$tournament->image) }});"
+													style="background-image: url({{ asset('storage/img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
 												</figure>
@@ -239,6 +239,8 @@
 										<br>
 										<p>Sean todos bienvenidos a nuestro torneo Royal League: <strong>{{ $tournament->title }}.</strong></p>
 										<p>{{ $tournament->description }}</p>
+
+										<a href="{{ route('registered-team',$tournament->id) }}" class="text-white px-3 py-2" style="font-size: 20px; background-color: #e3a008; border-radius: 10px;">Registrarme</a>
 
 										<hr>
 
@@ -275,10 +277,9 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('img/torneos/'.$tournament->image) }});"
+													style="background-image: url({{ asset('storage/img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
-													<img class="invisible" src="img/torneos/{{$tournament->image}}" alt="Content Box">
 												</figure>
 											</div>
 
@@ -317,15 +318,9 @@
 										<hr>
 
 										<ul><!-- Cambiar a dinamico -->
-											<li>Se prohíbe el uso de cuentas nuevas (mínimo 75 partidas jugadas).</li>
-											<li>Se prohíbe el uso de reverse boosting.</li>
-											<li>El crossplay deberá estar activo durante las partidas.</li>
-											<li>Cada jugador debe identificarse con el ID de ACTIVISION.</li>
-											<li>Deberán tener público su perfil en <a href="cod.tracker.gg/modern-warfare"></a>cod.tracker.gg/modern-warfare.</li>
-											<li>Se monitoreará el perfil de los participantes para comparar su rendimiento con semanas pasadas.</li>
-											<li>Mínimo un participante deberá hacer stream en Facebook o Twitch, los que no puedan deberán grabar sus partidas y tener el audio activo de sus compañeros para poder escuchar los call outs.</li>
-											<li>Poner como título del Stream "Torneo Royal League".</li>
-											<li>Respeto para todos los participantes y administradores.</li>
+											@foreach ($rules as $rule)
+												<li>{{ $rule->rule }}</li>
+											@endforeach
 										</ul>
 
 										<hr>
@@ -345,10 +340,9 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('img/torneos/'.$tournament->image) }});"
+													style="background-image: url({{ asset('storage/img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
-													<img class="invisible" src="img/torneos/{{$tournament->image}}" alt="Content Box">
 												</figure>
 											</div>
 
@@ -401,7 +395,7 @@
 											<div class="cb-img-container border-radius-3">
 												<figure
 													class="fancy-box-image border-radius-3 bg-left-top"
-													style="background-image: url({{ asset('img/torneos/'.$tournament->image) }});"
+													style="background-image: url({{ asset('storage/img/torneos/'.$tournament->image) }});"
 													data-liquid-blur="true"
 													data-blur-options='{ "imgSrc": "backgroundImage", "radius": 30, "blurHandlerOn": "static" }'>
 													<img class="invisible" src="img/torneos/{{$tournament->image}}" alt="Content Box">
@@ -444,13 +438,13 @@
 
 										<ul>
 											<li>
-												<h4>1er lugar - ${{ $tournament->price1 }} MXN</h4>
+												<h4>1er lugar - {{ $tournament->price1 }}</h4>
 											</li>
 											<li>
-												<h4>2do lugar - ${{ $tournament->price2 }} MXN</h4>
+												<h4>2do lugar - {{ $tournament->price2 }}</h4>
 											</li>
 											<li>
-												<h4>3er lugar - ${{ $tournament->price3 }} MXN</h4>
+												<h4>3er lugar - {{ $tournament->price3 }}</h4>
 											</li>
 										</ul>
 

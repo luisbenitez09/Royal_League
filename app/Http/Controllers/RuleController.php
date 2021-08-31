@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class RuleController extends Controller
 {
@@ -35,7 +36,17 @@ class RuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            //if(Auth::user()->hasPermissionTo('create rules')) {
+                if($rule = Rule::create($request->all())) {
+                    return redirect()->back()->with('success','Rule created successfully');
+                }
+            //}
+        } catch (\Throwable $th) {
+            throw ValidationException::withMessages([
+                'parameter' => 'No se pudo crear la regla. Intenta más tarde.'
+            ]);
+        }
     }
 
     /**
@@ -78,8 +89,22 @@ class RuleController extends Controller
      * @param  \App\Models\Rule  $rule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rule $rule)
+    public function destroy(Request $request)
     {
-        //
+        //if(Auth::user()->hasPermissionTo('delete rules')) {
+            $rule = Rule::find($request['id']);
+            if ($rule) {
+                if ($rule->delete()) {
+                    return response()->json([
+                        'message' => 'rule deleted successfully',
+                        'code' => '200',
+                    ]);
+                }
+            }
+            return response()->json([
+                'message' => 'We couldt delete the rule',
+                'code' => '400',
+            ]);
+        //}
     }
 }

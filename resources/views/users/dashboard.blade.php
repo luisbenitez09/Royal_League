@@ -93,16 +93,18 @@
                     <!-- Cards grid-->
                     <div class="grid grid-cols-2 gap-y-4 gap-x-8 mb-52">
                         @foreach ($tournaments as $tournament)
-                        <div class="bg-prox-t bg-center bg-cover w-full rounded-2xl transform hover:-translate-y-2 transition duration-500 ease-in-out">
-                            <img src="" alt="">
-                            <div class="w-full  bg-black bg-opacity-50 rounded-2xl p-3">
-                                <h3 class="text-white font-semibold text-sm">{{ $tournament->title }}</h3>
-                                <p class="text-xs text-white font-thin mb-6">{{ $tournament->date }}</p>
-                                <div>
-                                    <a href="{{ route('tournament-info',$tournament->id) }}" class="text-white bg-green-600 w-28 rounded-md px-7 hover:bg-green-500 transition duration-500 ease-in-out">Inscrito</a>
+                            @if ($tournament->status === 1)
+                                <div class="bg-prox-t bg-center bg-cover w-full rounded-2xl transform hover:-translate-y-2 transition duration-500 ease-in-out">
+                                    <img src="" alt="">
+                                    <div class="w-full  bg-black bg-opacity-50 rounded-2xl p-3">
+                                        <h3 class="text-white font-semibold text-sm">{{ $tournament->title }}</h3>
+                                        <p class="text-xs text-white font-thin mb-6">{{ $tournament->date }}</p>
+                                        <div>
+                                            <a href="{{ route('tournament-info',$tournament->id) }}" class="text-white bg-yellow-400 w-28 rounded-md px-7 hover:bg-yellow-500 transition duration-500 ease-in-out">Ver</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

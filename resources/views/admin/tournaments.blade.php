@@ -12,13 +12,13 @@
     <title>Torneos</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-admin-tournaments bg-cover bg-fixed">
+<body class="bg-dash bg-cover bg-center">
     @livewire('admin-navbar')
     <div class="flex flex-row-reverse my-10 mx-8 lg:mx-20">
         <a href="{{ route('add-tournament') }}" class="text-white text-xl px-4 py-2 rounded-xl bg-green-500 hover:bg-green-600 transition duration-500 ease-in-out">Crear torneo</a>
     </div>
-    <div class="w-full h-screen">
-        <div class="max-w-6xl lg:mx-20 bg-gray-500 bg-opacity-50 rounded-3xl mb-20 mx-8 p-10">
+    <div class="w-full h-screen md:px-10">
+        <div class="max-w-6xl lg:mx-auto bg-gray-800 bg-opacity-50 rounded-3xl mb-20 mx-8 p-10">
             
             <h1 class="text-center text-2xl text-white font-bold mb-5">Torneos</h1>
             <table class="w-full text-white">
@@ -37,16 +37,37 @@
                             <td class="py-4 text-center border-r-2">{{ $tournament->date }}</td>
                             <td class="py-4 text-center border-r-2">
                                 @php
-                                    if ("$tournament->status === 1") {
+                                    if ($tournament->status === 1) {
                                         echo "Próximo";
+                                    } else if ($tournament->status === 2) {
+                                        echo "En Curso";
+                                    } else if ($tournament->status === 3) {
+                                        echo "Finalizado";
+                                    } else if ($tournament->status === 4) {
+                                        echo "Suspendido";
+                                    } else {
+                                        echo "Revisar";
                                     }
                                 @endphp
                             </td>
                             
-                            <td class="py-4 text-center">
-                                <a href="{{ route('edit-tournament',$tournament->id) }}" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
+                            <td class="py-4 text-center flex flex-col md:flex-row">
+                                <a href="{{ route('edit-tournament',$tournament->id) }}" class="w-full px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
                                     Editar
                                 </a>
+
+                                @if ($tournament->status === 1)
+                                    <a href="{{ route('edit-tournament',$tournament->id) }}" class="w-full px-4 py-2 bg-green-400 rounded-lg hover:bg-green-600 mt-2 md:mt-0 md:ml-2 transition duration-500 ease-in-out">
+                                        Iniciar
+                                    </a>
+                                @endif
+                                @if ($tournament->status === 2)
+                                    <a href="{{ route('edit-tournament',$tournament->id) }}" class="w-full px-4 py-2 bg-red-600 rounded-lg hover:bg-red-800 mt-2 md:mt-0 md:ml-2 transition duration-500 ease-in-out">
+                                        Finalizar
+                                    </a>
+                                @else
+                                    
+                                @endif
                             </td>
                         </tr> 
                     @endforeach

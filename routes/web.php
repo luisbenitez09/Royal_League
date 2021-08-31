@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/admin-users','ProfileController@index')->name('admin-users');
     Route::get('/edit-user/{id}','ProfileController@editUser')->name('edit-user');
     //Route::put('/admin-users','CategoryController@update');
-    Route::post('/admin-users','ProfileController@store');
+    Route::post('/admin-users','ProfileController@store');///////////////revsiaaaaaaaaaaaaar
     //Route::delete('/admin-users','CategoryController@destroy');
 
     Route::get('/admin-teams','TeamController@index')->name('admin-teams');
@@ -72,6 +72,17 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/update-tournament','TournamentController@update')->name('update-tournament');
     Route::post('/add-new-tournament','TournamentController@store')->name('add-new-tournament');
     //Route::delete('/categories','CategoryController@destroy');
+
+    Route::post('/parameter','ParameterController@store')->name('parameter');
+    Route::delete('/parameter','ParameterController@destroy');
+
+    Route::post('/rules','RuleController@store')->name('rules');
+    Route::delete('/rules','RuleController@destroy');
+
+    Route::get('/register-team/{id}','RegisteredTeamController@index')->name('registered-team');
+    Route::post('/register-team','RegisteredTeamController@store')->name('register-team');
+
+
 });
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

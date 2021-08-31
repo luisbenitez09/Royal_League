@@ -15,9 +15,11 @@ class Registered_team extends Model
      * @var array
      */
     protected $fillable = [
-    	'profile_id',
-    	'access_code',
-        'member_points'
+    	'team_id',
+    	'tournament_id',
+        't_points',
+        't_position',
+        'status'
     ];
 
     public function team(){

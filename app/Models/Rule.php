@@ -16,6 +16,6 @@ class Rule extends Model
      */
     protected $fillable = [
     	'rule',
-    	'tournament_id_'
+    	'tournament_id'
     ];
 }

@@ -17,13 +17,15 @@ class CreateRegisteredTeamsTable extends Migration
             $table->id();
             $table->integer('t_points')->default(0);
             $table->integer('t_position')->default(0);
-            $table->integer('status')->default('1');
+            $table->integer('status')->default('1');//No creo que sea necesario
 
             $table->unsignedBigInteger('tournament_id');
             $table->foreign('tournament_id')->references('id')->on('tournaments')->onDelete('cascade');
 
             $table->unsignedBigInteger('team_id');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+
+            $table->unique(['tournament_id', 'team_id']);
 
             $table->timestamps();
         });

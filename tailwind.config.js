@@ -29,6 +29,7 @@ module.exports = {
                 'card-teams': "url('/img/card-teams.png')",
                 'card-tournament': "url('/img/card-tournament.png')",
                 'card-table': "url('/img/card-table.png')",
+                'mainCTA': "url('/img/cta.jpg')",
             })
         },
         backdropFilter: {

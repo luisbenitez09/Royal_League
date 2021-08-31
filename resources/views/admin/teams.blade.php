@@ -12,11 +12,11 @@
     <title>Usuarios / Equipos</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-admin-teams bg-cover bg-fixed">
+<body class="bg-dash bg-cover bg-center">
     @livewire('admin-navbar')
 
     <div class="w-full h-screen">
-        <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
+        <div class="max-w-6xl md:mx-auto bg-gray-800 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
             <h1 class="text-center text-2xl text-white font-bold mb-5">Equipos registrados</h1>
             <table class="w-full text-white">
                 <thead class="text-xl border-b-2">
@@ -33,7 +33,7 @@
                             <td class="py-4 text-center border-r-2">{{ $team->points }}</td>
                             <td class="py-4 text-center">
                                 <a href="{{ route('edit-team',$team->id) }}" class="px-4 py-2 bg-yellow-400 rounded-lg hover:bg-red-600 transition duration-500 ease-in-out">
-                                    Editar
+                                    Ver
                                 </a>
                             </td>
                         </tr>

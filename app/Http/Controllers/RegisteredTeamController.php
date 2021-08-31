@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Registered_team;
+use App\Models\Tournament;
+use App\Models\Rule;
+use App\Models\Parameter;
+use App\Models\Team;
+use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class RegisteredTeamController extends Controller
 {
@@ -12,9 +19,18 @@ class RegisteredTeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $tournament = Tournament::findOrFail($id);
+        if($tournament) {
+            $user = Auth::user();
+            $teams = Team::where('owner',$user->id)->get();
+            $profiles = Profile::where('user_id', $user->id)->get();
+
+            return view ('users.register-t', compact('user', 'teams', 'profiles', 'tournament'));
+        }
+        
+        
     }
 
     /**
@@ -35,7 +51,21 @@ class RegisteredTeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            if($registeredTeam = Registered_team::create($request->all())) {
+                
+                //$tournament = Tournament::findOrFail($request['tournament_id']);
+                //$parameters = Parameter::where('tournament_id',$request['tournament_id'])->get();
+                //$rules = Rule::where('tournament_id',$request['tournament_id'])->get();
+                //return view ('tournament-info', compact('tournament','parameters', 'rules'));
+
+                return redirect()->back()->with('message', 'Registro Exitoso!');
+            }
+        } catch (\Throwable $th) {
+            throw ValidationException::withMessages([
+                'registered_team' => 'No se pudo regsitrar tu equipo seleccionado. Intenta más tarde'
+            ]);
+        }
     }
 
     /**

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Parameter extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    	'parameter',
+    	'tournament_id',
+    ];
 }

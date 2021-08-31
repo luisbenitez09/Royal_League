@@ -12,11 +12,107 @@
     <title>Editar equipo</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="bg-edit-teams-a bg-cover bg-fixed">
+<body class="bg-dash bg-cover bg-center">
     @livewire('admin-navbar')
 
-    <div class="w-full h-screen">
-        <div class="max-w-6xl md:mx-auto bg-gray-500 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
+    <!-- Titulo -->
+    <div class="mx-8 lg:mx-20 flex flex-row justify-between my-8">
+        <h1 class="text-white font-bold text-3xl">Equipo</h1>
+        <!--<button class="w-40 px-3 h-12 font-light text-white transition duration-500 ease-in-out bg-gray-500 bg-opacity-25 rounded-lg hover:bg-red-600 hover:bg-opacity-100"
+        type="button" onclick="remove('{{ $team->id }}',this)">Eliminar usuario</button>-->
+    </div>
+
+    <!-- Top card -->
+    <div class="w-full">
+        <div class="max-w-6xl xl:mx-auto lg:mx-20 bg-gray-500 bg-opacity-25 rounded-3xl mb-20 mx-8 p-10">
+            <form method="POST" action="{{ route('changeTeamStatus') }}">
+                @csrf
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <h1 class="text-center md:text-left mb-10 text-xl md:text-2xl text-white font-light mr-5">Nombre: <span class="font-bold">{{ $team->name }}</span></h1>
+                    <div class="flex flex-row lg:flex-row-reverse mb-4 md:mb-0">
+                        <h1 class="text-center text-xl md:text-2xl text-white font-light mr-4 lg:mr-0">Puntos: <span class="font-bold">{{ $team->points }}</span></h1>
+                        <h1 class="text-center text-xl md:text-2xl text-white font-light lg:mr-4">Torneos: <span class="font-bold">{{ $team->tournaments }}</span></h1>
+                        @php
+                            if ($team->status === 0) {
+                                echo '<p class="text-red-600 text-center text-lg md:text-xl mt-1 font-light mx-2">Equipo suspendido</p>';
+                            } else if ($team->status === 1) {
+                                echo '<p class="text-green-400 text-center text-lg md:text-xl mt-1 font-light mx-2">Equipo activo</p>';
+                            }
+                        @endphp
+                    </div>
+                    <input type="hidden" value="{{ $team->id }}" name="id">
+                </div>
+                
+                <div class="flex flex-col md:flex-row justify-between">
+                    <h1 class="mb-4 md:mb-0 text-xl md:text-2xl text-white font-light mr-5">Creador: <span class="font-bold">{{ $team->user->name }}</span></h1>
+                    <h1 class="mb-4 md:mb-0 text-xl md:text-2xl text-white font-light mr-5">Código de equipo: <span class="font-bold">{{ $team->access_code }}</span></h1>
+                    <div class="flex flex-row-reverse justify-between">
+                        @php
+                            if ($team->status === 0) {
+                                echo '<button class="px-6 py-2 rounded-xl bg-yellow-400 text-white hover:bg-green-500 transition duration-500 ease-in-out ">Activar</button>';
+                            } else if ($team->status === 1) {
+                                echo '<button class="px-6 py-2 rounded-xl bg-yellow-400 text-white hover:bg-red-500 transition duration-500 ease-in-out ">Suspender</button>';
+                            }
+                        @endphp
+                        <input type="hidden" name="id" value="{{ $team->id }}">
+                        <input type="hidden" name="status" 
+                        value="<?php 
+                            if($team->status === 0) {
+                                echo 1;
+                            } else {
+                                echo 0;
+                            }
+                        ?>">
+                        
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <div class="mx-8 lg:mx-20 flex flex-row justify-between my-8">
+        <h1 class="text-white font-bold text-3xl">Miembros</h1>
+    </div>
+
+    <!-- Members card -->
+    @isset($members)
+       <div class="w-full">
+            <div class="max-w-6xl xl:mx-auto lg:mx-20 bg-gray-500 bg-opacity-25 rounded-3xl my-20 mx-8 p-10">
+                <table class="w-full text-white">
+                    <thead class="text-xl border-b-2">
+                        <th class="w-1/4 pb-4">Usuario</th>
+                        <th class="w-1/4 pb-4">Plataforma</th>
+                        <th class="w-1/4 pb-4">Puntos</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($members as $member)
+                            <tr class="">
+                                <td class="py-4 text-center">{{ $member->profile->gamertag }}</td>
+                                <td class="py-4 text-center">
+                                    @if ($member->profile->platform === "xbl")
+                                        Xbox Live
+                                    @endif
+                                    @if ($member->profile->platform === "battle")
+                                        Battlenet
+                                    @endif
+                                    @if ($member->profile->platform === "psn")
+                                        PlayStation Network
+                                    @endif
+                                    
+                                </td>
+                                <td class="py-4 text-center">{{ $member->member_points }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
+            </div>
+        </div> 
+    @endisset
+
+    <!--<div class="w-full h-screen">
+        <div class="max-w-6xl md:mx-auto bg-gray-800 bg-opacity-50 rounded-3xl my-20 mx-8 p-10">
             <h1 class="text-center text-xl text-white font-light mb-5">Nombre: <span class="font-bold text-2xl">{{ $team->name }}</span></h1>
             <h1 class="text-center text-xl text-white font-light mb-5">Creador: <span class="font-bold text-2xl">{{ $team->user->name }}</span></h1>
             <h1 class="text-center text-xl text-white font-light mb-5">Puntos: <span class="font-bold text-2xl">{{ $team->points }}</span></h1>
@@ -55,7 +151,7 @@
             </div>
             
         </div>
-    </div>
+    </div>-->
 
     
 

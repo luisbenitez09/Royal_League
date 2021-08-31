@@ -20,9 +20,9 @@ class CreateTournamentsTable extends Migration
             $table->integer('status')->default(1);
             $table->longText('description')->nullable();
             $table->string('image')->default('image.png');
-            $table->double('price1')->nullable();
-            $table->double('price2')->nullable();
-            $table->double('price3')->nullable();
+            $table->string('price1')->nullable();
+            $table->string('price2')->nullable();
+            $table->string('price3')->nullable();
             $table->string('date')->nullable();
             $table->string('time')->nullable();
             $table->string('kd')->nullable();

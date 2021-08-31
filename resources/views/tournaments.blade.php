@@ -41,7 +41,7 @@
         <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($tournaments as $tournament)
             <div class="max-w-sm h-96">
-                <img src="img/torneos/{{$tournament->image}}"  alt="" class="w-full h-60 ">
+                <img src="{{ asset('storage/img/torneos/'.$tournament->image) }}"  alt="" class="w-full h-60 ">
                 <!-- overlay -->
                 <div class="w-full h-60 bg-gradient-to-r from-red-700 to-gray-900 opacity-0 hover:opacity-75 -mt-60 relative mb-4 text-center transition duration-500 ease-in-out">
                     <a href="{{ route('tournament-info',$tournament->id) }}" class="text-white mt-28 -ml-7 absolute">Ver más</a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tournament;
 use App\Models\Parameter;
+use App\Models\Rule;
 use App\Models\Registered_team;
 use Auth;
 use DB;
@@ -44,7 +45,9 @@ class TournamentController extends Controller
     public function editTournament ($id)
     {
         $tournament = Tournament::findOrFail($id);
-        return view ('admin.edit-tournaments', compact('tournament'));
+        $parameters = Parameter::where('tournament_id',$id)->get();
+        $rules = Rule::where('tournament_id',$id)->get();
+        return view ('admin.edit-tournaments', compact('tournament', 'parameters', 'rules'));
     }
 
     /**
@@ -73,8 +76,9 @@ class TournamentController extends Controller
     public function tournamentInfo ($id)
     {
         $tournament = Tournament::findOrFail($id);
-        $parameters = DB::table('parameters')->where('tournament_id',$id)->get();
-        return view ('tournament-info', compact('tournament','parameters'));
+        $parameters = Parameter::where('tournament_id',$id)->get();
+        $rules = Rule::where('tournament_id',$id)->get();
+        return view ('tournament-info', compact('tournament','parameters', 'rules'));
     }
 
 
@@ -109,12 +113,26 @@ class TournamentController extends Controller
     public function store(Request $request)
     {
         //if(Auth::user()->hasPermissionTo('create teams')) {
+            
+            $this->validate($request, [
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+
             if ($tournament = Tournament::create($request->all())) {
+                if($request->hasFile('image')){
+                    $image = $request->file('image');
+                    $name = 'torneo-'.$tournament->id.'.'.$image->getClientOriginalExtension();
+                    $filePath = $request->file('image')->storeAs('img/torneos', $name, 'public');
+                    $tournament->image = $name;
+                }
+                $tournament->save();
+                
                 $tournaments = Tournament::All();
 
                 return view ('admin.tournaments', compact('tournaments'));
             }
-            return redirect()->back()->with('error', 'We couldnt create the new member');
+            
+            return redirect()->back()->with('error', 'We couldnt create the new tournament');
         //}
     }
 
@@ -151,9 +169,18 @@ class TournamentController extends Controller
     {
         $tournament = Tournament::findOrFail($request['id']);
 
-        $tournaments = Tournament::All();
 
         if ($tournament->update($request->all())) {
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $name = 'torneo-'.$tournament->id.'.'.$image->getClientOriginalExtension();
+                $filePath = $request->file('image')->storeAs('img/torneos', $name, 'public');
+                $tournament->image = $name;
+            }
+            $tournament->save();
+            
+            
+            $tournaments = Tournament::All();
             return view ('admin.tournaments', compact('tournaments'));
         }
         return redirect()->back()->with('error','No se pudo actualizar el registro correctamente');

@@ -44,7 +44,8 @@ class TeamController extends Controller
     public function editTeam ($id)
     {
         $team = Team::findOrFail($id);
-        return view ('admin.edit-teams', compact('team'));
+        $members = Member::where('access_code', $team->access_code)->get();
+        return view ('admin.edit-teams', compact('team', 'members'));
     }
 
     /**

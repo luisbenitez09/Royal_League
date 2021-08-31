@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\Team;
 
 class ProfileController extends Controller
 {
@@ -45,7 +46,14 @@ class ProfileController extends Controller
     public function editUser($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.edit-users', compact('user'));
+        $profiles = Profile::where('user_id', $user->id)->get();
+        $teams = Team::where('owner', $user->id)->get();
+        $userPoints = 0;
+        foreach ($profiles as $profile) {
+            $userPoints+=$profile->points;
+        }
+        
+        return view('admin.edit-users', compact('user', 'profiles','teams','userPoints'));
     }
 
 
@@ -88,7 +96,7 @@ class ProfileController extends Controller
     {
         //if(Auth::user()->hasPermissionTo('create teams')) {
         if ($profile = Profile::create($request->all())) {
-            return redirect()->back()->with('success', 'Member created successfully');
+            return redirect()->back()->with('success', 'Profile created successfully');
         }
         return redirect()->back()->with('error', 'We couldnt create the new member');
         //}
